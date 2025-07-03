@@ -1,8 +1,13 @@
-
 import React, { useState, useRef, useEffect } from 'react';
 import { Send, Bot, User, Minimize2, Maximize2, MessageSquare, X } from 'lucide-react';
 
-const AIChat = ({ isFullscreen = false, onToggleFullscreen, onClose }) => {
+interface AIChatProps {
+  isFullscreen?: boolean;
+  onToggleFullscreen?: () => void;
+  onClose?: () => void;
+}
+
+const AIChat: React.FC<AIChatProps> = ({ isFullscreen = false, onToggleFullscreen, onClose }) => {
   const [messages, setMessages] = useState([
     {
       id: 1,
