@@ -1,0 +1,103 @@
+
+import React, { useState } from 'react';
+import { Menu, X, Home, User, Briefcase, MessageSquare, FileText, Mail, Zap } from 'lucide-react';
+import { Link, useLocation } from 'react-router-dom';
+
+const Navigation = () => {
+  const [isOpen, setIsOpen] = useState(false);
+  const location = useLocation();
+
+  const navItems = [
+    { icon: Home, label: 'Home', path: '/' },
+    { icon: User, label: 'About', path: '/about' },
+    { icon: Briefcase, label: 'Projects', path: '/projects' },
+    { icon: MessageSquare, label: 'AI Assistant', path: '/chat' },
+    { icon: FileText, label: 'Resume', path: '/resume' },
+    { icon: Mail, label: 'Contact', path: '/contact' }
+  ];
+
+  const toggleSidebar = () => setIsOpen(!isOpen);
+
+  return (
+    <>
+      {/* Menu Toggle Button */}
+      <button
+        onClick={toggleSidebar}
+        className="fixed top-6 left-6 z-50 glass-morphism p-3 rounded-xl hover:border-cosmic-gold/40 transition-all duration-300 group"
+      >
+        {isOpen ? (
+          <X className="w-6 h-6 text-cosmic-gold" />
+        ) : (
+          <Menu className="w-6 h-6 text-cosmic-starlight group-hover:text-cosmic-gold transition-colors" />
+        )}
+      </button>
+
+      {/* Overlay */}
+      {isOpen && (
+        <div 
+          className="fixed inset-0 z-30 bg-black/50 backdrop-blur-sm"
+          onClick={toggleSidebar}
+        />
+      )}
+
+      {/* Sidebar */}
+      <nav className={`
+        fixed top-0 left-0 h-full w-80 z-40 transform transition-transform duration-300 ease-out
+        ${isOpen ? 'translate-x-0' : '-translate-x-full'}
+        glass-morphism border-r border-cosmic-gold/20
+      `}>
+        <div className="p-8">
+          {/* Logo/Brand */}
+          <div className="flex items-center gap-3 mb-12 mt-16">
+            <Zap className="w-8 h-8 text-cosmic-gold animate-lightning-glow" />
+            <div>
+              <h2 className="text-xl font-bold text-cosmic-gold">Thunder</h2>
+              <p className="text-sm text-cosmic-starlight/70">Constellations</p>
+            </div>
+          </div>
+
+          {/* Navigation Items */}
+          <ul className="space-y-2">
+            {navItems.map((item) => {
+              const Icon = item.icon;
+              const isActive = location.pathname === item.path;
+              
+              return (
+                <li key={item.path}>
+                  <Link
+                    to={item.path}
+                    onClick={toggleSidebar}
+                    className={`nav-item ${isActive ? 'active' : ''}`}
+                  >
+                    <Icon className="w-5 h-5" />
+                    <span>{item.label}</span>
+                  </Link>
+                </li>
+              );
+            })}
+          </ul>
+
+          {/* Footer */}
+          <div className="absolute bottom-8 left-8 right-8">
+            <div className="glass-morphism p-4 rounded-lg text-center">
+              <p className="text-xs text-cosmic-starlight/60 mb-2">
+                Powered by Lightning ⚡
+              </p>
+              <div className="flex justify-center space-x-1">
+                {[...Array(5)].map((_, i) => (
+                  <div
+                    key={i}
+                    className="w-1 h-1 bg-cosmic-gold rounded-full animate-star-twinkle"
+                    style={{ animationDelay: `${i * 0.2}s` }}
+                  />
+                ))}
+              </div>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </>
+  );
+};
+
+export default Navigation;

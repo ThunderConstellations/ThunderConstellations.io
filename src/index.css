@@ -1,3 +1,4 @@
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -8,89 +9,44 @@ All colors MUST be HSL.
 
 @layer base {
   :root {
-    --background: 0 0% 100%;
-    --foreground: 222.2 84% 4.9%;
+    --background: 222 84% 4.9%;
+    --foreground: 48 96% 89%;
 
-    --card: 0 0% 100%;
-    --card-foreground: 222.2 84% 4.9%;
+    --card: 222 84% 4.9%;
+    --card-foreground: 48 96% 89%;
 
-    --popover: 0 0% 100%;
-    --popover-foreground: 222.2 84% 4.9%;
+    --popover: 222 84% 4.9%;
+    --popover-foreground: 48 96% 89%;
 
-    --primary: 222.2 47.4% 11.2%;
-    --primary-foreground: 210 40% 98%;
-
-    --secondary: 210 40% 96.1%;
-    --secondary-foreground: 222.2 47.4% 11.2%;
-
-    --muted: 210 40% 96.1%;
-    --muted-foreground: 215.4 16.3% 46.9%;
-
-    --accent: 210 40% 96.1%;
-    --accent-foreground: 222.2 47.4% 11.2%;
-
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 210 40% 98%;
-
-    --border: 214.3 31.8% 91.4%;
-    --input: 214.3 31.8% 91.4%;
-    --ring: 222.2 84% 4.9%;
-
-    --radius: 0.5rem;
-
-    --sidebar-background: 0 0% 98%;
-
-    --sidebar-foreground: 240 5.3% 26.1%;
-
-    --sidebar-primary: 240 5.9% 10%;
-
-    --sidebar-primary-foreground: 0 0% 98%;
-
-    --sidebar-accent: 240 4.8% 95.9%;
-
-    --sidebar-accent-foreground: 240 5.9% 10%;
-
-    --sidebar-border: 220 13% 91%;
-
-    --sidebar-ring: 217.2 91.2% 59.8%;
-  }
-
-  .dark {
-    --background: 222.2 84% 4.9%;
-    --foreground: 210 40% 98%;
-
-    --card: 222.2 84% 4.9%;
-    --card-foreground: 210 40% 98%;
-
-    --popover: 222.2 84% 4.9%;
-    --popover-foreground: 210 40% 98%;
-
-    --primary: 210 40% 98%;
-    --primary-foreground: 222.2 47.4% 11.2%;
+    --primary: 48 96% 89%;
+    --primary-foreground: 222 84% 4.9%;
 
     --secondary: 217.2 32.6% 17.5%;
-    --secondary-foreground: 210 40% 98%;
+    --secondary-foreground: 48 96% 89%;
 
     --muted: 217.2 32.6% 17.5%;
     --muted-foreground: 215 20.2% 65.1%;
 
-    --accent: 217.2 32.6% 17.5%;
-    --accent-foreground: 210 40% 98%;
+    --accent: 48 96% 53%;
+    --accent-foreground: 222 84% 4.9%;
 
     --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 210 40% 98%;
+    --destructive-foreground: 48 96% 89%;
 
     --border: 217.2 32.6% 17.5%;
     --input: 217.2 32.6% 17.5%;
-    --ring: 212.7 26.8% 83.9%;
-    --sidebar-background: 240 5.9% 10%;
-    --sidebar-foreground: 240 4.8% 95.9%;
-    --sidebar-primary: 224.3 76.3% 48%;
-    --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 240 3.7% 15.9%;
-    --sidebar-accent-foreground: 240 4.8% 95.9%;
-    --sidebar-border: 240 3.7% 15.9%;
-    --sidebar-ring: 217.2 91.2% 59.8%;
+    --ring: 48 96% 53%;
+
+    --radius: 0.5rem;
+
+    --sidebar-background: 222 84% 4.9%;
+    --sidebar-foreground: 48 96% 89%;
+    --sidebar-primary: 48 96% 53%;
+    --sidebar-primary-foreground: 222 84% 4.9%;
+    --sidebar-accent: 217.2 32.6% 17.5%;
+    --sidebar-accent-foreground: 48 96% 89%;
+    --sidebar-border: 217.2 32.6% 17.5%;
+    --sidebar-ring: 48 96% 53%;
   }
 }
 
@@ -100,6 +56,81 @@ All colors MUST be HSL.
   }
 
   body {
-    @apply bg-background text-foreground;
+    @apply bg-cosmic-black text-cosmic-starlight;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
+  }
+
+  .cosmic-bg {
+    background: 
+      radial-gradient(ellipse at top, rgba(251, 191, 36, 0.1) 0%, transparent 50%),
+      radial-gradient(ellipse at bottom, rgba(251, 191, 36, 0.05) 0%, transparent 50%),
+      linear-gradient(180deg, #0a0a0f 0%, #12121a 100%);
+  }
+
+  .starfield {
+    background-image: 
+      radial-gradient(2px 2px at 20px 30px, #fbbf24, transparent),
+      radial-gradient(2px 2px at 40px 70px, rgba(251, 191, 36, 0.8), transparent),
+      radial-gradient(1px 1px at 90px 40px, #fde047, transparent),
+      radial-gradient(1px 1px at 130px 80px, rgba(253, 224, 71, 0.6), transparent),
+      radial-gradient(2px 2px at 160px 30px, #fbbf24, transparent);
+    background-repeat: repeat;
+    background-size: 200px 100px;
+    animation: star-twinkle 4s ease-in-out infinite alternate;
+  }
+
+  .glass-morphism {
+    background: rgba(18, 18, 26, 0.8);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(251, 191, 36, 0.2);
+  }
+
+  .lightning-border {
+    position: relative;
+    border: 1px solid transparent;
+    background: linear-gradient(rgba(18, 18, 26, 0.9), rgba(18, 18, 26, 0.9)) padding-box,
+                linear-gradient(45deg, #fbbf24, #fde047, #fbbf24) border-box;
+  }
+
+  .terminal-cursor::after {
+    content: '▌';
+    animation: pulse-gold 1s infinite;
+  }
+}
+
+@layer components {
+  .nav-item {
+    @apply flex items-center gap-3 px-4 py-3 rounded-lg transition-all duration-300;
+    @apply hover:bg-cosmic-gold/10 hover:text-cosmic-gold;
+    @apply border border-transparent hover:border-cosmic-gold/30;
+  }
+
+  .nav-item.active {
+    @apply bg-cosmic-gold/20 text-cosmic-gold border-cosmic-gold/50;
+  }
+
+  .project-card {
+    @apply glass-morphism rounded-xl p-6 transition-all duration-300;
+    @apply hover:border-cosmic-gold/40 hover:shadow-lg hover:shadow-cosmic-gold/20;
+    @apply transform hover:-translate-y-2;
+  }
+
+  .chat-bubble {
+    @apply glass-morphism rounded-2xl p-4 max-w-xs;
+  }
+
+  .chat-bubble.user {
+    @apply bg-cosmic-gold/20 border-cosmic-gold/30 ml-auto;
+  }
+
+  .chat-bubble.assistant {
+    @apply bg-cosmic-dark/80 border-cosmic-gold/20;
+  }
+
+  .lightning-btn {
+    @apply lightning-border rounded-lg px-6 py-3 font-medium;
+    @apply text-cosmic-gold hover:text-cosmic-black;
+    @apply hover:bg-cosmic-gold transition-all duration-300;
+    @apply transform hover:scale-105 active:scale-95;
   }
 }
