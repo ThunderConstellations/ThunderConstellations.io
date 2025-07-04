@@ -1,6 +1,6 @@
 
 import React from 'react';
-import { Heart, Code, Users, Award } from 'lucide-react';
+import { Heart, Users, Award, Target } from 'lucide-react';
 
 const About = () => {
   return (
@@ -12,7 +12,7 @@ const About = () => {
             <span className="text-cosmic-gold"> Me</span>
           </h1>
           <p className="text-xl text-cosmic-starlight/80 max-w-2xl mx-auto">
-            Bridging the gap between cutting-edge technology and compassionate healthcare
+            Bridging healthcare expertise with innovative solutions to improve patient care and outcomes
           </p>
         </div>
 
@@ -20,23 +20,23 @@ const About = () => {
           {[
             {
               icon: Heart,
-              title: 'Healthcare Passion',
-              description: 'Deep experience in mental health and care coordination, with a focus on improving patient outcomes through technology.'
-            },
-            {
-              icon: Code,
-              title: 'Technical Excellence',
-              description: 'Full-stack developer with expertise in React, TypeScript, Node.js, and modern web technologies.'
+              title: 'Healthcare Expertise',
+              description: '5+ years of experience in mental health support and care coordination, working directly with patients and clinical teams to improve outcomes.'
             },
             {
               icon: Users,
-              title: 'Team Leadership',
-              description: 'Proven track record of leading cross-functional teams and mentoring junior developers.'
+              title: 'Care Coordination',
+              description: 'Specialized in helping patients navigate complex healthcare systems and connecting them with appropriate resources and support services.'
             },
             {
               icon: Award,
-              title: 'Results Driven',
-              description: 'Built systems that improved care team efficiency by 40% and enhanced patient satisfaction scores.'
+              title: 'Program Leadership',
+              description: 'Led mental health programs with high completion rates and developed workflows that improved team efficiency and patient satisfaction.'
+            },
+            {
+              icon: Target,
+              title: 'Solution-Focused',
+              description: 'Passionate about identifying process improvements and developing practical solutions that address real-world healthcare challenges.'
             }
           ].map((item, index) => (
             <div key={index} className="project-card">
@@ -51,20 +51,19 @@ const About = () => {
           <h2 className="text-3xl font-bold text-cosmic-gold mb-6">My Journey</h2>
           <div className="space-y-6 text-cosmic-starlight/90 leading-relaxed">
             <p>
-              My career began in healthcare, where I discovered my passion for using technology 
-              to solve complex problems and improve lives. Working directly with patients and 
-              care teams taught me the importance of building solutions that truly serve end users.
+              My career in healthcare has been focused on making a meaningful difference in people's lives. 
+              Through my work in mental health support and care coordination, I've developed a deep understanding 
+              of how healthcare systems work and where improvements can be made.
             </p>
             <p>
-              Transitioning into technology, I've maintained my focus on human-centered design 
-              and meaningful impact. Whether building care coordination platforms or leading 
-              development teams, I bring both technical expertise and deep domain knowledge 
-              to every project.
+              Working directly with patients has taught me the importance of compassionate care and effective 
+              communication. I've led programs that achieved high completion rates and developed processes 
+              that improved both patient outcomes and team efficiency.
             </p>
             <p>
-              Today, I'm excited to continue growing at the intersection of healthcare and 
-              technology, building solutions that make care more accessible, efficient, and 
-              compassionate for everyone involved.
+              I'm excited about exploring opportunities where I can leverage my healthcare expertise to 
+              drive positive change, whether through direct patient care, program development, or innovative 
+              solutions that address healthcare challenges.
             </p>
           </div>
         </div>

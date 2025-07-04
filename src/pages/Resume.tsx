@@ -1,6 +1,6 @@
 
 import React from 'react';
-import { Download, Mail, Phone, MapPin, ExternalLink } from 'lucide-react';
+import { Download, Mail, Phone, MapPin } from 'lucide-react';
 
 const Resume = () => {
   return (
@@ -24,32 +24,34 @@ const Resume = () => {
               
               <div className="space-y-8">
                 <div className="border-l-2 border-cosmic-gold/30 pl-6">
-                  <h3 className="text-xl font-semibold text-cosmic-gold">Senior Full Stack Developer</h3>
-                  <p className="text-cosmic-starlight/70 mb-2">Healthcare Tech Company • 2022 - Present</p>
-                  <ul className="text-cosmic-starlight/80 space-y-2 text-sm">
-                    <li>• Led development of care coordination platform serving 10,000+ patients</li>
-                    <li>• Improved team efficiency by 40% through workflow optimization</li>
-                    <li>• Mentored team of 5 junior developers in React and TypeScript</li>
-                  </ul>
-                </div>
-
-                <div className="border-l-2 border-cosmic-gold/30 pl-6">
                   <h3 className="text-xl font-semibold text-cosmic-gold">Care Coordinator</h3>
-                  <p className="text-cosmic-starlight/70 mb-2">Regional Health System • 2019 - 2022</p>
+                  <p className="text-cosmic-starlight/70 mb-2">Healthcare Organization • 2019 - Present</p>
                   <ul className="text-cosmic-starlight/80 space-y-2 text-sm">
-                    <li>• Coordinated care for 200+ patients with complex medical needs</li>
-                    <li>• Implemented digital workflows that reduced response time by 60%</li>
-                    <li>• Collaborated with multidisciplinary teams to improve outcomes</li>
+                    <li>• Coordinated care for patients with complex medical and mental health needs</li>
+                    <li>• Developed and implemented care plans in collaboration with multidisciplinary teams</li>
+                    <li>• Improved patient outcomes through systematic follow-up and resource connection</li>
+                    <li>• Maintained detailed documentation and tracked progress metrics</li>
                   </ul>
                 </div>
 
                 <div className="border-l-2 border-cosmic-gold/30 pl-6">
-                  <h3 className="text-xl font-semibold text-cosmic-gold">Mental Health Specialist</h3>
+                  <h3 className="text-xl font-semibold text-cosmic-gold">Mental Health Support Specialist</h3>
                   <p className="text-cosmic-starlight/70 mb-2">Community Health Center • 2017 - 2019</p>
                   <ul className="text-cosmic-starlight/80 space-y-2 text-sm">
-                    <li>• Provided direct care to individuals with mental health challenges</li>
-                    <li>• Developed group therapy programs with 85% completion rate</li>
-                    <li>• Created documentation systems that improved care continuity</li>
+                    <li>• Provided direct support to individuals experiencing mental health challenges</li>
+                    <li>• Led group therapy sessions with high completion and satisfaction rates</li>
+                    <li>• Collaborated with clinical staff to develop comprehensive treatment approaches</li>
+                    <li>• Created resources and educational materials for patients and families</li>
+                  </ul>
+                </div>
+
+                <div className="border-l-2 border-cosmic-gold/30 pl-6">
+                  <h3 className="text-xl font-semibold text-cosmic-gold">Program Assistant</h3>
+                  <p className="text-cosmic-starlight/70 mb-2">Mental Health Services • 2016 - 2017</p>
+                  <ul className="text-cosmic-starlight/80 space-y-2 text-sm">
+                    <li>• Assisted with program coordination and administrative support</li>
+                    <li>• Supported intake processes and initial client assessments</li>
+                    <li>• Maintained program records and assisted with quality improvement initiatives</li>
                   </ul>
                 </div>
               </div>
@@ -60,31 +62,31 @@ const Resume = () => {
               
               <div className="space-y-6">
                 <div>
-                  <h4 className="font-semibold text-cosmic-gold mb-3">Frontend</h4>
-                  <div className="flex flex-wrap gap-2">
-                    {['React', 'TypeScript', 'Tailwind', 'Next.js'].map(skill => (
-                      <span key={skill} className="px-3 py-1 bg-cosmic-gold/20 text-cosmic-gold text-xs rounded-full border border-cosmic-gold/30">
-                        {skill}
-                      </span>
-                    ))}
-                  </div>
-                </div>
-
-                <div>
-                  <h4 className="font-semibold text-cosmic-gold mb-3">Backend</h4>
-                  <div className="flex flex-wrap gap-2">
-                    {['Node.js', 'Python', 'PostgreSQL', 'MongoDB'].map(skill => (
-                      <span key={skill} className="px-3 py-1 bg-cosmic-gold/20 text-cosmic-gold text-xs rounded-full border border-cosmic-gold/30">
-                        {skill}
-                      </span>
-                    ))}
-                  </div>
-                </div>
-
-                <div>
                   <h4 className="font-semibold text-cosmic-gold mb-3">Healthcare</h4>
                   <div className="flex flex-wrap gap-2">
-                    {['Care Coordination', 'Mental Health', 'Clinical Workflows', 'HIPAA'].map(skill => (
+                    {['Care Coordination', 'Mental Health', 'Patient Advocacy', 'Clinical Documentation'].map(skill => (
+                      <span key={skill} className="px-3 py-1 bg-cosmic-gold/20 text-cosmic-gold text-xs rounded-full border border-cosmic-gold/30">
+                        {skill}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+
+                <div>
+                  <h4 className="font-semibold text-cosmic-gold mb-3">Program Management</h4>
+                  <div className="flex flex-wrap gap-2">
+                    {['Team Leadership', 'Process Improvement', 'Quality Assurance', 'Training & Development'].map(skill => (
+                      <span key={skill} className="px-3 py-1 bg-cosmic-gold/20 text-cosmic-gold text-xs rounded-full border border-cosmic-gold/30">
+                        {skill}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+
+                <div>
+                  <h4 className="font-semibold text-cosmic-gold mb-3">Communication</h4>
+                  <div className="flex flex-wrap gap-2">
+                    {['Patient Education', 'Interdisciplinary Collaboration', 'Crisis Intervention', 'Community Outreach'].map(skill => (
                       <span key={skill} className="px-3 py-1 bg-cosmic-gold/20 text-cosmic-gold text-xs rounded-full border border-cosmic-gold/30">
                         {skill}
                       </span>
@@ -106,7 +108,7 @@ const Resume = () => {
                   </div>
                   <div className="flex items-center gap-3 text-cosmic-starlight/80">
                     <MapPin className="w-4 h-4 text-cosmic-gold" />
-                    Your City, State
+                    Chicago, IL
                   </div>
                 </div>
               </div>

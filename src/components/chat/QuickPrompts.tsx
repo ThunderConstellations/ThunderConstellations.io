@@ -10,11 +10,11 @@ interface QuickPromptsProps {
 const QuickPrompts: React.FC<QuickPromptsProps> = ({ isVisible, onPromptSelect }) => {
   const quickPrompts = [
     "Tell me about your healthcare experience",
-    "What technical skills do you have?",
-    "How do you bridge healthcare and technology?",
-    "What certifications are you pursuing?",
+    "What is care coordination?",
+    "How do you approach mental health support?",
+    "What technical skills are you developing?",
     "What type of role are you seeking?",
-    "Describe your leadership experience"
+    "Tell me about your leadership experience"
   ];
 
   if (!isVisible) return null;

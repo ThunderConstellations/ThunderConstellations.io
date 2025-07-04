@@ -12,14 +12,14 @@ const TerminalMessage: React.FC<TerminalMessageProps> = ({ onComplete }) => {
 
   const terminalLines = [
     '> Initializing ThunderConstellations...',
-    '> Connecting to cosmic network...',
-    '> Aligning stars and lightning...',
-    '> Loading professional matrix...',
+    '> Connecting to healthcare network...',
+    '> Loading care coordination protocols...',
+    '> Accessing mental health resources...',
     '> Portfolio systems online.',
     '',
-    '> SKILLS_LOADED: [React, TypeScript, Healthcare, Leadership]',
-    '> EXPERIENCE_LOADED: [Tech, Mental Health, Care Coordination]',
-    '> STATUS: Ready for collaboration ⚡',
+    '> EXPERIENCE_LOADED: [Healthcare, Mental Health, Care Coordination]',
+    '> SKILLS_LOADED: [Patient Advocacy, Program Leadership, Team Collaboration]',
+    '> STATUS: Ready to make a difference ⚡',
   ];
 
   useEffect(() => {
@@ -88,10 +88,10 @@ const TerminalMessage: React.FC<TerminalMessageProps> = ({ onComplete }) => {
           <div className="mt-6 pt-4 border-t border-cosmic-gold/20 animate-fade-in">
             <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
               {[
-                { label: 'Frontend', items: ['React', 'TypeScript', 'Tailwind'] },
-                { label: 'Backend', items: ['Node.js', 'Python', 'Databases'] },
-                { label: 'Healthcare', items: ['Care Coord', 'Mental Health', 'Clinical'] },
-                { label: 'Leadership', items: ['Team Lead', 'Mentoring', 'Strategy'] }
+                { label: 'Healthcare', items: ['Care Coord', 'Mental Health', 'Patient Care'] },
+                { label: 'Leadership', items: ['Team Lead', 'Program Mgmt', 'Training'] },
+                { label: 'Communication', items: ['Patient Ed', 'Collaboration', 'Advocacy'] },
+                { label: 'Development', items: ['Process Improve', 'Quality Assurance', 'Innovation'] }
               ].map((category, index) => (
                 <div
                   key={category.label}

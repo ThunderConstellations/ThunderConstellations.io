@@ -64,15 +64,15 @@ const AIChat: React.FC<AIChatProps> = ({ isFullscreen = false, onToggleFullscree
     setIsTyping(true);
     setShowPrompts(false);
 
-    // Enhanced AI responses based on your background
+    // Updated AI responses based on your healthcare background
     setTimeout(() => {
       const responses = [
-        "My healthcare background spans 5+ years in care coordination and mental health support, combined with growing expertise in React, TypeScript, and full-stack development. I've led teams in building technology solutions that directly improved patient outcomes and streamlined clinical workflows.",
-        "I specialize in creating healthcare technology that prioritizes both user experience and clinical effectiveness. My unique perspective comes from understanding both the technical requirements and the real-world healthcare challenges that solutions need to address.",
-        "What distinguishes me is my ability to bridge the gap between technical implementation and healthcare needs. I've worked directly with care teams, understand clinical workflows, and can translate complex healthcare requirements into elegant technical solutions.",
-        "I'm passionate about using technology to make healthcare more accessible and efficient. My experience includes mental health program coordination, care team leadership, and developing solutions that serve both providers and patients effectively.",
-        "I'm actively pursuing certifications in cybersecurity and cloud platforms like Azure, while building on my healthcare foundation. I'm particularly interested in roles that combine my healthcare domain knowledge with growing technical expertise.",
-        "My goal is to contribute to organizations that value both technical innovation and meaningful healthcare impact. I'm open to opportunities in the Chicago area or remote positions, with relocation considered for the right opportunity."
+        "I have 5+ years of experience in healthcare, specializing in care coordination and mental health support. I've worked directly with patients and care teams to improve outcomes and streamline clinical workflows, developing a deep understanding of both the technical and human sides of healthcare.",
+        "My background is in healthcare with a focus on care coordination and mental health. I've worked in clinical settings helping patients navigate complex care needs while also identifying opportunities to improve processes through technology solutions.",
+        "I bring a unique perspective combining healthcare domain expertise with growing technical skills. My experience includes mental health program coordination, care team leadership, and developing workflows that serve both providers and patients effectively.",
+        "My healthcare background spans mental health support and care coordination roles where I've worked directly with patients and clinical teams. I'm passionate about using my healthcare knowledge to build better technology solutions for the industry.",
+        "I have extensive experience in healthcare, particularly in care coordination and mental health services. I've led initiatives that improved patient outcomes and team efficiency, and I'm now exploring how to leverage technology to solve healthcare challenges.",
+        "My goal is to bridge my healthcare expertise with technology to create meaningful solutions. I'm interested in opportunities in the Chicago area or remote positions where I can apply both my clinical knowledge and problem-solving skills."
       ];
 
       const assistantMessage: Message = {
