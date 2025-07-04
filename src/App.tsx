@@ -6,6 +6,7 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Navigation from "./components/Navigation";
 import FloatingChat from "./components/FloatingChat";
+import AnimatedCursor from "./components/AnimatedCursor";
 import Home from "./pages/Home";
 import About from "./pages/About";
 import Projects from "./pages/Projects";
@@ -23,6 +24,7 @@ const App = () => (
       <Sonner />
       <BrowserRouter>
         <div className="relative">
+          <AnimatedCursor />
           <Navigation />
           <Routes>
             <Route path="/" element={<Home />} />
