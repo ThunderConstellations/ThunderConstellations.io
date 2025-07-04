@@ -1,13 +1,15 @@
 
-import React from 'react';
+import React, { useState } from 'react';
 import LightningHero from '../components/LightningHero';
-import TerminalIntro from '../components/TerminalIntro';
+import AIChat from '../components/AIChat';
 
 const Home = () => {
   return (
     <div className="cosmic-bg min-h-screen">
       <LightningHero />
-      <TerminalIntro />
+      <div className="relative">
+        <AIChat />
+      </div>
     </div>
   );
 };

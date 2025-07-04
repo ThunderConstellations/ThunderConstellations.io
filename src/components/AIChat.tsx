@@ -6,6 +6,7 @@ import ChatMessage from './chat/ChatMessage';
 import TypingIndicator from './chat/TypingIndicator';
 import QuickPrompts from './chat/QuickPrompts';
 import ChatInput from './chat/ChatInput';
+import TerminalMessage from './chat/TerminalMessage';
 
 interface AIChatProps {
   isFullscreen?: boolean;
@@ -15,7 +16,7 @@ interface AIChatProps {
 
 interface Message {
   id: number;
-  type: 'user' | 'assistant';
+  type: 'user' | 'assistant' | 'terminal';
   content: string;
   timestamp: Date;
 }
@@ -25,6 +26,8 @@ const AIChat: React.FC<AIChatProps> = ({ isFullscreen = false, onToggleFullscree
   const [inputValue, setInputValue] = useState('');
   const [isTyping, setIsTyping] = useState(false);
   const [showPrompts, setShowPrompts] = useState(true);
+  const [showTerminalIntro, setShowTerminalIntro] = useState(false);
+  const [terminalComplete, setTerminalComplete] = useState(false);
   const messagesEndRef = useRef<HTMLDivElement>(null);
 
   const scrollToBottom = () => {
@@ -33,7 +36,25 @@ const AIChat: React.FC<AIChatProps> = ({ isFullscreen = false, onToggleFullscree
 
   useEffect(() => {
     scrollToBottom();
-  }, [messages]);
+  }, [messages, showTerminalIntro]);
+
+  // Start terminal intro sequence after a short delay
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setIsTyping(true);
+      setTimeout(() => {
+        setIsTyping(false);
+        setShowTerminalIntro(true);
+      }, 1500);
+    }, 2000);
+
+    return () => clearTimeout(timer);
+  }, []);
+
+  const handleTerminalComplete = () => {
+    setTerminalComplete(true);
+    setShowPrompts(true);
+  };
 
   const handleSendMessage = async () => {
     if (!inputValue.trim()) return;
@@ -110,8 +131,13 @@ const AIChat: React.FC<AIChatProps> = ({ isFullscreen = false, onToggleFullscree
         <div className="max-w-4xl mx-auto p-6">
           <ChatWelcome 
             isFullscreen={isMainPage} 
-            showWelcome={messages.length === 0}
+            showWelcome={!showTerminalIntro && !terminalComplete && messages.length === 0}
           />
+
+          {/* Terminal Intro Message */}
+          {showTerminalIntro && (
+            <TerminalMessage onComplete={handleTerminalComplete} />
+          )}
 
           <div className="space-y-6">
             {messages.map((message, index) => (
@@ -130,7 +156,7 @@ const AIChat: React.FC<AIChatProps> = ({ isFullscreen = false, onToggleFullscree
       </div>
 
       <QuickPrompts 
-        isVisible={showPrompts && messages.length === 0}
+        isVisible={showPrompts && terminalComplete && messages.length === 0}
         onPromptSelect={handlePromptSelect}
       />
 
@@ -139,7 +165,7 @@ const AIChat: React.FC<AIChatProps> = ({ isFullscreen = false, onToggleFullscree
         onChange={setInputValue}
         onSend={handleSendMessage}
         onKeyPress={handleKeyPress}
-        disabled={isTyping}
+        disabled={isTyping || !terminalComplete}
       />
     </div>
   );
