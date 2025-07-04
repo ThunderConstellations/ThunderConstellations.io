@@ -1,144 +1,133 @@
 
 import React from 'react';
-import { SkillsProgress } from '../components/ui/animated-progress';
-import { Heart, Users, TrendingUp, Shield } from 'lucide-react';
+import { Heart, Users, Award, Target, Mail, MapPin, Github, Linkedin } from 'lucide-react';
 
 const About = () => {
-  const healthcareSkills = [
-    { name: 'Care Coordination', level: 95, category: 'Healthcare' },
-    { name: 'Mental Health Support', level: 90, category: 'Healthcare' },
-    { name: 'Patient Advocacy', level: 88, category: 'Healthcare' },
-    { name: 'Crisis Intervention', level: 85, category: 'Healthcare' }
-  ];
-
-  const leadershipSkills = [
-    { name: 'Team Leadership', level: 92, category: 'Leadership' },
-    { name: 'Process Improvement', level: 90, category: 'Leadership' },
-    { name: 'Quality Assurance', level: 87, category: 'Leadership' },
-    { name: 'Program Management', level: 85, category: 'Leadership' }
-  ];
-
-  const technicalSkills = [
-    { name: 'Electronic Health Records', level: 88, category: 'Technical' },
-    { name: 'Data Analysis', level: 82, category: 'Technical' },
-    { name: 'Healthcare Analytics', level: 80, category: 'Technical' },
-    { name: 'Project Management Tools', level: 85, category: 'Technical' }
-  ];
-
   return (
-    <div className="cosmic-bg min-h-screen">
-      <div className="max-w-6xl mx-auto px-8 pt-20">
-        {/* Hero Section */}
+    <div className="cosmic-bg min-h-screen p-8">
+      <div className="max-w-4xl mx-auto pt-20">
         <div className="text-center mb-16">
           <h1 className="text-5xl font-bold mb-6">
             <span className="text-cosmic-starlight">About</span>
-            <span className="text-cosmic-gold"> Austin</span>
+            <span className="text-cosmic-gold"> Me</span>
           </h1>
-          <p className="text-xl text-cosmic-starlight/80 max-w-3xl mx-auto leading-relaxed">
-            Healthcare professional passionate about improving patient outcomes through innovative 
-            care coordination and technology-driven solutions.
+          <p className="text-xl text-cosmic-starlight/80 max-w-2xl mx-auto">
+            Bridging healthcare expertise with innovative solutions to improve patient care and outcomes
           </p>
         </div>
 
-        {/* Story Section */}
-        <div className="glass-morphism rounded-xl p-8 mb-12">
-          <h2 className="text-3xl font-bold text-cosmic-gold mb-6">My Healthcare Journey</h2>
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
-            <div className="space-y-6">
-              <p className="text-cosmic-starlight/90 leading-relaxed">
-                With over 5 years of dedicated experience in healthcare, I've specialized in care coordination 
-                and mental health support, always driven by a passion for improving patient outcomes and 
-                streamlining healthcare processes.
-              </p>
-              <p className="text-cosmic-starlight/90 leading-relaxed">
-                My journey began in direct patient care, where I learned the importance of comprehensive 
-                support systems. This experience led me to care coordination, where I could have a broader 
-                impact on patient wellness through systematic approaches and innovative program development.
-              </p>
-              <p className="text-cosmic-starlight/90 leading-relaxed">
-                Today, I combine clinical expertise with leadership skills and emerging healthcare technologies 
-                to create solutions that benefit both patients and healthcare teams.
-              </p>
+        {/* Contact Info Bar */}
+        <div className="glass-morphism rounded-xl p-6 mb-12">
+          <div className="flex flex-wrap justify-center gap-8 text-cosmic-starlight/80">
+            <div className="flex items-center gap-2">
+              <Mail className="w-5 h-5 text-cosmic-gold" />
+              <span>austinwoodmhc@gmail.com</span>
             </div>
-            <div className="grid grid-cols-2 gap-4">
-              <div className="glass-morphism p-6 text-center rounded-lg">
-                <Heart className="w-8 h-8 text-cosmic-gold mx-auto mb-3" />
-                <h3 className="text-2xl font-bold text-cosmic-gold">150+</h3>
-                <p className="text-cosmic-starlight/80 text-sm">Patients Coordinated</p>
-              </div>
-              <div className="glass-morphism p-6 text-center rounded-lg">
-                <TrendingUp className="w-8 h-8 text-cosmic-gold mx-auto mb-3" />
-                <h3 className="text-2xl font-bold text-cosmic-gold">40%</h3>
-                <p className="text-cosmic-starlight/80 text-sm">Outcome Improvement</p>
-              </div>
-              <div className="glass-morphism p-6 text-center rounded-lg">
-                <Users className="w-8 h-8 text-cosmic-gold mx-auto mb-3" />
-                <h3 className="text-2xl font-bold text-cosmic-gold">75+</h3>
-                <p className="text-cosmic-starlight/80 text-sm">Mental Health Clients</p>
-              </div>
-              <div className="glass-morphism p-6 text-center rounded-lg">
-                <Shield className="w-8 h-8 text-cosmic-gold mx-auto mb-3" />
-                <h3 className="text-2xl font-bold text-cosmic-gold">25%</h3>
-                <p className="text-cosmic-starlight/80 text-sm">Reduced Readmissions</p>
-              </div>
+            <div className="flex items-center gap-2">
+              <MapPin className="w-5 h-5 text-cosmic-gold" />
+              <span>Chicago, IL</span>
+            </div>
+            <div className="flex items-center gap-2">
+              <Github className="w-5 h-5 text-cosmic-gold" />
+              <span>ThunderConstellations</span>
+            </div>
+            <div className="flex items-center gap-2">
+              <Linkedin className="w-5 h-5 text-cosmic-gold" />
+              <span>austin-wood-a1b2c3</span>
             </div>
           </div>
         </div>
 
-        {/* Skills Sections */}
-        <div className="space-y-12 mb-12">
-          <div className="glass-morphism rounded-xl p-8">
-            <SkillsProgress 
-              title="Healthcare Expertise" 
-              skills={healthcareSkills}
-            />
-          </div>
-          
-          <div className="glass-morphism rounded-xl p-8">
-            <SkillsProgress 
-              title="Leadership & Management" 
-              skills={leadershipSkills}
-            />
-          </div>
-          
-          <div className="glass-morphism rounded-xl p-8">
-            <SkillsProgress 
-              title="Technical Proficiency" 
-              skills={technicalSkills}
-            />
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-16">
+          {[
+            {
+              icon: Heart,
+              title: 'Healthcare Expertise',
+              description: '5+ years of experience in mental health support and care coordination, working directly with patients and clinical teams to improve outcomes.'
+            },
+            {
+              icon: Users,
+              title: 'Care Coordination',
+              description: 'Specialized in helping patients navigate complex healthcare systems and connecting them with appropriate resources and support services.'
+            },
+            {
+              icon: Award,
+              title: 'Program Leadership',
+              description: 'Led mental health programs with high completion rates and developed workflows that improved team efficiency and patient satisfaction.'
+            },
+            {
+              icon: Target,
+              title: 'Solution-Focused',
+              description: 'Passionate about identifying process improvements and developing practical solutions that address real-world healthcare challenges.'
+            }
+          ].map((item, index) => (
+            <div key={index} className="project-card">
+              <item.icon className="w-12 h-12 text-cosmic-gold mb-4" />
+              <h3 className="text-xl font-bold text-cosmic-gold mb-3">{item.title}</h3>
+              <p className="text-cosmic-starlight/80 leading-relaxed">{item.description}</p>
+            </div>
+          ))}
+        </div>
+
+        <div className="glass-morphism rounded-xl p-8 mb-12">
+          <h2 className="text-3xl font-bold text-cosmic-gold mb-6">My Journey</h2>
+          <div className="space-y-6 text-cosmic-starlight/90 leading-relaxed">
+            <p>
+              My career in healthcare has been focused on making a meaningful difference in people's lives. 
+              Through my work in mental health support and care coordination, I've developed a deep understanding 
+              of how healthcare systems work and where improvements can be made.
+            </p>
+            <p>
+              Working directly with patients has taught me the importance of compassionate care and effective 
+              communication. I've led programs that achieved high completion rates and developed processes 
+              that improved both patient outcomes and team efficiency.
+            </p>
+            <p>
+              I'm excited about exploring opportunities where I can leverage my healthcare expertise to 
+              drive positive change, whether through direct patient care, program development, or innovative 
+              solutions that address healthcare challenges.
+            </p>
           </div>
         </div>
 
-        {/* Values Section */}
-        <div className="glass-morphism rounded-xl p-8 mb-12">
-          <h2 className="text-3xl font-bold text-cosmic-gold mb-8 text-center">Core Values</h2>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <div className="text-center">
-              <div className="w-16 h-16 bg-cosmic-gold/20 rounded-full flex items-center justify-center mx-auto mb-4">
-                <Heart className="w-8 h-8 text-cosmic-gold" />
+        {/* Certifications Section */}
+        <div className="glass-morphism rounded-xl p-8">
+          <h2 className="text-3xl font-bold text-cosmic-gold mb-6 flex items-center gap-3">
+            <Award className="w-8 h-8" />
+            Certifications & Achievements
+          </h2>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div className="space-y-4">
+              <div className="flex items-center gap-3 p-4 bg-cosmic-gold/10 rounded-lg border border-cosmic-gold/30">
+                <Award className="w-6 h-6 text-cosmic-gold" />
+                <div>
+                  <h4 className="font-semibold text-cosmic-gold">Google IT Support Professional Certificate</h4>
+                  <p className="text-cosmic-starlight/70 text-sm">Technical troubleshooting and IT support skills</p>
+                </div>
               </div>
-              <h3 className="text-xl font-bold text-cosmic-gold mb-3">Patient-Centered Care</h3>
-              <p className="text-cosmic-starlight/80 text-sm leading-relaxed">
-                Every decision and innovation should ultimately improve patient outcomes and experience.
-              </p>
+              <div className="flex items-center gap-3 p-4 bg-cosmic-gold/10 rounded-lg border border-cosmic-gold/30">
+                <Award className="w-6 h-6 text-cosmic-gold" />
+                <div>
+                  <h4 className="font-semibold text-cosmic-gold">Mental Health First Aid</h4>
+                  <p className="text-cosmic-starlight/70 text-sm">Crisis intervention and mental health support</p>
+                </div>
+              </div>
             </div>
-            <div className="text-center">
-              <div className="w-16 h-16 bg-cosmic-gold/20 rounded-full flex items-center justify-center mx-auto mb-4">
-                <TrendingUp className="w-8 h-8 text-cosmic-gold" />
+            <div className="space-y-4">
+              <div className="flex items-center gap-3 p-4 bg-cosmic-gold/10 rounded-lg border border-cosmic-gold/30">
+                <Award className="w-6 h-6 text-cosmic-gold" />
+                <div>
+                  <h4 className="font-semibold text-cosmic-gold">Crisis Intervention Training</h4>
+                  <p className="text-cosmic-starlight/70 text-sm">Emergency response and de-escalation techniques</p>
+                </div>
               </div>
-              <h3 className="text-xl font-bold text-cosmic-gold mb-3">Continuous Improvement</h3>
-              <p className="text-cosmic-starlight/80 text-sm leading-relaxed">
-                Always seeking better ways to deliver care through innovation and evidence-based practices.
-              </p>
-            </div>
-            <div className="text-center">
-              <div className="w-16 h-16 bg-cosmic-gold/20 rounded-full flex items-center justify-center mx-auto mb-4">
-                <Users className="w-8 h-8 text-cosmic-gold" />
+              <div className="flex items-center gap-3 p-4 bg-cosmic-gold/10 rounded-lg border border-cosmic-gold/30">
+                <Award className="w-6 h-6 text-cosmic-gold" />
+                <div>
+                  <h4 className="font-semibold text-cosmic-gold">Healthcare Quality Management</h4>
+                  <p className="text-cosmic-starlight/70 text-sm">Process improvement and quality assurance</p>
+                </div>
               </div>
-              <h3 className="text-xl font-bold text-cosmic-gold mb-3">Collaborative Leadership</h3>
-              <p className="text-cosmic-starlight/80 text-sm leading-relaxed">
-                Building strong teams and partnerships to achieve shared healthcare goals.
-              </p>
             </div>
           </div>
         </div>

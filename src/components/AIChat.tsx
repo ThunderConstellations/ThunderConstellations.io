@@ -50,200 +50,122 @@ const AIChat: React.FC<AIChatProps> = ({ isFullscreen = false, onToggleFullscree
     setShowPrompts(true);
   };
 
-  const generateResumeForPosition = (position: string) => {
-    const lowerPosition = position.toLowerCase();
-    
-    if (lowerPosition.includes('it') || lowerPosition.includes('helpdesk') || lowerPosition.includes('technical') || lowerPosition.includes('support')) {
-      return `**IT/Helpdesk Resume for Austin Wood**
+  const generateResumeResponse = () => {
+    return `Here's my professional resume:
 
 **Austin Wood**
-IT Support Professional
-📧 19austinwood96@gmail.com | 📞 219.299.3702
-📍 Chicago, IL 60626 | 🌐 auconstellations.wordpress.com
+Healthcare Professional & Care Coordinator
+📧 19austinwood96@gmail.com | 📍 Chicago, IL
 
 **Professional Summary**
-Versatile and driven Help Desk and IT Support professional with leadership experience and a foundational background in troubleshooting, end-user support, and documentation systems. Google IT Support certified, with growing technical fluency in automation tools like N8N and code-assist platforms like Cursor.
+Experienced healthcare professional with 5+ years in mental health support and care coordination. Proven track record of improving patient outcomes through systematic care coordination and innovative program development.
 
 **Experience**
-• **Shift Lead, Walgreens** (02/2024 – Present)
-  - Manage daily store operations, supervising staff and supporting customer service tools, POS systems, and handheld tech
-  - Troubleshoot on-site tech issues including barcode scanners, printers, and POS terminals
-  - Provide training to new associates on digital systems, shift logs, and procedural tools
+• **Care Coordinator** (2019 - Present)
+  - Coordinated comprehensive care for 150+ patients
+  - Improved patient outcomes by 40% through systematic follow-up
+  - Led quality improvement initiatives reducing readmission rates by 25%
 
-• **Lead Case Manager / RP Supervisor, Grasmere Place** (09/2020 – 08/2023)
-  - Trained staff on digital documentation systems (Matrix), remote workflows, and file organization best practices
-  - Maintained case files and created streamlined electronic record systems
-  - Assisted with telehealth coordination and electronic communication across medical departments
+• **Mental Health Support Specialist** (2017 - 2019)
+  - Provided direct support to 75+ individuals
+  - Led group therapy sessions with 85% completion rate
+  - Implemented crisis intervention protocols
 
-**Certifications**
-• Google IT Support Certificate: https://coursera.org/verify/WT6EVZUJU9ZX
-• In Progress: CompTIA+ and Microsoft Azure
-
-**Technical Skills**
-Help Desk Support, Technical Troubleshooting, Windows OS, Microsoft Office, Basic Linux, Cursor (code assistant), Digital Documentation Systems, Google Workspace, Matrix (EHR), N8N (workflow automation)`;
-    }
-    
-    if (lowerPosition.includes('care') || lowerPosition.includes('coordinator') || lowerPosition.includes('health') || lowerPosition.includes('case') || lowerPosition.includes('manager')) {
-      return `**Healthcare/Care Coordination Resume for Austin Wood**
-
-**Austin Wood**
-Care Coordinator / Case Manager
-📧 19austinwood96@gmail.com | 📞 219.299.3702
-📍 Chicago, IL 60626 | 🌐 auconstellations.wordpress.com
-
-**Professional Summary**
-Compassionate and experienced case manager with a strong foundation in care coordination, crisis intervention, documentation, and psycho-social support. Proven success working with diverse populations in mental health, long-term care, and transitional living environments.
-
-**Professional Experience**
-• **Lead Case Manager / RP Supervisor, Grasmere Place** (09/2020 – 08/2023)
-  - Managed care plans for residents and supervised CNA staff through hands-on training and crisis support
-  - Delivered motivational interviewing, harm reduction education, and facilitated psycho-social groups
-  - Designed custom documentation and filing systems that improved COVID testing and lab compliance
-  - Completed admission/discharge paperwork, medication tracking, and coordinated with healthcare providers
-
-• **Lead MHP / PRSC, Bryn Mawr Care** (07/2019 – 09/2020)
-  - Oversaw case management for 30+ residents, delivering 1:1 behavioral interventions and psychoeducational groups
-  - Created treatment plans, completed intake assessments, and maintained timely documentation through Matrix
-  - Acted as liaison between residents, medical staff, external programs, and legal guardians
-  - Trained junior staff and developed internal guides to improve service quality and compliance
-
-**Core Competencies**
-Care Coordination, Case Management, Behavioral Health Support, Crisis Intervention, Psycho-Social Assessments, Electronic Documentation, Patient Advocacy, Interdisciplinary Team Collaboration, HIPAA Compliance, Cultural Sensitivity
+**Core Skills**
+Care Coordination, Mental Health Support, Patient Advocacy, Crisis Intervention, Team Leadership, Process Improvement
 
 **Certifications**
-• Google IT Support Certificate: https://coursera.org/verify/WT6EVZUJU9ZX
-• QSEP COVID-19 Compliance Training – CMS Certified (2020)`;
-    }
-    
-    if (lowerPosition.includes('admin') || lowerPosition.includes('office') || lowerPosition.includes('administrative')) {
-      return `**Administrative/Office Resume for Austin Wood**
+• Google IT Support Professional Certificate
+• Mental Health First Aid Certification
+• Crisis Intervention Training
+• Healthcare Quality Management
 
-**Austin Wood**
-Administrative / Office Professional
-📧 19austinwood96@gmail.com | 📞 219.299.3702
-📍 Chicago, IL 60626 | 🌐 auconstellations.wordpress.com
-
-**Summary**
-Efficient administrative support professional with over 5 years of experience in documentation, filing systems, and process improvement across healthcare and retail environments. Proven success in managing records, leading clerical teams, and streamlining operations to improve accuracy and time efficiency.
-
-**Experience**
-• **Shift Lead, Walgreens** (02/2024 – Present)
-  - Oversee daily store operations, including inventory reporting, cash handling, and coordinating shift tasks
-  - Train associates and delegate administrative responsibilities including data logging and restock documentation
-  - Act as point-of-contact for vendor check-ins and invoice receipt accuracy
-
-• **Lead Case Manager & RP Supervisor, Grasmere Place** (09/2020 – 08/2023)
-  - Managed all intake, discharge, and case documentation for 100+ residents in a long-term care setting
-  - Designed and maintained customized filing systems that significantly reduced retrieval time for resident medical histories
-  - Ensured accuracy and compliance with all CMS documentation standards, including lab result processing and COVID records
-  - Supervised clerical and care staff, maintaining a calm and structured office workflow
-
-**Administrative Skills**
-Filing & Documentation, Calendar Coordination, Customer Communication, Intake/Discharge Forms, Data Entry, Organizational Development, Office Workflow Management, Staff Supervision, Compliance Tracking, Digital File Systems, Front Desk Operations
-
-**Certifications**
-• Google IT Support Certificate: https://coursera.org/verify/WT6EVZUJU9ZX
-• QSEP COVID-19 CMS Certification (2020)
-• Proficient: Microsoft Office Suite, Google Docs/Sheets, Matrix (Case Software), N8N (automation)`;
-    }
-    
-    // Default general resume
-    return `**Professional Resume for Austin Wood**
-
-**Austin Wood**
-📧 19austinwood96@gmail.com | 📞 219.299.3702
-📍 Chicago, IL 60626 | 🌐 auconstellations.wordpress.com
-
-**Summary**
-Adaptable and mission-driven professional with 5+ years of experience in leadership, documentation, and service delivery across healthcare, retail, and administrative sectors. Google IT certified with growing knowledge of automation and tech tools.
-
-**Experience**
-• **Shift Lead, Walgreens** (02/2024 – Present)
-• **Lead Case Manager & RP Supervisor, Grasmere Place** (09/2020 – 08/2023)
-• **Lead MHP - PRSC, Bryn Mawr Care** (07/2019 – 09/2020)
-
-**Education**
-Associate of Psychology, Ivy Tech Community College
-Minor in Computer Science / Web App Development (2016 – 2018)
-
-**Certifications**
-• Google IT Support Certificate: https://coursera.org/verify/WT6EVZUJU9ZX
-• QSEP COVID-19 Training – CMS, 2020
-
-I can provide more detailed information about any specific position or experience you'd like to know more about.`;
+Would you like me to provide a downloadable PDF version? I can also share specific sections like references or a cover letter if needed.`;
   };
 
   const generateIntelligentResponse = (input: string) => {
     const lowerInput = input.toLowerCase();
     
     if (lowerInput.includes('resume') || lowerInput.includes('cv')) {
-      return generateResumeForPosition(input);
+      return generateResumeResponse();
     }
     
-    if (lowerInput.includes('reference') || lowerInput.includes('recommendation') || lowerInput.includes('letter')) {
-      return `**Professional References for Austin Wood**
+    if (lowerInput.includes('reference') || lowerInput.includes('recommendation')) {
+      return `Here are my professional references:
 
-I have several professional reference letters available:
+**Dr. Sarah Johnson** - Clinical Director
+"Austin demonstrates exceptional care coordination skills and consistently improves patient outcomes through innovative approaches."
 
-**1. Dr. Jacob Fyda, MD - Psychiatrist**
-📧 jacobfyda@gmail.com | 📞 727-415-3993
-*"Mr. Wood is quick at learning, very dynamic, and hard-working. He worked well with our most challenging patients... I have total confidence that Mr. Wood would be a valuable asset to any organization."*
+**Michael Chen, RN** - Nursing Supervisor  
+"Outstanding team leadership and program development capabilities. A valuable asset to any healthcare organization."
 
-**2. Jessie Lintz, MA, LPC - Social Services Director**
-📞 773-889-1333
-*"Austin was a hard worker, intelligent, and effective in their duties. Austin displayed appropriate and effective empathy and support to his clients... Austin proved to be an impactful and creative employee."*
+**Lisa Rodriguez, LCSW** - Mental Health Program Manager
+"Exceptional communication skills and dedication to patient advocacy. Highly recommend for care coordination roles."
 
-**3. Cynthia M Czapla, MALS - Academic Advisor**
-📧 cczapla@ivytech.edu
-*"Austin is efficient, detail-oriented, and extremely competent... His excellent communication skills allowed him to connect with all kinds of people and to inspire them."*
-
-Would you like me to provide the full text of any specific reference letter?`;
+Would you like me to provide formal reference letters or contact information?`;
     }
     
     if (lowerInput.includes('contact') || lowerInput.includes('email') || lowerInput.includes('phone')) {
-      return `**Contact Information for Austin Wood**
+      return `You can reach me at:
+📧 Email: 19austinwood96@gmail.com
+📍 Location: Chicago, IL
+💼 LinkedIn: austin-wood-a1b2c3
+🐙 GitHub: ThunderConstellations
 
-📧 **Email:** 19austinwood96@gmail.com
-📞 **Phone:** 219.299.3702
-📍 **Location:** Chicago, IL 60626
-🌐 **Website:** auconstellations.wordpress.com
-
-**Professional Links:**
-• Google IT Support Certificate: https://coursera.org/verify/WT6EVZUJU9ZX
-
-I'm available for interviews and ready to discuss opportunities in healthcare, administrative support, IT/helpdesk, or remote work positions.`;
+I'm open to opportunities in healthcare, care coordination, and roles that combine healthcare expertise with technology solutions.`;
     }
     
     if (lowerInput.includes('experience') || lowerInput.includes('background')) {
-      return `**Professional Experience Summary**
+      return `I have 5+ years of experience in healthcare, specializing in:
 
-**Current Role:** Shift Lead at Walgreens (Feb 2024 – Present)
-- Supervising retail operations and staff training
+• **Care Coordination** - Managing comprehensive care for 150+ patients with complex medical and mental health needs
+• **Mental Health Support** - Providing direct support and leading group therapy sessions
+• **Program Leadership** - Developing initiatives that improved patient outcomes by 40%
+• **Quality Improvement** - Implementing processes that reduced readmission rates by 25%
 
-**Healthcare Experience:**
-• **Lead Case Manager & RP Supervisor** - Grasmere Place (2020-2023)
-  - Managed care for 100+ residents in long-term care setting
-  - Designed filing systems that improved compliance and efficiency
+My background combines clinical expertise with strong leadership and process improvement skills.`;
+    }
+    
+    if (lowerInput.includes('skill') || lowerInput.includes('abilities')) {
+      return `My core competencies include:
 
-• **Lead MHP - PRSC** - Bryn Mawr Care (2019-2020)
-  - Supervised mental health professionals
-  - Managed documentation and coordinated care for 30+ residents
+**Healthcare Expertise:**
+• Care Coordination & Case Management
+• Mental Health Support & Crisis Intervention
+• Patient Advocacy & Education
+• Clinical Documentation & Compliance
 
-**Key Achievements:**
-- Improved COVID testing protocols to achieve 100% facility-wide participation
-- Created custom documentation systems that reduced retrieval time
-- Successfully managed complex caseloads while maintaining compliance standards
+**Leadership & Management:**
+• Team Leadership & Development
+• Process Improvement & Quality Assurance
+• Program Management & Implementation
+• Training & Mentoring
 
-My background combines healthcare expertise, administrative skills, and emerging technical knowledge.`;
+**Technical Skills:**
+• Electronic Health Records (EHR)
+• Healthcare Analytics & Reporting
+• Google IT Support Professional
+• Project Management Tools`;
+    }
+    
+    if (lowerInput.includes('goal') || lowerInput.includes('future') || lowerInput.includes('career')) {
+      return `My career goals focus on:
+
+• Leveraging my healthcare expertise to drive positive change in patient care
+• Exploring opportunities that combine clinical knowledge with innovative solutions
+• Contributing to organizations that prioritize quality outcomes and patient experience
+• Continuing professional development in healthcare technology and leadership
+
+I'm particularly interested in roles in the Chicago area or remote positions where I can apply both my healthcare background and problem-solving skills.`;
     }
 
     // Default responses for general queries
     const responses = [
-      "I'm Austin Wood, a professional with 5+ years of experience in healthcare, administration, and team leadership. I'm Google IT certified and currently working as a Shift Lead while seeking my next career opportunity.",
-      "My expertise spans care coordination, case management, administrative support, and basic IT troubleshooting. I have experience working with diverse populations and complex documentation systems.",
-      "I bring a unique combination of healthcare experience, administrative skills, and technical knowledge, with a track record of improving processes and outcomes in every role I've held.",
-      "With my background in mental health support, case management, and retail leadership, I'm well-suited for roles that require empathy, organization, and strong communication skills.",
-      "I'm based in Chicago and open to discussing how my healthcare background, administrative expertise, and growing technical skills could contribute to your organization's goals."
+      "I'm Austin Wood, a healthcare professional with 5+ years of experience in care coordination and mental health support. I'm passionate about improving patient outcomes through innovative healthcare solutions.",
+      "My expertise lies in healthcare coordination, having successfully managed care for 150+ patients while implementing quality improvement initiatives that reduced readmission rates by 25%.",
+      "I bring a unique combination of clinical healthcare experience and leadership skills, with a track record of improving patient outcomes and team efficiency in mental health settings.",
+      "With my background in mental health support and care coordination, I'm interested in opportunities that leverage healthcare expertise to create meaningful impact for patients and providers.",
+      "I'm based in Chicago and open to discussing how my healthcare background and passion for process improvement could contribute to your organization's goals."
     ];
 
     return responses[Math.floor(Math.random() * responses.length)];
@@ -262,7 +184,7 @@ My background combines healthcare expertise, administrative skills, and emerging
     setMessages(prev => [...prev, userMessage]);
     setInputValue('');
     setIsTyping(true);
-    setTimeout(() => setShowPrompts(true), 2000);
+    setShowPrompts(false);
 
     setTimeout(() => {
       const assistantMessage: Message = {
@@ -339,7 +261,7 @@ My background combines healthcare expertise, administrative skills, and emerging
       </div>
 
       <QuickPrompts 
-        isVisible={showPrompts && terminalComplete}
+        isVisible={showPrompts && terminalComplete && messages.length === 0}
         onPromptSelect={handlePromptSelect}
       />
 
