@@ -66,6 +66,7 @@ All colors MUST be HSL.
       radial-gradient(ellipse at top, rgba(251, 191, 36, 0.1) 0%, transparent 50%),
       radial-gradient(ellipse at bottom, rgba(251, 191, 36, 0.05) 0%, transparent 50%),
       linear-gradient(180deg, #0a0a0f 0%, #12121a 100%);
+    animation: cosmic-pulse 10s ease-in-out infinite alternate;
   }
 
   .starfield {
@@ -84,6 +85,14 @@ All colors MUST be HSL.
     background: rgba(18, 18, 26, 0.9);
     backdrop-filter: blur(15px);
     border: 1px solid rgba(251, 191, 36, 0.3);
+    transition: all 0.3s ease;
+  }
+
+  .glass-morphism:hover {
+    background: rgba(18, 18, 26, 0.95);
+    border: 1px solid rgba(251, 191, 36, 0.5);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 32px rgba(251, 191, 36, 0.1);
   }
 
   .lightning-border {
@@ -97,6 +106,27 @@ All colors MUST be HSL.
     content: '▌';
     animation: pulse-gold 1s infinite;
   }
+
+  /* Enhanced animations */
+  @keyframes cosmic-pulse {
+    0%, 100% { filter: brightness(1) contrast(1); }
+    50% { filter: brightness(1.1) contrast(1.1); }
+  }
+
+  @keyframes floating {
+    0%, 100% { transform: translateY(0px) rotate(0deg); }
+    33% { transform: translateY(-10px) rotate(1deg); }
+    66% { transform: translateY(-5px) rotate(-1deg); }
+  }
+
+  @keyframes glow-pulse {
+    0%, 100% { 
+      box-shadow: 0 0 20px rgba(251, 191, 36, 0.3);
+    }
+    50% { 
+      box-shadow: 0 0 40px rgba(251, 191, 36, 0.6), 0 0 60px rgba(251, 191, 36, 0.3);
+    }
+  }
 }
 
 @layer components {
@@ -104,23 +134,45 @@ All colors MUST be HSL.
     @apply flex items-center gap-3 px-4 py-3 rounded-lg transition-all duration-300;
     @apply hover:bg-cosmic-gold/10 hover:text-cosmic-gold;
     @apply border border-transparent hover:border-cosmic-gold/30;
+    @apply transform hover:scale-105 hover:translate-x-2;
   }
 
   .nav-item.active {
     @apply bg-cosmic-gold/20 text-cosmic-gold border-cosmic-gold/50;
+    @apply transform scale-105 translate-x-2;
   }
 
   .project-card {
     @apply glass-morphism rounded-xl p-6 transition-all duration-300;
     @apply hover:border-cosmic-gold/40 hover:shadow-lg hover:shadow-cosmic-gold/20;
-    @apply transform hover:-translate-y-2;
+    @apply transform hover:-translate-y-4 hover:rotate-1;
+    animation: floating 6s ease-in-out infinite;
+  }
+
+  .project-card:nth-child(even) {
+    animation-delay: -3s;
   }
 
   .lightning-btn {
     @apply lightning-border rounded-lg px-6 py-3 font-medium;
     @apply text-cosmic-gold hover:text-cosmic-black;
     @apply hover:bg-cosmic-gold transition-all duration-300;
-    @apply transform hover:scale-105 active:scale-95;
+    @apply transform hover:scale-110 active:scale-95;
+    animation: glow-pulse 3s ease-in-out infinite;
+  }
+
+  .lightning-btn:hover {
+    animation: none;
+  }
+
+  .interactive-card {
+    @apply transition-all duration-500 ease-out;
+    @apply hover:scale-105 hover:rotate-1;
+    @apply cursor-pointer;
+  }
+
+  .interactive-card:hover {
+    animation: glow-pulse 1s ease-in-out;
   }
 }
 
@@ -137,4 +189,18 @@ All colors MUST be HSL.
 
 .animate-fade-in {
   animation: fade-in 0.6s ease-out forwards;
+}
+
+/* Smooth scroll behavior */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Enhanced focus states for accessibility */
+button:focus,
+a:focus,
+input:focus,
+textarea:focus {
+  outline: 2px solid #fbbf24;
+  outline-offset: 2px;
 }

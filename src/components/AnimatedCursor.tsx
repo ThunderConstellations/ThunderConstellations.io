@@ -25,6 +25,25 @@ const AnimatedCursor = () => {
     };
   }, []);
 
+  // Create star shape using CSS clip-path
+  const StarShape = ({ delay, radius, size }: { delay: number; radius: number; size: number }) => (
+    <div
+      className={`absolute transition-all duration-300 ${
+        isMoving ? 'opacity-80' : 'opacity-30'
+      }`}
+      style={{
+        left: mousePosition.x + Math.cos((Date.now() * 0.002 + delay) * Math.PI) * radius - size/2,
+        top: mousePosition.y + Math.sin((Date.now() * 0.002 + delay) * Math.PI) * radius - size/2,
+        width: `${size}px`,
+        height: `${size}px`,
+        background: '#fbbf24',
+        clipPath: 'polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%)',
+        animation: 'star-twinkle 1s ease-in-out infinite',
+        animationDelay: `${delay * 0.2}s`,
+      }}
+    />
+  );
+
   return (
     <div className="pointer-events-none fixed inset-0 z-50">
       {/* Lightning Zaps */}
@@ -40,20 +59,23 @@ const AnimatedCursor = () => {
         <Zap className="w-6 h-6 text-cosmic-gold animate-pulse" />
       </div>
 
-      {/* Rotating Stars/Constellations */}
-      {[...Array(8)].map((_, i) => (
-        <div
+      {/* Rotating Stars */}
+      {[...Array(6)].map((_, i) => (
+        <StarShape 
           key={i}
-          className={`absolute w-1 h-1 bg-cosmic-gold rounded-full transition-all duration-300 ${
-            isMoving ? 'opacity-80' : 'opacity-30'
-          }`}
-          style={{
-            left: mousePosition.x + Math.cos((i * Math.PI) / 4) * 30 - 2,
-            top: mousePosition.y + Math.sin((i * Math.PI) / 4) * 30 - 2,
-            transform: `rotate(${i * 45}deg)`,
-            animation: `spin 2s linear infinite`,
-            animationDelay: `${i * 0.1}s`,
-          }}
+          delay={i * 1.5}
+          radius={25 + (i % 2) * 15}
+          size={8 + (i % 3) * 2}
+        />
+      ))}
+
+      {/* Additional smaller stars in outer orbit */}
+      {[...Array(4)].map((_, i) => (
+        <StarShape 
+          key={`outer-${i}`}
+          delay={i * 2 + 8}
+          radius={45}
+          size={6}
         />
       ))}
 

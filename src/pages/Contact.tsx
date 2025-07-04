@@ -155,19 +155,19 @@ const Contact = () => {
 
                 <div className="flex flex-col gap-4">
                   <a
-                    href="mailto:your.email@example.com"
+                    href="mailto:austin.wood@example.com"
                     className="flex items-center gap-4 p-4 bg-cosmic-gold/10 rounded-lg border border-cosmic-gold/30 
                              hover:bg-cosmic-gold/20 transition-colors group"
                   >
                     <Mail className="w-6 h-6 text-cosmic-gold" />
                     <div>
                       <p className="font-medium text-cosmic-gold">Email</p>
-                      <p className="text-sm text-cosmic-starlight/70">your.email@example.com</p>
+                      <p className="text-sm text-cosmic-starlight/70">austin.wood@example.com</p>
                     </div>
                   </a>
 
                   <a
-                    href="https://github.com"
+                    href="https://github.com/ThunderConstellations"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="flex items-center gap-4 p-4 bg-cosmic-gold/10 rounded-lg border border-cosmic-gold/30 
@@ -176,12 +176,12 @@ const Contact = () => {
                     <Github className="w-6 h-6 text-cosmic-gold" />
                     <div>
                       <p className="font-medium text-cosmic-gold">GitHub</p>
-                      <p className="text-sm text-cosmic-starlight/70">View my code</p>
+                      <p className="text-sm text-cosmic-starlight/70">ThunderConstellations</p>
                     </div>
                   </a>
 
                   <a
-                    href="https://linkedin.com"
+                    href="https://www.linkedin.com/in/austin-wood-a1b2c3/"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="flex items-center gap-4 p-4 bg-cosmic-gold/10 rounded-lg border border-cosmic-gold/30 
@@ -190,7 +190,7 @@ const Contact = () => {
                     <Linkedin className="w-6 h-6 text-cosmic-gold" />
                     <div>
                       <p className="font-medium text-cosmic-gold">LinkedIn</p>
-                      <p className="text-sm text-cosmic-starlight/70">Professional network</p>
+                      <p className="text-sm text-cosmic-starlight/70">austin-wood-a1b2c3</p>
                     </div>
                   </a>
                 </div>

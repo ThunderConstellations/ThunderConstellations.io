@@ -1,6 +1,6 @@
 
 import React, { useState } from 'react';
-import { Menu, X, Home, User, Briefcase, MessageSquare, FileText, Mail, Zap } from 'lucide-react';
+import { Menu, X, Home, User, Briefcase, FileText, Mail, Zap } from 'lucide-react';
 import { Link, useLocation } from 'react-router-dom';
 
 const Navigation = () => {
@@ -11,7 +11,6 @@ const Navigation = () => {
     { icon: Home, label: 'Home', path: '/' },
     { icon: User, label: 'About', path: '/about' },
     { icon: Briefcase, label: 'Projects', path: '/projects' },
-    { icon: MessageSquare, label: 'AI Assistant', path: '/chat' },
     { icon: FileText, label: 'Resume', path: '/resume' },
     { icon: Mail, label: 'Contact', path: '/contact' }
   ];
@@ -81,7 +80,7 @@ const Navigation = () => {
           <div className="absolute bottom-8 left-8 right-8">
             <div className="glass-morphism p-4 rounded-lg text-center">
               <p className="text-xs text-cosmic-starlight/60 mb-2">
-                Powered by Lightning ⚡
+                Powered by Thunder ⚡
               </p>
               <div className="flex justify-center space-x-1">
                 {[...Array(5)].map((_, i) => (
