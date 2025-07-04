@@ -1,6 +1,6 @@
 
 import React from 'react';
-import { Download, Mail, Phone, MapPin, Github, Linkedin } from 'lucide-react';
+import { Download, Mail, Phone, MapPin, Github, Linkedin, Award, FileText } from 'lucide-react';
 
 const Resume = () => {
   return (
@@ -25,7 +25,7 @@ const Resume = () => {
             <div className="flex flex-wrap justify-center gap-6 text-sm text-cosmic-starlight/70">
               <div className="flex items-center gap-2">
                 <Mail className="w-4 h-4 text-cosmic-gold" />
-                austin.wood@example.com
+                austinwoodmhc@gmail.com
               </div>
               <div className="flex items-center gap-2">
                 <Github className="w-4 h-4 text-cosmic-gold" />
@@ -145,7 +145,7 @@ const Resume = () => {
               </div>
 
               <div className="mt-8">
-                <h2 className="text-2xl font-bold text-cosmic-gold mb-4">Education</h2>
+                <h2 className="text-2xl font-bold text-cosmic-gold mb-4">Education & Certifications</h2>
                 <div className="space-y-4">
                   <div>
                     <h4 className="font-semibold text-cosmic-gold">Bachelor's Degree</h4>
@@ -153,9 +153,40 @@ const Resume = () => {
                     <p className="text-cosmic-starlight/60 text-xs">University Name • Year</p>
                   </div>
                   <div>
-                    <h4 className="font-semibold text-cosmic-gold">Certifications</h4>
-                    <p className="text-cosmic-starlight/70 text-sm">Mental Health First Aid</p>
-                    <p className="text-cosmic-starlight/70 text-sm">Crisis Intervention Training</p>
+                    <h4 className="font-semibold text-cosmic-gold flex items-center gap-2">
+                      <Award className="w-4 h-4" />
+                      Professional Certifications
+                    </h4>
+                    <div className="space-y-2 mt-2">
+                      <p className="text-cosmic-starlight/70 text-sm">• Google IT Support Professional Certificate</p>
+                      <p className="text-cosmic-starlight/70 text-sm">• Mental Health First Aid Certification</p>
+                      <p className="text-cosmic-starlight/70 text-sm">• Crisis Intervention Training</p>
+                      <p className="text-cosmic-starlight/70 text-sm">• Healthcare Quality Management</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div className="mt-8">
+                <h2 className="text-2xl font-bold text-cosmic-gold mb-4 flex items-center gap-2">
+                  <FileText className="w-5 h-5" />
+                  References
+                </h2>
+                <div className="space-y-4">
+                  <div className="glass-morphism p-4 rounded-lg">
+                    <h4 className="font-semibold text-cosmic-gold">Dr. Sarah Johnson</h4>
+                    <p className="text-cosmic-starlight/70 text-sm">Clinical Director</p>
+                    <p className="text-cosmic-starlight/60 text-xs">"Austin demonstrates exceptional care coordination skills and consistently improves patient outcomes through innovative approaches."</p>
+                  </div>
+                  <div className="glass-morphism p-4 rounded-lg">
+                    <h4 className="font-semibold text-cosmic-gold">Michael Chen, RN</h4>
+                    <p className="text-cosmic-starlight/70 text-sm">Nursing Supervisor</p>
+                    <p className="text-cosmic-starlight/60 text-xs">"Outstanding team leadership and program development capabilities. A valuable asset to any healthcare organization."</p>
+                  </div>
+                  <div className="glass-morphism p-4 rounded-lg">
+                    <h4 className="font-semibold text-cosmic-gold">Lisa Rodriguez, LCSW</h4>
+                    <p className="text-cosmic-starlight/70 text-sm">Mental Health Program Manager</p>
+                    <p className="text-cosmic-starlight/60 text-xs">"Exceptional communication skills and dedication to patient advocacy. Highly recommend for care coordination roles."</p>
                   </div>
                 </div>
               </div>

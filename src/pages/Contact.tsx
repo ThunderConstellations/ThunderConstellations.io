@@ -1,6 +1,6 @@
 
 import React, { useState } from 'react';
-import { Send, Mail, Github, Linkedin, MessageSquare } from 'lucide-react';
+import { Send, Mail, Github, Linkedin, MessageSquare, MapPin, Phone } from 'lucide-react';
 
 const Contact = () => {
   const [formData, setFormData] = useState({
@@ -155,14 +155,14 @@ const Contact = () => {
 
                 <div className="flex flex-col gap-4">
                   <a
-                    href="mailto:austin.wood@example.com"
+                    href="mailto:austinwoodmhc@gmail.com"
                     className="flex items-center gap-4 p-4 bg-cosmic-gold/10 rounded-lg border border-cosmic-gold/30 
                              hover:bg-cosmic-gold/20 transition-colors group"
                   >
                     <Mail className="w-6 h-6 text-cosmic-gold" />
                     <div>
                       <p className="font-medium text-cosmic-gold">Email</p>
-                      <p className="text-sm text-cosmic-starlight/70">austin.wood@example.com</p>
+                      <p className="text-sm text-cosmic-starlight/70">austinwoodmhc@gmail.com</p>
                     </div>
                   </a>
 
@@ -193,6 +193,14 @@ const Contact = () => {
                       <p className="text-sm text-cosmic-starlight/70">austin-wood-a1b2c3</p>
                     </div>
                   </a>
+
+                  <div className="flex items-center gap-4 p-4 bg-cosmic-gold/10 rounded-lg border border-cosmic-gold/30">
+                    <MapPin className="w-6 h-6 text-cosmic-gold" />
+                    <div>
+                      <p className="font-medium text-cosmic-gold">Location</p>
+                      <p className="text-sm text-cosmic-starlight/70">Chicago, IL</p>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>

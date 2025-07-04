@@ -1,6 +1,6 @@
 
 import React from 'react';
-import { Bot, Minimize2, Maximize2, X, Sparkles } from 'lucide-react';
+import { Zap, Minimize2, Maximize2, X, Sparkles } from 'lucide-react';
 
 interface ChatHeaderProps {
   isFullscreen: boolean;
@@ -23,7 +23,7 @@ const ChatHeader: React.FC<ChatHeaderProps> = ({
       <div className="flex items-center gap-3">
         <div className="relative">
           <div className="w-10 h-10 rounded-full bg-gradient-to-br from-cosmic-gold to-cosmic-gold-dark flex items-center justify-center">
-            <Bot className="w-5 h-5 text-cosmic-black" />
+            <Zap className="w-5 h-5 text-cosmic-black animate-lightning-glow" />
           </div>
           <div className="absolute -top-1 -right-1 w-4 h-4 bg-green-400 rounded-full animate-pulse border-2 border-cosmic-black" />
           <Sparkles className="absolute -top-2 -right-2 w-3 h-3 text-cosmic-gold animate-spin" />

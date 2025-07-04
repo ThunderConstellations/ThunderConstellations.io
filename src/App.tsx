@@ -6,6 +6,8 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Navigation from "./components/Navigation";
 import AnimatedCursor from "./components/AnimatedCursor";
+import { FloatingParticles } from "./components/ui/floating-particles";
+import { BackToTop } from "./components/ui/back-to-top";
 import Home from "./pages/Home";
 import About from "./pages/About";
 import Projects from "./pages/Projects";
@@ -23,17 +25,21 @@ const App = () => (
       <Sonner />
       <BrowserRouter>
         <div className="relative">
+          <FloatingParticles count={75} />
           <AnimatedCursor />
           <Navigation />
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/about" element={<About />} />
-            <Route path="/projects" element={<Projects />} />
-            <Route path="/chat" element={<Chat />} />
-            <Route path="/resume" element={<Resume />} />
-            <Route path="/contact" element={<Contact />} />
-            <Route path="*" element={<NotFound />} />
-          </Routes>
+          <BackToTop />
+          <div className="page-transition-container">
+            <Routes>
+              <Route path="/" element={<Home />} />
+              <Route path="/about" element={<About />} />
+              <Route path="/projects" element={<Projects />} />
+              <Route path="/chat" element={<Chat />} />
+              <Route path="/resume" element={<Resume />} />
+              <Route path="/contact" element={<Contact />} />
+              <Route path="*" element={<NotFound />} />
+            </Routes>
+          </div>
         </div>
       </BrowserRouter>
     </TooltipProvider>
