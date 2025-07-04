@@ -93,16 +93,9 @@ Would you like me to provide a downloadable PDF version? I can also share specif
     if (lowerInput.includes('reference') || lowerInput.includes('recommendation')) {
       return `Here are my professional references:
 
-**Dr. Sarah Johnson** - Clinical Director
-"Austin demonstrates exceptional care coordination skills and consistently improves patient outcomes through innovative approaches."
+**[Please provide your actual references]**
 
-**Michael Chen, RN** - Nursing Supervisor  
-"Outstanding team leadership and program development capabilities. A valuable asset to any healthcare organization."
-
-**Lisa Rodriguez, LCSW** - Mental Health Program Manager
-"Exceptional communication skills and dedication to patient advocacy. Highly recommend for care coordination roles."
-
-Would you like me to provide formal reference letters or contact information?`;
+I'd be happy to share formal reference letters or contact information for any of these professionals who can speak to my healthcare experience and work quality.`;
     }
     
     if (lowerInput.includes('contact') || lowerInput.includes('email') || lowerInput.includes('phone')) {
@@ -184,7 +177,8 @@ I'm particularly interested in roles in the Chicago area or remote positions whe
     setMessages(prev => [...prev, userMessage]);
     setInputValue('');
     setIsTyping(true);
-    setShowPrompts(false);
+    // Always show prompts after each response for continued interaction
+    setTimeout(() => setShowPrompts(true), 2000);
 
     setTimeout(() => {
       const assistantMessage: Message = {
@@ -261,7 +255,7 @@ I'm particularly interested in roles in the Chicago area or remote positions whe
       </div>
 
       <QuickPrompts 
-        isVisible={showPrompts && terminalComplete && messages.length === 0}
+        isVisible={showPrompts && terminalComplete}
         onPromptSelect={handlePromptSelect}
       />
 
