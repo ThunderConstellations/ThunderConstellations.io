@@ -16,6 +16,15 @@ interface AIChatProps {
   onClose?: () => void;
 }
 
+interface ChatResponse {
+  text: string;
+  showSkillsChart?: boolean;
+  showExperienceChart?: boolean;
+  showDownloads?: boolean;
+  showReferenceDownload?: boolean;
+  resumeType?: 'general' | 'healthcare' | 'it' | 'admin';
+}
+
 const AIChat: React.FC<AIChatProps> = ({ isFullscreen = false, onToggleFullscreen, onClose }) => {
   const [messages, setMessages] = useState<Message[]>([]);
   const [inputValue, setInputValue] = useState('');
@@ -358,7 +367,7 @@ Team Leadership, Documentation, Office Software, Case Management, Filing Systems
 Would you like position-specific information or references?`;
   };
 
-  const generateIntelligentResponse = (input: string) => {
+  const generateIntelligentResponse = (input: string): ChatResponse => {
     const lowerInput = input.toLowerCase();
     
     // Skills and charts requests
@@ -395,7 +404,7 @@ Would you like to download my resume or see my professional references?`,
     
     // Position-specific resume requests
     if (lowerInput.includes('resume') || lowerInput.includes('cv')) {
-      let resumeType = 'general';
+      let resumeType: 'general' | 'healthcare' | 'it' | 'admin' = 'general';
       if (lowerInput.includes('it') || lowerInput.includes('helpdesk') || lowerInput.includes('technical')) {
         resumeType = 'it';
       } else if (lowerInput.includes('care') || lowerInput.includes('health') || lowerInput.includes('coord')) {
@@ -504,7 +513,7 @@ I'm particularly interested in roles in healthcare IT, care coordination, proces
     }
 
     // Default responses with enhanced content
-    const responses = [
+    const responses: ChatResponse[] = [
       {
         text: "I'm Austin Wood, a versatile professional with 5+ years of experience spanning healthcare, leadership, and technical support. I'm passionate about improving processes and helping people through both direct service and innovative solutions.",
         showSkillsChart: true,
@@ -542,7 +551,7 @@ I'm particularly interested in roles in healthcare IT, care coordination, proces
 
     setTimeout(() => {
       const response = generateIntelligentResponse(inputValue);
-      const responseText = typeof response === 'string' ? response : response.text;
+      const responseText = response.text;
       
       const assistantMessage: Message = {
         id: Date.now() + 1,
@@ -554,23 +563,21 @@ I'm particularly interested in roles in healthcare IT, care coordination, proces
       setMessages(prev => [...prev, assistantMessage]);
       
       // Add visual components if needed
-      if (typeof response === 'object') {
-        if (response.showSkillsChart || response.showExperienceChart || response.showDownloads) {
-          setTimeout(() => {
-            const visualMessage: Message = {
-              id: Date.now() + 2,
-              type: 'assistant',
-              content: 'visual-components',
-              timestamp: new Date(),
-              showSkillsChart: response.showSkillsChart,
-              showExperienceChart: response.showExperienceChart,
-              showDownloads: response.showDownloads,
-              showReferenceDownload: response.showReferenceDownload,
-              resumeType: response.resumeType
-            };
-            setMessages(prev => [...prev, visualMessage]);
-          }, 500);
-        }
+      if (response.showSkillsChart || response.showExperienceChart || response.showDownloads) {
+        setTimeout(() => {
+          const visualMessage: Message = {
+            id: Date.now() + 2,
+            type: 'assistant',
+            content: 'visual-components',
+            timestamp: new Date(),
+            showSkillsChart: response.showSkillsChart,
+            showExperienceChart: response.showExperienceChart,
+            showDownloads: response.showDownloads,
+            showReferenceDownload: response.showReferenceDownload,
+            resumeType: response.resumeType
+          };
+          setMessages(prev => [...prev, visualMessage]);
+        }, 500);
       }
       
       setIsTyping(false);
