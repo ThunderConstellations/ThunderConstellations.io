@@ -107,7 +107,7 @@ const Navigation = () => {
               </p>
             </div>
           </div>
-        </dev>
+        </div>
       </nav>
     </>
   );
