@@ -1,7 +1,7 @@
 
 import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { Menu, X, Zap, User, Briefcase, MessageCircle, FileText, Mail, QrCode } from 'lucide-react';
+import { Menu, X, Home, User, Briefcase, MessageCircle, FileText, Mail, QrCode } from 'lucide-react';
 
 const Navigation = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -18,7 +18,7 @@ const Navigation = () => {
   }, []);
 
   const navItems = [
-    { name: 'Home', path: '/', icon: Zap },
+    { name: 'Home', path: '/', icon: Home },
     { name: 'About', path: '/about', icon: User },
     { name: 'Projects', path: '/projects', icon: Briefcase },
     { name: 'Resume', path: '/resume', icon: FileText },
@@ -37,13 +37,13 @@ const Navigation = () => {
           {/* Logo */}
           <Link to="/" className="flex items-center space-x-2">
             <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-cosmic-gold to-cosmic-gold-dark flex items-center justify-center">
-              <Zap className="w-6 h-6 text-cosmic-black animate-lightning-glow" />
+              <span className="text-cosmic-black font-bold text-xl">AW</span>
             </div>
             <span className="text-xl font-bold text-cosmic-starlight">Austin Wood</span>
           </Link>
 
           {/* Desktop Navigation */}
-          <div className="hidden md:flex space-x-1">
+          <div className="hidden md:flex space-x-8">
             {navItems.map((item) => {
               const Icon = item.icon;
               const isActive = location.pathname === item.path;
@@ -53,11 +53,11 @@ const Navigation = () => {
                   key={item.name}
                   to={item.path}
                   className={`
-                    flex items-center space-x-2 px-4 py-2 rounded-lg text-sm font-medium
-                    transition-all duration-300 hover:scale-105
+                    flex items-center space-x-2 px-3 py-2 rounded-md text-sm font-medium
+                    transition-colors duration-200
                     ${isActive 
-                      ? 'bg-cosmic-gold text-cosmic-black shadow-lg shadow-cosmic-gold/25' 
-                      : 'text-cosmic-starlight hover:text-cosmic-gold hover:bg-cosmic-gold/10'
+                      ? 'text-cosmic-gold border-b-2 border-cosmic-gold' 
+                      : 'text-cosmic-starlight hover:text-cosmic-gold'
                     }
                   `}
                 >
@@ -71,7 +71,7 @@ const Navigation = () => {
           {/* Mobile menu button */}
           <button
             onClick={() => setIsOpen(!isOpen)}
-            className="md:hidden p-2 rounded-lg text-cosmic-starlight hover:text-cosmic-gold hover:bg-cosmic-gold/10 transition-colors"
+            className="md:hidden p-2 rounded-md text-cosmic-starlight hover:text-cosmic-gold hover:bg-cosmic-gold/10 transition-colors"
           >
             {isOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
           </button>
@@ -92,9 +92,9 @@ const Navigation = () => {
                     onClick={() => setIsOpen(false)}
                     className={`
                       flex items-center space-x-3 px-4 py-3 text-sm font-medium
-                      transition-all duration-200
+                      transition-colors duration-200
                       ${isActive 
-                        ? 'bg-cosmic-gold text-cosmic-black' 
+                        ? 'text-cosmic-gold bg-cosmic-gold/10' 
                         : 'text-cosmic-starlight hover:text-cosmic-gold hover:bg-cosmic-gold/10'
                       }
                     `}
