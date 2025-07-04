@@ -8,5 +8,5 @@ export interface Message {
   showExperienceChart?: boolean;
   showDownloads?: boolean;
   showReferenceDownload?: boolean;
-  resumeType?: string;
+  resumeType?: 'general' | 'healthcare' | 'it' | 'admin';
 }

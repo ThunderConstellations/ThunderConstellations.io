@@ -16,13 +16,15 @@ interface AIChatProps {
   onClose?: () => void;
 }
 
+type ResumeType = 'general' | 'healthcare' | 'it' | 'admin';
+
 interface ChatResponse {
   text: string;
   showSkillsChart?: boolean;
   showExperienceChart?: boolean;
   showDownloads?: boolean;
   showReferenceDownload?: boolean;
-  resumeType?: 'general' | 'healthcare' | 'it' | 'admin';
+  resumeType?: ResumeType;
 }
 
 const AIChat: React.FC<AIChatProps> = ({ isFullscreen = false, onToggleFullscreen, onClose }) => {
@@ -59,7 +61,7 @@ const AIChat: React.FC<AIChatProps> = ({ isFullscreen = false, onToggleFullscree
     setShowPrompts(true);
   };
 
-  const downloadResume = (type: 'general' | 'healthcare' | 'it' | 'admin' = 'general') => {
+  const downloadResume = (type: ResumeType = 'general') => {
     const resumeContent = generatePositionSpecificResume(type);
     const blob = new Blob([resumeContent], { type: 'text/plain' });
     const url = URL.createObjectURL(blob);
@@ -244,10 +246,8 @@ Julie Moore`;
     );
   };
 
-  const generatePositionSpecificResume = (position: string) => {
-    const lowerPos = position.toLowerCase();
-    
-    if (lowerPos.includes('it') || lowerPos.includes('helpdesk') || lowerPos.includes('technical') || lowerPos.includes('support')) {
+  const generatePositionSpecificResume = (position: ResumeType) => {
+    if (position === 'it') {
       return `**Austin Wood - IT Support / Helpdesk Resume**
 📧 19austinwood96@gmail.com | 📱 219.299.3702 | 📍 Chicago, IL 60626
 🔗 https://linkedin.com/in/austin-wood-healthcare
@@ -286,7 +286,7 @@ Windows OS, Microsoft Office, Basic Linux (iSH Terminal), Cursor (code assistant
 Would you like me to provide reference letters or discuss specific technical skills?`;
     }
     
-    if (lowerPos.includes('care') || lowerPos.includes('health') || lowerPos.includes('coord') || lowerPos.includes('case') || lowerPos.includes('medical')) {
+    if (position === 'healthcare') {
       return `**Austin Wood - Care Coordinator / Case Manager Resume**
 📧 19austinwood96@gmail.com | 📱 219.299.3702 | 📍 Chicago, IL 60626
 🔗 https://linkedin.com/in/austin-wood-healthcare
@@ -326,7 +326,7 @@ Care Coordination, Case Management, Behavioral Health Support, Crisis Interventi
 Would you like to see my professional references or discuss specific healthcare experience?`;
     }
     
-    if (lowerPos.includes('admin') || lowerPos.includes('office') || lowerPos.includes('clerical')) {
+    if (position === 'admin') {
       return `**Austin Wood - Administrative / Office Support Resume**
 📧 19austinwood96@gmail.com | 📱 219.299.3702 | 📍 Chicago, IL 60626
 🔗 https://linkedin.com/in/austin-wood-healthcare
@@ -450,7 +450,7 @@ Would you like position-specific information or references?`;
     
     // Position-specific resume requests
     if (lowerInput.includes('resume') || lowerInput.includes('cv')) {
-      let resumeType: 'general' | 'healthcare' | 'it' | 'admin' = 'general';
+      let resumeType: ResumeType = 'general';
       if (lowerInput.includes('it') || lowerInput.includes('helpdesk') || lowerInput.includes('technical')) {
         resumeType = 'it';
       } else if (lowerInput.includes('care') || lowerInput.includes('health') || lowerInput.includes('coord')) {
