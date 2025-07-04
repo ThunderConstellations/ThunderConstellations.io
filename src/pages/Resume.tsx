@@ -3,6 +3,13 @@ import React from 'react';
 import { Download, Mail, Phone, MapPin, Github, Linkedin, Award, FileText } from 'lucide-react';
 
 const Resume = () => {
+  const handleDownloadPDF = () => {
+    // This would integrate with a PDF generation service
+    console.log('Generating PDF resume...');
+    // For now, we'll just show an alert
+    alert('PDF download feature will be implemented with a PDF generation service.');
+  };
+
   return (
     <div className="cosmic-bg min-h-screen p-8">
       <div className="max-w-4xl mx-auto pt-20">
@@ -11,7 +18,10 @@ const Resume = () => {
             <span className="text-cosmic-starlight">Professional</span>
             <span className="text-cosmic-gold"> Resume</span>
           </h1>
-          <button className="lightning-btn">
+          <button 
+            onClick={handleDownloadPDF}
+            className="lightning-btn"
+          >
             <Download className="w-5 h-5 mr-2" />
             Download PDF
           </button>
@@ -25,7 +35,7 @@ const Resume = () => {
             <div className="flex flex-wrap justify-center gap-6 text-sm text-cosmic-starlight/70">
               <div className="flex items-center gap-2">
                 <Mail className="w-4 h-4 text-cosmic-gold" />
-                austinwoodmhc@gmail.com
+                19austinwood96@gmail.com
               </div>
               <div className="flex items-center gap-2">
                 <Github className="w-4 h-4 text-cosmic-gold" />

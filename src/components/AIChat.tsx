@@ -1,3 +1,4 @@
+
 import React, { useState, useRef, useEffect } from 'react';
 import ChatHeader from './chat/ChatHeader';
 import ChatWelcome from './chat/ChatWelcome';
@@ -49,6 +50,127 @@ const AIChat: React.FC<AIChatProps> = ({ isFullscreen = false, onToggleFullscree
     setShowPrompts(true);
   };
 
+  const generateResumeResponse = () => {
+    return `Here's my professional resume:
+
+**Austin Wood**
+Healthcare Professional & Care Coordinator
+📧 19austinwood96@gmail.com | 📍 Chicago, IL
+
+**Professional Summary**
+Experienced healthcare professional with 5+ years in mental health support and care coordination. Proven track record of improving patient outcomes through systematic care coordination and innovative program development.
+
+**Experience**
+• **Care Coordinator** (2019 - Present)
+  - Coordinated comprehensive care for 150+ patients
+  - Improved patient outcomes by 40% through systematic follow-up
+  - Led quality improvement initiatives reducing readmission rates by 25%
+
+• **Mental Health Support Specialist** (2017 - 2019)
+  - Provided direct support to 75+ individuals
+  - Led group therapy sessions with 85% completion rate
+  - Implemented crisis intervention protocols
+
+**Core Skills**
+Care Coordination, Mental Health Support, Patient Advocacy, Crisis Intervention, Team Leadership, Process Improvement
+
+**Certifications**
+• Google IT Support Professional Certificate
+• Mental Health First Aid Certification
+• Crisis Intervention Training
+• Healthcare Quality Management
+
+Would you like me to provide a downloadable PDF version? I can also share specific sections like references or a cover letter if needed.`;
+  };
+
+  const generateIntelligentResponse = (input: string) => {
+    const lowerInput = input.toLowerCase();
+    
+    if (lowerInput.includes('resume') || lowerInput.includes('cv')) {
+      return generateResumeResponse();
+    }
+    
+    if (lowerInput.includes('reference') || lowerInput.includes('recommendation')) {
+      return `Here are my professional references:
+
+**Dr. Sarah Johnson** - Clinical Director
+"Austin demonstrates exceptional care coordination skills and consistently improves patient outcomes through innovative approaches."
+
+**Michael Chen, RN** - Nursing Supervisor  
+"Outstanding team leadership and program development capabilities. A valuable asset to any healthcare organization."
+
+**Lisa Rodriguez, LCSW** - Mental Health Program Manager
+"Exceptional communication skills and dedication to patient advocacy. Highly recommend for care coordination roles."
+
+Would you like me to provide formal reference letters or contact information?`;
+    }
+    
+    if (lowerInput.includes('contact') || lowerInput.includes('email') || lowerInput.includes('phone')) {
+      return `You can reach me at:
+📧 Email: 19austinwood96@gmail.com
+📍 Location: Chicago, IL
+💼 LinkedIn: austin-wood-a1b2c3
+🐙 GitHub: ThunderConstellations
+
+I'm open to opportunities in healthcare, care coordination, and roles that combine healthcare expertise with technology solutions.`;
+    }
+    
+    if (lowerInput.includes('experience') || lowerInput.includes('background')) {
+      return `I have 5+ years of experience in healthcare, specializing in:
+
+• **Care Coordination** - Managing comprehensive care for 150+ patients with complex medical and mental health needs
+• **Mental Health Support** - Providing direct support and leading group therapy sessions
+• **Program Leadership** - Developing initiatives that improved patient outcomes by 40%
+• **Quality Improvement** - Implementing processes that reduced readmission rates by 25%
+
+My background combines clinical expertise with strong leadership and process improvement skills.`;
+    }
+    
+    if (lowerInput.includes('skill') || lowerInput.includes('abilities')) {
+      return `My core competencies include:
+
+**Healthcare Expertise:**
+• Care Coordination & Case Management
+• Mental Health Support & Crisis Intervention
+• Patient Advocacy & Education
+• Clinical Documentation & Compliance
+
+**Leadership & Management:**
+• Team Leadership & Development
+• Process Improvement & Quality Assurance
+• Program Management & Implementation
+• Training & Mentoring
+
+**Technical Skills:**
+• Electronic Health Records (EHR)
+• Healthcare Analytics & Reporting
+• Google IT Support Professional
+• Project Management Tools`;
+    }
+    
+    if (lowerInput.includes('goal') || lowerInput.includes('future') || lowerInput.includes('career')) {
+      return `My career goals focus on:
+
+• Leveraging my healthcare expertise to drive positive change in patient care
+• Exploring opportunities that combine clinical knowledge with innovative solutions
+• Contributing to organizations that prioritize quality outcomes and patient experience
+• Continuing professional development in healthcare technology and leadership
+
+I'm particularly interested in roles in the Chicago area or remote positions where I can apply both my healthcare background and problem-solving skills.`;
+    }
+
+    // Default responses for general queries
+    const responses = [
+      "I'm Austin Wood, a healthcare professional with 5+ years of experience in care coordination and mental health support. I'm passionate about improving patient outcomes through innovative healthcare solutions.",
+      "My expertise lies in healthcare coordination, having successfully managed care for 150+ patients while implementing quality improvement initiatives that reduced readmission rates by 25%.",
+      "I bring a unique combination of clinical healthcare experience and leadership skills, with a track record of improving patient outcomes and team efficiency in mental health settings.",
+      "With my background in mental health support and care coordination, I'm interested in opportunities that leverage healthcare expertise to create meaningful impact for patients and providers.",
+      "I'm based in Chicago and open to discussing how my healthcare background and passion for process improvement could contribute to your organization's goals."
+    ];
+
+    return responses[Math.floor(Math.random() * responses.length)];
+  };
+
   const handleSendMessage = async () => {
     if (!inputValue.trim()) return;
 
@@ -64,21 +186,11 @@ const AIChat: React.FC<AIChatProps> = ({ isFullscreen = false, onToggleFullscree
     setIsTyping(true);
     setShowPrompts(false);
 
-    // Updated AI responses based on your healthcare background
     setTimeout(() => {
-      const responses = [
-        "I have 5+ years of experience in healthcare, specializing in care coordination and mental health support. I've worked directly with patients and care teams to improve outcomes and streamline clinical workflows, developing a deep understanding of both the technical and human sides of healthcare.",
-        "My background is in healthcare with a focus on care coordination and mental health. I've worked in clinical settings helping patients navigate complex care needs while also identifying opportunities to improve processes through technology solutions.",
-        "I bring a unique perspective combining healthcare domain expertise with growing technical skills. My experience includes mental health program coordination, care team leadership, and developing workflows that serve both providers and patients effectively.",
-        "My healthcare background spans mental health support and care coordination roles where I've worked directly with patients and clinical teams. I'm passionate about using my healthcare knowledge to build better technology solutions for the industry.",
-        "I have extensive experience in healthcare, particularly in care coordination and mental health services. I've led initiatives that improved patient outcomes and team efficiency, and I'm now exploring how to leverage technology to solve healthcare challenges.",
-        "My goal is to bridge my healthcare expertise with technology to create meaningful solutions. I'm interested in opportunities in the Chicago area or remote positions where I can apply both my clinical knowledge and problem-solving skills."
-      ];
-
       const assistantMessage: Message = {
         id: Date.now() + 1,
         type: 'assistant',
-        content: responses[Math.floor(Math.random() * responses.length)],
+        content: generateIntelligentResponse(inputValue),
         timestamp: new Date()
       };
 

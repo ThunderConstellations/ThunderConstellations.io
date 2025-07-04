@@ -30,7 +30,7 @@ export const BackToTop: React.FC = () => {
     <button
       onClick={scrollToTop}
       className={cn(
-        'fixed bottom-8 right-8 z-50 glass-morphism p-3 rounded-full transition-all duration-300 transform',
+        'fixed bottom-8 left-8 z-50 glass-morphism p-3 rounded-full transition-all duration-300 transform',
         isVisible 
           ? 'opacity-100 scale-100 translate-y-0' 
           : 'opacity-0 scale-50 translate-y-10 pointer-events-none'
