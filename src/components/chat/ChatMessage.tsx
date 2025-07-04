@@ -1,13 +1,7 @@
 
 import React from 'react';
 import { Bot, User } from 'lucide-react';
-
-interface Message {
-  id: number;
-  type: 'user' | 'assistant';
-  content: string;
-  timestamp: Date;
-}
+import { Message } from './types';
 
 interface ChatMessageProps {
   message: Message;
@@ -15,6 +9,11 @@ interface ChatMessageProps {
 }
 
 const ChatMessage: React.FC<ChatMessageProps> = ({ message, index }) => {
+  // Don't render terminal type messages in ChatMessage component
+  if (message.type === 'terminal') {
+    return null;
+  }
+
   return (
     <div
       className={`flex gap-3 ${message.type === 'user' ? 'justify-end' : 'justify-start'}

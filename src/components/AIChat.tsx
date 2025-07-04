@@ -1,4 +1,3 @@
-
 import React, { useState, useRef, useEffect } from 'react';
 import ChatHeader from './chat/ChatHeader';
 import ChatWelcome from './chat/ChatWelcome';
@@ -7,18 +6,12 @@ import TypingIndicator from './chat/TypingIndicator';
 import QuickPrompts from './chat/QuickPrompts';
 import ChatInput from './chat/ChatInput';
 import TerminalMessage from './chat/TerminalMessage';
+import { Message } from './chat/types';
 
 interface AIChatProps {
   isFullscreen?: boolean;
   onToggleFullscreen?: () => void;
   onClose?: () => void;
-}
-
-interface Message {
-  id: number;
-  type: 'user' | 'assistant' | 'terminal';
-  content: string;
-  timestamp: Date;
 }
 
 const AIChat: React.FC<AIChatProps> = ({ isFullscreen = false, onToggleFullscreen, onClose }) => {
