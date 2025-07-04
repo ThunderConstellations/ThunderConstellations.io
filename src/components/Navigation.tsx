@@ -47,12 +47,18 @@ const Navigation = () => {
         glass-morphism border-r border-cosmic-gold/20
       `}>
         <div className="p-8">
-          {/* Logo/Brand */}
-          <div className="flex items-center gap-3 mb-12 mt-16">
-            <Zap className="w-8 h-8 text-cosmic-gold animate-lightning-glow" />
-            <div>
-              <h2 className="text-xl font-bold text-cosmic-gold">Thunder</h2>
-              <p className="text-sm text-cosmic-starlight/70">Constellations</p>
+          {/* Enhanced Logo/Brand with Name */}
+          <div className="mb-12 mt-16">
+            <div className="flex items-center gap-3 mb-4">
+              <Zap className="w-8 h-8 text-cosmic-gold animate-lightning-glow" />
+              <div>
+                <h2 className="text-xl font-bold text-cosmic-gold">Austin Wood</h2>
+                <p className="text-sm text-cosmic-starlight/70">Healthcare Professional</p>
+              </div>
+            </div>
+            <div className="text-center">
+              <div className="text-xs text-cosmic-gold font-medium mb-2">Portfolio</div>
+              <div className="w-16 h-0.5 bg-gradient-to-r from-cosmic-gold to-transparent mx-auto"></div>
             </div>
           </div>
 
@@ -77,13 +83,16 @@ const Navigation = () => {
             })}
           </ul>
 
-          {/* Footer */}
+          {/* Enhanced Footer */}
           <div className="absolute bottom-8 left-8 right-8">
-            <div className="glass-morphism p-4 rounded-lg text-center">
-              <p className="text-xs text-cosmic-starlight/60 mb-2">
-                Powered by Thunder ⚡
-              </p>
-              <div className="flex justify-center space-x-1">
+            <div className="glass-morphism p-4 rounded-lg text-center border border-cosmic-gold/20">
+              <div className="mb-3">
+                <p className="text-sm font-medium text-cosmic-gold mb-1">Austin Wood</p>
+                <p className="text-xs text-cosmic-starlight/60">
+                  Healthcare & Technology
+                </p>
+              </div>
+              <div className="flex justify-center space-x-1 mb-2">
                 {[...Array(5)].map((_, i) => (
                   <div
                     key={i}
@@ -92,6 +101,9 @@ const Navigation = () => {
                   />
                 ))}
               </div>
+              <p className="text-xs text-cosmic-starlight/50">
+                Powered by Thunder ⚡
+              </p>
             </div>
           </div>
         </div>
