@@ -87,29 +87,29 @@ export default {
 				},
 				'lightning-glow': {
 					'0%': {
-						opacity: '0.5',
+						opacity: '0.7',
 						transform: 'scale(1)',
-						filter: 'drop-shadow(0 0 20px #fbbf24)'
+						filter: 'drop-shadow(0 0 15px #fbbf24)'
 					},
 					'50%': {
 						opacity: '1',
-						transform: 'scale(1.05)',
-						filter: 'drop-shadow(0 0 40px #fbbf24)'
+						transform: 'scale(1.02)',
+						filter: 'drop-shadow(0 0 25px #fbbf24)'
 					},
 					'100%': {
-						opacity: '0.5',
+						opacity: '0.7',
 						transform: 'scale(1)',
-						filter: 'drop-shadow(0 0 20px #fbbf24)'
+						filter: 'drop-shadow(0 0 15px #fbbf24)'
 					}
 				},
 				'star-twinkle': {
 					'0%, 100%': {
-						opacity: '0.3',
+						opacity: '0.4',
 						transform: 'scale(1)'
 					},
 					'50%': {
 						opacity: '1',
-						transform: 'scale(1.2)'
+						transform: 'scale(1.1)'
 					}
 				},
 				'float': {
@@ -117,7 +117,7 @@ export default {
 						transform: 'translateY(0px)'
 					},
 					'50%': {
-						transform: 'translateY(-10px)'
+						transform: 'translateY(-5px)'
 					}
 				},
 				'slide-in-left': {
@@ -153,20 +153,20 @@ export default {
 						opacity: '1'
 					},
 					'50%': {
-						opacity: '0.5'
+						opacity: '0.7'
 					}
 				}
 			},
 			animation: {
 				'accordion-down': 'accordion-down 0.2s ease-out',
 				'accordion-up': 'accordion-up 0.2s ease-out',
-				'lightning-glow': 'lightning-glow 3s ease-in-out infinite',
-				'star-twinkle': 'star-twinkle 2s ease-in-out infinite',
-				'float': 'float 6s ease-in-out infinite',
+				'lightning-glow': 'lightning-glow 4s ease-in-out infinite',
+				'star-twinkle': 'star-twinkle 3s ease-in-out infinite',
+				'float': 'float 8s ease-in-out infinite',
 				'slide-in-left': 'slide-in-left 0.3s ease-out',
 				'slide-out-left': 'slide-out-left 0.3s ease-out',
 				'terminal-typing': 'terminal-typing 3s steps(30) forwards',
-				'pulse-gold': 'pulse-gold 2s ease-in-out infinite'
+				'pulse-gold': 'pulse-gold 3s ease-in-out infinite'
 			},
 			backdropBlur: {
 				xs: '2px'

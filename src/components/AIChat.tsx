@@ -154,16 +154,32 @@ Austin's combination of academic excellence, professional reliability, and inter
 I recommend Austin without reservation and am confident he will be a valuable asset to any organization fortunate enough to have him on their team.
 
 Sincerely,
-Cynthia M Czapla, MALS`;
+Cynthia M Czapla, MALS
+
+================================================================================
+
+Julie Moore, Faculty Reference
+Virtual Studio Programming Club Faculty Sponsor
+
+I had the pleasure of working with Austin Wood during his time as President of the Virtual Studio programming club for two consecutive years in high school. Austin demonstrated exceptional leadership skills, technical competency, and dedication to teaching fellow students programming and animation techniques including CAD software.
+
+As club president, Austin organized weekly meetings, developed curriculum for teaching programming concepts, and mentored students with varying levels of technical experience. His ability to break down complex programming concepts into understandable lessons was remarkable for someone his age.
+
+Austin's passion for technology and education was evident in his commitment to the club and his peers' success. He consistently went above and beyond to ensure every member had the resources and support they needed to learn and grow.
+
+His leadership during this formative period showcased the same dedication and excellence he brings to all his endeavors.
+
+Sincerely,
+Julie Moore`;
   };
 
   const generateSkillsChart = () => {
     const skillsData = [
       { skill: 'Healthcare', level: 95 },
-      { skill: 'Leadership', level: 88 },
-      { skill: 'IT Support', level: 75 },
-      { skill: 'Communication', level: 92 },
-      { skill: 'Crisis Management', level: 90 }
+      { skill: 'Leadership', level: 90 },
+      { skill: 'IT Support', level: 85 },
+      { skill: 'Communication', level: 95 },
+      { skill: 'Crisis Management', level: 92 }
     ];
 
     return (
@@ -194,9 +210,9 @@ Cynthia M Czapla, MALS`;
 
   const generateExperienceChart = () => {
     const experienceData = [
-      { name: 'Healthcare', value: 60, color: '#3B82F6' },
+      { name: 'Healthcare', value: 50, color: '#3B82F6' },
       { name: 'Leadership', value: 25, color: '#10B981' },
-      { name: 'Technical', value: 15, color: '#F59E0B' }
+      { name: 'Technical', value: 25, color: '#F59E0B' }
     ];
 
     return (
@@ -234,7 +250,7 @@ Cynthia M Czapla, MALS`;
     if (lowerPos.includes('it') || lowerPos.includes('helpdesk') || lowerPos.includes('technical') || lowerPos.includes('support')) {
       return `**Austin Wood - IT Support / Helpdesk Resume**
 📧 19austinwood96@gmail.com | 📱 219.299.3702 | 📍 Chicago, IL 60626
-🌐 auconstellations.wordpress.com
+🔗 https://linkedin.com/in/austin-wood-healthcare
 
 **Professional Summary**
 Versatile IT Support professional with leadership experience and foundational background in troubleshooting, end-user support, and documentation systems. Google IT Support certified, with growing technical fluency in automation tools like N8N and code-assist platforms like Cursor. Strong communication, adaptability, and problem-solving skills honed through years of hands-on experience in customer-facing and high-pressure support environments.
@@ -247,16 +263,22 @@ Versatile IT Support professional with leadership experience and foundational ba
 
 • **Lead Case Manager / RP Supervisor, Grasmere Place** (09/2020 – 08/2023)
   - Trained staff on digital documentation systems (Matrix), remote workflows, and file organization
-  - Maintained case files and created streamlined electronic record systems
+  - Maintained case files and created streamlined electronic record systems for 300+ patients
   - Assisted with telehealth coordination and electronic communication
+
+**Education & Leadership**
+Associate of Psychology, Ivy Tech Community College
+• President, Virtual Studio Programming Club (2 years) - Founded and led programming club teaching CAD, animation, and coding to fellow students
+• Vice President, DECA
+• Group Counseling Aide & Volunteer (5 years total: 2.5 years group therapy + 2.5 years minority support group)
 
 **Core Competencies**
 Help Desk Support, Technical Troubleshooting, Remote Tech Support, PC & Peripheral Maintenance, AI Workflow Tools (Cursor), Customer Service, Windows Environments, Ticketing Systems, End-User Support, POS & Inventory Systems, Automation Tools (N8N), Documentation Systems
 
-**Certifications**
+**Certifications & Professional Development**
 • Google IT Support Certificate: https://coursera.org/verify/WT6EVZUJU9ZX
 • QSEP CMS COVID-19 Certification (2020)
-• In Progress: CompTIA+ and Microsoft Azure
+• In Progress: CompTIA A+, Microsoft Azure Fundamentals, AWS Cloud Practitioner
 
 **Technical Skills**
 Windows OS, Microsoft Office, Basic Linux (iSH Terminal), Cursor (code assistant), Digital Documentation Systems, Google Workspace, Matrix (EHR), N8N (workflow automation), Slack / Zoom / Remote Tools
@@ -267,14 +289,14 @@ Would you like me to provide reference letters or discuss specific technical ski
     if (lowerPos.includes('care') || lowerPos.includes('health') || lowerPos.includes('coord') || lowerPos.includes('case') || lowerPos.includes('medical')) {
       return `**Austin Wood - Care Coordinator / Case Manager Resume**
 📧 19austinwood96@gmail.com | 📱 219.299.3702 | 📍 Chicago, IL 60626
-🌐 auconstellations.wordpress.com
+🔗 https://linkedin.com/in/austin-wood-healthcare
 
 **Professional Summary**
-Compassionate and experienced case manager with strong foundation in care coordination, crisis intervention, documentation, and psycho-social support. Proven success working with diverse populations in mental health, long-term care, and transitional living environments. Natural communicator and team leader, with extensive experience in documentation systems, healthcare collaboration, and staff training.
+Compassionate and experienced case manager with 10+ years combined healthcare experience including care coordination, crisis intervention, documentation, and psycho-social support. Proven success working with diverse populations in mental health, long-term care, and transitional living environments. Natural communicator and team leader, with extensive experience managing 300-400+ patients across various healthcare settings.
 
 **Professional Experience**
 • **Lead Case Manager / RP Supervisor, Grasmere Place** (09/2020 – 08/2023)
-  - Managed care plans for 100+ residents and supervised CNA staff through hands-on training
+  - Managed care plans for 300+ residents and supervised CNA staff through hands-on training
   - Delivered motivational interviewing, harm reduction education, and facilitated psycho-social groups
   - Designed custom documentation and filing systems that improved COVID testing and lab compliance
   - Completed admission/discharge paperwork, medication tracking, and coordinated with healthcare providers
@@ -285,13 +307,21 @@ Compassionate and experienced case manager with strong foundation in care coordi
   - Acted as liaison between residents, medical staff, external programs, and legal guardians
   - Trained junior staff and developed internal guides to improve service quality
 
+**Additional Healthcare Experience**
+• **Group Therapy Counseling Aide** (2.5 years) - Provided support in therapeutic group settings
+• **Minority Support Group Facilitator** (2.5 years) - Led and coordinated community support initiatives
+
+**Education & Leadership**
+Associate of Psychology, Ivy Tech Community College
+• President, Virtual Studio Programming Club (2 years) - Founded and led programming club, demonstrating leadership and mentoring abilities
+
 **Core Competencies**
 Care Coordination, Case Management, Behavioral Health Support, Crisis Intervention, Psycho-Social Assessments, Electronic Documentation, Patient Advocacy, Interdisciplinary Team Collaboration, HIPAA Compliance, Cultural Sensitivity, File Organization, Discharge Planning, Documentation Systems, Motivational Interviewing
 
-**Certifications**
+**Certifications & Professional Development**
 • Google IT Support Certificate: https://coursera.org/verify/WT6EVZUJU9ZX
 • QSEP COVID-19 Compliance Training – CMS Certified (2020)
-• Currently preparing for: CompTIA+ and Microsoft Azure
+• In Progress: CompTIA A+, Microsoft Azure Fundamentals, Healthcare IT Certifications
 
 Would you like to see my professional references or discuss specific healthcare experience?`;
     }
@@ -299,14 +329,14 @@ Would you like to see my professional references or discuss specific healthcare 
     if (lowerPos.includes('admin') || lowerPos.includes('office') || lowerPos.includes('clerical')) {
       return `**Austin Wood - Administrative / Office Support Resume**
 📧 19austinwood96@gmail.com | 📱 219.299.3702 | 📍 Chicago, IL 60626
-🌐 auconstellations.wordpress.com
+🔗 https://linkedin.com/in/austin-wood-healthcare
 
 **Summary**
 Efficient administrative support professional with over 5 years of experience in documentation, filing systems, and process improvement across healthcare and retail environments. Proven success in managing records, leading clerical teams, and streamlining operations to improve accuracy and time efficiency.
 
 **Experience**
 • **Lead Case Manager & RP Supervisor, Grasmere Place** (09/2020 – 08/2023)
-  - Managed all intake, discharge, and case documentation for 100+ residents
+  - Managed all intake, discharge, and case documentation for 300+ residents
   - Designed and maintained customized filing systems that significantly reduced retrieval time
   - Ensured accuracy and compliance with all CMS documentation standards
   - Supervised clerical and care staff, maintaining calm and structured office workflow
@@ -334,10 +364,10 @@ Would you like to see specific examples of process improvements I've implemented
   const generateGeneralResume = () => {
     return `**Austin Wood - Professional Resume**
 📧 19austinwood96@gmail.com | 📱 219.299.3702 | 📍 Chicago, IL 60626
-🌐 auconstellations.wordpress.com
+🔗 https://linkedin.com/in/austin-wood-healthcare
 
 **Summary**
-Motivated, adaptable professional with 5+ years of experience in leadership, documentation, and service delivery across healthcare, retail, and administrative sectors. Google IT certified with growing knowledge of automation and tech tools. Known for strong interpersonal skills, crisis management, and team coordination.
+Motivated, adaptable professional with 10+ years combined experience in healthcare, leadership, and technical support. Google IT certified with growing knowledge of automation and tech tools. Known for strong interpersonal skills, crisis management, and team coordination. Successfully managed 300-400+ patients across various healthcare settings.
 
 **Experience**
 • **Shift Lead, Walgreens** (02/2024 – Present)
@@ -346,23 +376,23 @@ Motivated, adaptable professional with 5+ years of experience in leadership, doc
   - Provide customer assistance, conflict resolution, and team leadership
 
 • **Lead Case Manager & RP Supervisor, Grasmere Place** (09/2020 – 08/2023)
-  - Oversaw resident care planning, intake/discharge documentation, and trained staff
+  - Oversaw resident care planning for 300+ individuals, intake/discharge documentation, and trained staff
   - Created filing systems that improved regulatory compliance and workflow speed
   - Conducted psycho-social groups, crisis response, and harm-reduction education
 
-**Education**
+**Education & Leadership**
 Associate of Psychology, Ivy Tech Community College
-Minor in Computer Science / Web App Development
-• President, Virtual Studio (Programming & Design Group)
+• President, Virtual Studio Programming Club (2 years) - Founded and led programming club teaching CAD, animation, and coding
 • Vice President, DECA
-• Group Counseling Aide & Volunteer (3 years)
+• Group Counseling Aide & Volunteer (5 years total experience)
 
 **Skills & Competencies**
 Team Leadership, Documentation, Office Software, Case Management, Filing Systems, Task Delegation, Customer Service, Crisis Management, Staff Training, Basic AI/Automation Tools, Organization, Communication
 
-**Certifications**
+**Certifications & Professional Development**
 • Google IT Support Certificate: https://coursera.org/verify/WT6EVZUJU9ZX
 • QSEP COVID-19 Training – CMS, 2020
+• In Progress: CompTIA A+, Microsoft Azure Fundamentals, AWS Cloud Practitioner
 
 Would you like position-specific information or references?`;
   };
@@ -370,10 +400,25 @@ Would you like position-specific information or references?`;
   const generateIntelligentResponse = (input: string): ChatResponse => {
     const lowerInput = input.toLowerCase();
     
+    // Reference images request
+    if (lowerInput.includes('reference') && (lowerInput.includes('image') || lowerInput.includes('letter') || lowerInput.includes('pull up'))) {
+      return {
+        text: `I can provide you with the full reference letters from my professional contacts. While I don't have access to display the actual images, I can share the complete text of all reference letters including contact information. Would you like me to show the full references or download them for you?`,
+        showReferenceDownload: true
+      };
+    }
+    
+    // Programming club requests
+    if (lowerInput.includes('programming') || lowerInput.includes('virtual studio') || lowerInput.includes('club') || lowerInput.includes('president')) {
+      return {
+        text: `Yes! I founded and served as President of Virtual Studio, a programming club I led for 2 years in high school. I taught fellow students programming, animation, and CAD software. This experience demonstrated my leadership abilities and passion for technology education. It's an important part of my background that shows early leadership and technical mentoring skills.`
+      };
+    }
+    
     // Skills and charts requests
     if (lowerInput.includes('skill') || lowerInput.includes('chart') || lowerInput.includes('graph')) {
       return {
-        text: `Here are my core skills and experience breakdown. I have strong technical abilities combined with healthcare expertise and leadership experience.`,
+        text: `Here are my updated core skills and experience breakdown. With 10+ years of combined healthcare experience (including 5+ years case management, 2.5 years group therapy aid, and 2.5 years minority support group), plus growing technical expertise and proven leadership abilities.`,
         showSkillsChart: true,
         showExperienceChart: true
       };
@@ -382,7 +427,7 @@ Would you like position-specific information or references?`;
     // Experience requests
     if (lowerInput.includes('experience') || lowerInput.includes('background') || lowerInput.includes('work')) {
       return {
-        text: `I have 5+ years of diverse professional experience across healthcare coordination, technical support, and leadership roles. My background includes managing patient care, leading teams, and providing technical solutions.`,
+        text: `I have 10+ years of diverse professional experience including healthcare coordination (serving 300-400+ patients), technical support, and leadership roles. This includes case management, group therapy assistance, minority support group facilitation, and founding/leading a programming club.`,
         showExperienceChart: true
       };
     }
@@ -452,7 +497,7 @@ Would you like position-specific information or references?`;
     // Healthcare experience
     if (lowerInput.includes('healthcare') || lowerInput.includes('medical') || lowerInput.includes('patient')) {
       return {
-        text: `My healthcare experience spans:\n\n🏥 5+ years in healthcare coordination\n👥 Patient advocacy and support\n📋 Care plan development and implementation\n🤝 Interdisciplinary team collaboration\n📊 Healthcare data management\n💼 Compliance with healthcare regulations\n\nI'm passionate about improving patient outcomes through efficient coordination and compassionate care.`
+        text: `My healthcare experience spans:\n\n🏥 10+ years combined healthcare experience\n👥 Patient advocacy and support\n📋 Care plan development and implementation\n🤝 Interdisciplinary team collaboration\n📊 Healthcare data management\n💼 Compliance with healthcare regulations\n\nI'm passionate about improving patient outcomes through efficient coordination and compassionate care.`
       };
     }
     
@@ -473,7 +518,7 @@ Would you like position-specific information or references?`;
     // Default responses with enhanced content
     const responses: ChatResponse[] = [
       {
-        text: "I'm Austin Wood, a versatile professional with 5+ years of experience spanning healthcare, leadership, and technical support. I'm passionate about improving processes and helping people through both direct service and innovative solutions.",
+        text: "I'm Austin Wood, a versatile professional with 10+ years of experience spanning healthcare, leadership, and technical support. I'm passionate about improving processes and helping people through both direct service and innovative solutions.",
         showSkillsChart: true,
       },
       {
@@ -521,7 +566,7 @@ Would you like position-specific information or references?`;
       setMessages(prev => [...prev, assistantMessage]);
       
       // Add visual components if needed
-      if (response.showSkillsChart || response.showExperienceChart || response.showDownloads) {
+      if (response.showSkillsChart || response.showExperienceChart || response.showDownloads || response.showReferenceDownload) {
         setTimeout(() => {
           const visualMessage: Message = {
             id: Date.now() + 2,
