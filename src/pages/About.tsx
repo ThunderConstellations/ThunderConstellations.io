@@ -1,8 +1,33 @@
 
 import React from 'react';
 import { Heart, Users, Award, Target, Mail, MapPin, Github, Linkedin } from 'lucide-react';
+import { SkillsProgress } from '../components/ui/animated-progress';
 
 const About = () => {
+  const healthcareSkills = [
+    { name: 'Care Coordination', level: 95, category: 'Healthcare' },
+    { name: 'Crisis Intervention', level: 90, category: 'Healthcare' },
+    { name: 'Patient Advocacy', level: 88, category: 'Healthcare' },
+    { name: 'Clinical Documentation', level: 92, category: 'Healthcare' },
+    { name: 'Mental Health Support', level: 85, category: 'Healthcare' }
+  ];
+
+  const leadershipSkills = [
+    { name: 'Team Leadership', level: 88, category: 'Leadership' },
+    { name: 'Staff Training', level: 90, category: 'Leadership' },
+    { name: 'Process Improvement', level: 85, category: 'Leadership' },
+    { name: 'Conflict Resolution', level: 82, category: 'Leadership' },
+    { name: 'Project Management', level: 78, category: 'Leadership' }
+  ];
+
+  const technicalSkills = [
+    { name: 'IT Support', level: 75, category: 'Technical' },
+    { name: 'Documentation Systems', level: 90, category: 'Technical' },
+    { name: 'Automation Tools', level: 65, category: 'Technical' },
+    { name: 'Microsoft Office', level: 85, category: 'Technical' },
+    { name: 'Problem Solving', level: 92, category: 'Technical' }
+  ];
+
   return (
     <div className="cosmic-bg min-h-screen p-8">
       <div className="max-w-4xl mx-auto pt-20">
@@ -21,11 +46,11 @@ const About = () => {
           <div className="flex flex-wrap justify-center gap-8 text-cosmic-starlight/80">
             <div className="flex items-center gap-2">
               <Mail className="w-5 h-5 text-cosmic-gold" />
-              <span>austinwoodmhc@gmail.com</span>
+              <span>19austinwood96@gmail.com</span>
             </div>
             <div className="flex items-center gap-2">
               <MapPin className="w-5 h-5 text-cosmic-gold" />
-              <span>Chicago, IL</span>
+              <span>Chicago, IL 60626</span>
             </div>
             <div className="flex items-center gap-2">
               <Github className="w-5 h-5 text-cosmic-gold" />
@@ -67,6 +92,33 @@ const About = () => {
               <p className="text-cosmic-starlight/80 leading-relaxed">{item.description}</p>
             </div>
           ))}
+        </div>
+
+        {/* Skills Progress Sections */}
+        <div className="space-y-12 mb-16">
+          <div className="glass-morphism rounded-xl p-8">
+            <SkillsProgress 
+              skills={healthcareSkills}
+              title="Healthcare & Clinical Skills"
+              className="mb-0"
+            />
+          </div>
+
+          <div className="glass-morphism rounded-xl p-8">
+            <SkillsProgress 
+              skills={leadershipSkills}
+              title="Leadership & Management"
+              className="mb-0"
+            />
+          </div>
+
+          <div className="glass-morphism rounded-xl p-8">
+            <SkillsProgress 
+              skills={technicalSkills}
+              title="Technical & Administrative"
+              className="mb-0"
+            />
+          </div>
         </div>
 
         <div className="glass-morphism rounded-xl p-8 mb-12">
@@ -124,8 +176,8 @@ const About = () => {
               <div className="flex items-center gap-3 p-4 bg-cosmic-gold/10 rounded-lg border border-cosmic-gold/30">
                 <Award className="w-6 h-6 text-cosmic-gold" />
                 <div>
-                  <h4 className="font-semibold text-cosmic-gold">Healthcare Quality Management</h4>
-                  <p className="text-cosmic-starlight/70 text-sm">Process improvement and quality assurance</p>
+                  <h4 className="font-semibold text-cosmic-gold">QSEP COVID-19 CMS Certification</h4>
+                  <p className="text-cosmic-starlight/70 text-sm">Healthcare compliance and safety protocols</p>
                 </div>
               </div>
             </div>

@@ -1,6 +1,6 @@
 
 import React, { useState } from 'react';
-import { Send, Mail, Github, Linkedin, MessageSquare, MapPin, Phone } from 'lucide-react';
+import { Send, Mail, Github, Linkedin, MessageSquare, MapPin, Phone, Globe } from 'lucide-react';
 
 const Contact = () => {
   const [formData, setFormData] = useState({
@@ -10,20 +10,26 @@ const Contact = () => {
     message: ''
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [isSubmitted, setIsSubmitted] = useState(false);
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
     
     // Simulate form submission
     setTimeout(() => {
       setIsSubmitting(false);
+      setIsSubmitted(true);
       setFormData({ name: '', email: '', subject: '', message: '' });
-      // Show success message
+      
+      // Reset success message after 5 seconds
+      setTimeout(() => {
+        setIsSubmitted(false);
+      }, 5000);
     }, 2000);
   };
 
-  const handleChange = (e) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     setFormData(prev => ({
       ...prev,
       [e.target.name]: e.target.value
@@ -48,11 +54,19 @@ const Contact = () => {
           <div className="glass-morphism rounded-xl p-8">
             <h2 className="text-2xl font-bold text-cosmic-gold mb-6">Send a Message</h2>
             
+            {isSubmitted && (
+              <div className="mb-6 p-4 bg-green-500/20 border border-green-500/30 rounded-lg">
+                <p className="text-green-400 text-sm">
+                  ✅ Message sent successfully! I'll get back to you within 24 hours.
+                </p>
+              </div>
+            )}
+            
             <form onSubmit={handleSubmit} className="space-y-6">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div>
                   <label className="block text-cosmic-starlight mb-2 text-sm font-medium">
-                    Name
+                    Name *
                   </label>
                   <input
                     type="text"
@@ -68,7 +82,7 @@ const Contact = () => {
                 </div>
                 <div>
                   <label className="block text-cosmic-starlight mb-2 text-sm font-medium">
-                    Email
+                    Email *
                   </label>
                   <input
                     type="email"
@@ -86,7 +100,7 @@ const Contact = () => {
 
               <div>
                 <label className="block text-cosmic-starlight mb-2 text-sm font-medium">
-                  Subject
+                  Subject *
                 </label>
                 <input
                   type="text"
@@ -103,7 +117,7 @@ const Contact = () => {
 
               <div>
                 <label className="block text-cosmic-starlight mb-2 text-sm font-medium">
-                  Message
+                  Message *
                 </label>
                 <textarea
                   name="message"
@@ -150,19 +164,45 @@ const Contact = () => {
                 <p className="text-cosmic-starlight/80 leading-relaxed">
                   I'm always interested in discussing new opportunities, especially 
                   those at the intersection of healthcare and technology. Whether you're 
-                  looking for a developer, consultant, or collaborator, I'd love to hear from you.
+                  looking for a care coordinator, IT support specialist, or collaborator, I'd love to hear from you.
                 </p>
 
                 <div className="flex flex-col gap-4">
                   <a
-                    href="mailto:austinwoodmhc@gmail.com"
+                    href="mailto:19austinwood96@gmail.com"
                     className="flex items-center gap-4 p-4 bg-cosmic-gold/10 rounded-lg border border-cosmic-gold/30 
                              hover:bg-cosmic-gold/20 transition-colors group"
                   >
                     <Mail className="w-6 h-6 text-cosmic-gold" />
                     <div>
                       <p className="font-medium text-cosmic-gold">Email</p>
-                      <p className="text-sm text-cosmic-starlight/70">austinwoodmhc@gmail.com</p>
+                      <p className="text-sm text-cosmic-starlight/70">19austinwood96@gmail.com</p>
+                    </div>
+                  </a>
+
+                  <a
+                    href="tel:219-299-3702"
+                    className="flex items-center gap-4 p-4 bg-cosmic-gold/10 rounded-lg border border-cosmic-gold/30 
+                             hover:bg-cosmic-gold/20 transition-colors group"
+                  >
+                    <Phone className="w-6 h-6 text-cosmic-gold" />
+                    <div>
+                      <p className="font-medium text-cosmic-gold">Phone</p>
+                      <p className="text-sm text-cosmic-starlight/70">219.299.3702</p>
+                    </div>
+                  </a>
+
+                  <a
+                    href="https://auconstellations.wordpress.com"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center gap-4 p-4 bg-cosmic-gold/10 rounded-lg border border-cosmic-gold/30 
+                             hover:bg-cosmic-gold/20 transition-colors group"
+                  >
+                    <Globe className="w-6 h-6 text-cosmic-gold" />
+                    <div>
+                      <p className="font-medium text-cosmic-gold">Website</p>
+                      <p className="text-sm text-cosmic-starlight/70">auconstellations.wordpress.com</p>
                     </div>
                   </a>
 
@@ -198,7 +238,7 @@ const Contact = () => {
                     <MapPin className="w-6 h-6 text-cosmic-gold" />
                     <div>
                       <p className="font-medium text-cosmic-gold">Location</p>
-                      <p className="text-sm text-cosmic-starlight/70">Chicago, IL</p>
+                      <p className="text-sm text-cosmic-starlight/70">Chicago, IL 60626</p>
                     </div>
                   </div>
                 </div>
@@ -209,8 +249,19 @@ const Contact = () => {
               <h3 className="text-xl font-bold text-cosmic-gold mb-4">Response Time</h3>
               <p className="text-cosmic-starlight/80 text-sm leading-relaxed">
                 I typically respond to messages within 24 hours during business days. 
-                For urgent matters, feel free to mention it in your subject line.
+                For urgent matters, feel free to mention it in your subject line or call directly.
               </p>
+            </div>
+
+            <div className="glass-morphism rounded-xl p-8">
+              <h3 className="text-xl font-bold text-cosmic-gold mb-4">Seeking Opportunities</h3>
+              <div className="space-y-2 text-sm text-cosmic-starlight/80">
+                <p>• Healthcare Technology & IT Support</p>
+                <p>• Care Coordination & Case Management</p>
+                <p>• Administrative & Office Support</p>
+                <p>• Remote Work & Team Leadership</p>
+                <p>• Process Improvement Projects</p>
+              </div>
             </div>
           </div>
         </div>
