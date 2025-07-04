@@ -9,8 +9,8 @@ const FloatingChat = () => {
   const [isFullscreen, setIsFullscreen] = useState(false);
   const location = useLocation();
 
-  // Don't show floating chat on the dedicated chat page
-  if (location.pathname === '/chat') {
+  // Don't show floating chat on the home page or dedicated chat page
+  if (location.pathname === '/' || location.pathname === '/chat') {
     return null;
   }
 

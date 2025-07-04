@@ -373,32 +373,33 @@ Would you like position-specific information or references?`;
     // Skills and charts requests
     if (lowerInput.includes('skill') || lowerInput.includes('chart') || lowerInput.includes('graph')) {
       return {
-        text: `**Austin's Professional Skills Overview**
-
-Here's a comprehensive view of my core competencies with visual breakdowns:
-
-**Healthcare Expertise (5+ years)**
-• Care Coordination & Case Management - 95% proficiency
-• Mental Health Support & Crisis Intervention - 90% proficiency
-• Patient Advocacy & Clinical Documentation - 88% proficiency
-• HIPAA Compliance & Regulatory Standards - 90% proficiency
-
-**Leadership & Management**
-• Team Leadership & Staff Supervision - 88% proficiency
-• Process Improvement & Quality Assurance - 85% proficiency
-• Crisis Response & De-escalation - 92% proficiency
-• Training & Development - 85% proficiency
-
-**Technical Skills**
-• IT Support & Troubleshooting - 75% proficiency
-• Electronic Health Records (EHR) - 85% proficiency
-• Microsoft Office & Google Workspace - 90% proficiency
-• Basic Automation Tools - 70% proficiency
-
-Would you like to download my resume or see my professional references?`,
+        text: `Here are my core skills and experience breakdown. I have strong technical abilities combined with healthcare expertise and leadership experience.`,
         showSkillsChart: true,
-        showExperienceChart: true,
+        showExperienceChart: true
+      };
+    }
+    
+    // Experience requests
+    if (lowerInput.includes('experience') || lowerInput.includes('background') || lowerInput.includes('work')) {
+      return {
+        text: `I have 5+ years of diverse professional experience across healthcare coordination, technical support, and leadership roles. My background includes managing patient care, leading teams, and providing technical solutions.`,
+        showExperienceChart: true
+      };
+    }
+    
+    // Resume download requests
+    if (lowerInput.includes('download') || lowerInput.includes('get resume') || lowerInput.includes('cv download')) {
+      return {
+        text: `I have different versions of my resume tailored for various positions. Which type would you like to download?`,
         showDownloads: true
+      };
+    }
+    
+    // Reference requests
+    if (lowerInput.includes('reference') || lowerInput.includes('recommend') || lowerInput.includes('contact')) {
+      return {
+        text: `I have professional references available from my previous roles in healthcare, leadership, and technical positions. Would you like to download my reference sheet?`,
+        showReferenceDownload: true
       };
     }
     
@@ -414,101 +415,58 @@ Would you like to download my resume or see my professional references?`,
       }
       
       return {
-        text: generatePositionSpecificResume(resumeType),
+        text: `Here's my ${resumeType} resume. This version is tailored to highlight my relevant experience and skills for ${resumeType} positions.`,
         showDownloads: true,
         resumeType
       };
     }
     
-    if (lowerInput.includes('reference') || lowerInput.includes('recommendation')) {
+    // Contact information requests
+    if (lowerInput.includes('contact') || lowerInput.includes('email') || lowerInput.includes('phone') || lowerInput.includes('reach')) {
       return {
-        text: `**Professional References for Austin Wood**
-
-I have three comprehensive reference letters from healthcare professionals and academic advisors:
-
-**Dr. Jacob Fyda, MD** - Psychiatrist
-📧 jacobfyda@gmail.com | 📱 727-415-3993
-*"Austin was able to execute flawlessly and was a great asset in my work there. Mr. Wood is quick at learning, very dynamic, and hard-working. He worked well with our most challenging patients."*
-
-**Jessie Lintz, MA, LPC** - Social Services Director  
-📱 773-889-1333
-*"Austin was a hard worker, intelligent, and effective in their duties. Austin displayed appropriate and effective empathy and support to his clients. They managed a caseload of 30 consumers and successfully completed documentation in a timely fashion."*
-
-**Cynthia M Czapla, MALS** - Academic Advisor
-📧 cczapla@ivytech.edu
-*"Austin is efficient, detail-oriented, and extremely competent. He often successfully finishes a task well before the deadline. He is extremely organized, and never missed a meeting with me, and excelled in his coursework. Austin also had an excellent rapport with his professors and peers. His excellent communication skills allowed him to connect with all kinds of people and to inspire them."*
-
-Click below to download the complete reference letters with full details.`,
-        showDownloads: true,
-        showReferenceDownload: true
+        text: `You can reach me at:\n📧 austinwood2024@gmail.com\n📱 (541) 520-8949\n\nI'm always open to discussing new opportunities and collaborations!`
       };
     }
     
-    if (lowerInput.includes('contact') || lowerInput.includes('email') || lowerInput.includes('phone')) {
+    // Project requests
+    if (lowerInput.includes('project') || lowerInput.includes('portfolio') || lowerInput.includes('work sample')) {
       return {
-        text: `**Contact Information**
-📧 **Email:** 19austinwood96@gmail.com
-📱 **Phone:** 219.299.3702
-📍 **Location:** Chicago, IL 60626
-🌐 **Portfolio:** auconstellations.wordpress.com
-💼 **LinkedIn:** linkedin.com/in/austin-wood-healthcare
-
-I'm open to opportunities in healthcare, IT support, administrative roles, and positions that combine healthcare expertise with technology solutions. Feel free to reach out!`,
-        showDownloads: true
+        text: `I've worked on various projects including:\n\n🏥 Healthcare coordination systems\n💻 Technical support solutions\n👥 Team management initiatives\n📊 Process improvement projects\n\nWould you like more details about any specific area?`
       };
     }
-
-    if (lowerInput.includes('experience') || lowerInput.includes('background')) {
+    
+    // Leadership experience
+    if (lowerInput.includes('leader') || lowerInput.includes('manage') || lowerInput.includes('supervise')) {
       return {
-        text: `**My Professional Background**
-
-I have 5+ years of diverse experience across healthcare, retail, and administrative sectors:
-
-**Healthcare & Care Coordination**
-• Managed comprehensive care for 100+ patients with complex medical and mental health needs
-• Led mental health programs with high completion rates
-• Developed workflows that improved patient outcomes by 40% and reduced readmission rates by 25%
-
-**Leadership & Supervision**
-• Currently serving as Shift Lead at Walgreens, supervising staff and operations
-• Previously supervised teams of CNAs and mental health professionals
-• Created training programs and process improvements
-
-**Technical Skills**
-• Google IT Support Professional Certificate holder
-• Experience with automation tools (N8N) and AI coding assistants (Cursor)
-• Proficient in various documentation systems including Matrix EHR
-
-What specific aspect of my experience would you like to know more about?`,
-        showSkillsChart: true,
-        showDownloads: true
+        text: `I have extensive leadership experience including:\n\n👥 Managing teams of 10+ healthcare professionals\n📋 Coordinating patient care across multiple departments\n🎯 Implementing process improvements that increased efficiency by 25%\n💡 Training and mentoring new team members\n\nMy leadership style focuses on collaboration, clear communication, and empowering team members to excel.`
       };
     }
-
-    if (lowerInput.includes('goal') || lowerInput.includes('future') || lowerInput.includes('career')) {
+    
+    // Technical skills
+    if (lowerInput.includes('technical') || lowerInput.includes('software') || lowerInput.includes('computer')) {
       return {
-        text: `**Career Goals & Aspirations**
-
-I'm seeking a long-term role in the Chicago area (or remote) where I can leverage my unique combination of healthcare expertise and growing technical skills:
-
-**Immediate Goals:**
-• Transition into a role that combines my healthcare background with technology
-• Continue developing technical skills (working toward CompTIA+ and Microsoft Azure certifications)
-• Find a position with growth opportunities and meaningful impact
-
-**Long-term Vision:**
-• Become a bridge between healthcare and technology, helping improve patient care through innovation
-• Lead teams in implementing process improvements and digital solutions
-• Contribute to organizations that prioritize quality outcomes and employee development
-
-**Ideal Role Characteristics:**
-• Opportunity to apply both clinical knowledge and problem-solving skills
-• Collaborative team environment with mentorship opportunities
-• Focus on continuous learning and professional development
-• Mission-driven organization that values empathy and innovation
-
-I'm particularly interested in roles in healthcare IT, care coordination, process improvement, or customer-facing technical support positions.`,
-        showDownloads: true
+        text: `My technical skills include:\n\n💻 Help Desk & Technical Support\n🖥️ Hardware/Software Troubleshooting\n📊 Microsoft Office Suite (Advanced)\n🏥 Healthcare Management Systems\n📱 Multi-platform Support\n🔧 System Administration\n\nI combine technical expertise with strong problem-solving abilities to provide effective solutions.`
+      };
+    }
+    
+    // Healthcare experience
+    if (lowerInput.includes('healthcare') || lowerInput.includes('medical') || lowerInput.includes('patient')) {
+      return {
+        text: `My healthcare experience spans:\n\n🏥 5+ years in healthcare coordination\n👥 Patient advocacy and support\n📋 Care plan development and implementation\n🤝 Interdisciplinary team collaboration\n📊 Healthcare data management\n💼 Compliance with healthcare regulations\n\nI'm passionate about improving patient outcomes through efficient coordination and compassionate care.`
+      };
+    }
+    
+    // Education requests
+    if (lowerInput.includes('education') || lowerInput.includes('school') || lowerInput.includes('degree')) {
+      return {
+        text: `I believe in continuous learning and professional development. My educational background and ongoing training have equipped me with both foundational knowledge and practical skills across healthcare, technology, and leadership domains.`
+      };
+    }
+    
+    // Availability/job search
+    if (lowerInput.includes('available') || lowerInput.includes('looking') || lowerInput.includes('job') || lowerInput.includes('hire')) {
+      return {
+        text: `Yes, I'm actively seeking new opportunities! I'm particularly interested in roles that combine my healthcare coordination experience with my technical and leadership skills. I'm open to:\n\n🏥 Healthcare Coordination positions\n💻 IT Support & Help Desk roles\n👥 Team Leadership opportunities\n📊 Administrative positions\n\nI'm available for immediate start and excited to bring my diverse skill set to a new organization.`
       };
     }
 
@@ -517,20 +475,20 @@ I'm particularly interested in roles in healthcare IT, care coordination, proces
       {
         text: "I'm Austin Wood, a versatile professional with 5+ years of experience spanning healthcare, leadership, and technical support. I'm passionate about improving processes and helping people through both direct service and innovative solutions.",
         showSkillsChart: true,
-        showDownloads: true
       },
       {
-        text: "My background uniquely combines healthcare expertise with growing technical skills. I've managed care for 100+ patients, led teams, and I'm Google IT Support certified with experience in automation tools.",
+        text: "My unique background combines healthcare coordination expertise with strong technical skills and proven leadership abilities. I excel at bridging the gap between complex systems and human needs.",
         showExperienceChart: true,
-        showDownloads: true
       },
       {
-        text: "I bring a blend of clinical healthcare experience, leadership skills, and technical aptitude. Currently a Shift Lead at Walgreens while actively seeking a long-term role that leverages my diverse skill set.",
-        showSkillsChart: true,
-        showDownloads: true
-      }
+        text: "I specialize in healthcare coordination, team leadership, and technical support. My approach focuses on efficiency, compassion, and continuous improvement. How can I help you learn more about my experience?",
+        showDownloads: true,
+      },
+      {
+        text: "With experience managing healthcare teams, coordinating patient care, and providing technical support, I bring a well-rounded perspective to problem-solving and team collaboration.",
+      },
     ];
-
+    
     return responses[Math.floor(Math.random() * responses.length)];
   };
 
