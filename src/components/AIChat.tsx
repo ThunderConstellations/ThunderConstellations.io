@@ -21,14 +21,7 @@ interface Message {
 }
 
 const AIChat: React.FC<AIChatProps> = ({ isFullscreen = false, onToggleFullscreen, onClose }) => {
-  const [messages, setMessages] = useState<Message[]>([
-    {
-      id: 1,
-      type: 'assistant',
-      content: "Hello! I'm here to discuss my background in healthcare technology and help answer questions about my experience bridging tech and compassionate care. What would you like to know?",
-      timestamp: new Date()
-    }
-  ]);
+  const [messages, setMessages] = useState<Message[]>([]);
   const [inputValue, setInputValue] = useState('');
   const [isTyping, setIsTyping] = useState(false);
   const [showPrompts, setShowPrompts] = useState(true);
@@ -92,8 +85,10 @@ const AIChat: React.FC<AIChatProps> = ({ isFullscreen = false, onToggleFullscree
     setShowPrompts(false);
   };
 
-  // When used as main page content, use full screen styles
-  const containerClasses = isFullscreen && !onClose 
+  // When used as main page content (no onClose prop), use full screen layout
+  const isMainPage = !onClose;
+  
+  const containerClasses = isMainPage
     ? 'min-h-screen w-full flex flex-col'
     : `${isFullscreen 
         ? 'fixed inset-0 z-50' 
@@ -111,27 +106,31 @@ const AIChat: React.FC<AIChatProps> = ({ isFullscreen = false, onToggleFullscree
       />
 
       {/* Messages Container */}
-      <div className="flex-1 overflow-y-auto p-6 space-y-6">
-        <ChatWelcome 
-          isFullscreen={isFullscreen} 
-          showWelcome={!onClose}
-        />
-
-        {messages.map((message, index) => (
-          <ChatMessage 
-            key={message.id}
-            message={message}
-            index={index}
+      <div className="flex-1 overflow-y-auto">
+        <div className="max-w-4xl mx-auto p-6">
+          <ChatWelcome 
+            isFullscreen={isMainPage} 
+            showWelcome={messages.length === 0}
           />
-        ))}
 
-        <TypingIndicator isVisible={isTyping} />
+          <div className="space-y-6">
+            {messages.map((message, index) => (
+              <ChatMessage 
+                key={message.id}
+                message={message}
+                index={index}
+              />
+            ))}
+          </div>
 
-        <div ref={messagesEndRef} />
+          <TypingIndicator isVisible={isTyping} />
+
+          <div ref={messagesEndRef} />
+        </div>
       </div>
 
       <QuickPrompts 
-        isVisible={showPrompts && messages.length === 1}
+        isVisible={showPrompts && messages.length === 0}
         onPromptSelect={handlePromptSelect}
       />
 

@@ -8,22 +8,23 @@ interface ChatWelcomeProps {
 }
 
 const ChatWelcome: React.FC<ChatWelcomeProps> = ({ isFullscreen, showWelcome }) => {
-  if (!isFullscreen || !showWelcome) {
+  if (!showWelcome) {
     return null;
   }
 
   return (
-    <div className="text-center py-8 animate-fade-in">
-      <div className="flex justify-center mb-4">
+    <div className="text-center py-12 animate-fade-in">
+      <div className="flex justify-center mb-6">
         <div className="relative">
-          <div className="w-16 h-16 rounded-full bg-gradient-to-br from-cosmic-gold to-cosmic-gold-dark flex items-center justify-center">
-            <Bot className="w-8 h-8 text-cosmic-black" />
+          <div className="w-20 h-20 rounded-full bg-gradient-to-br from-cosmic-gold to-cosmic-gold-dark flex items-center justify-center">
+            <Bot className="w-10 h-10 text-cosmic-black" />
           </div>
-          <Sparkles className="absolute -top-2 -right-2 w-6 h-6 text-cosmic-gold animate-spin" />
+          <div className="absolute -top-1 -right-1 w-6 h-6 bg-green-400 rounded-full animate-pulse border-3 border-cosmic-black" />
+          <Sparkles className="absolute -top-3 -right-3 w-6 h-6 text-cosmic-gold animate-spin" />
         </div>
       </div>
-      <h1 className="text-3xl font-bold text-cosmic-gold mb-2">Career Assistant</h1>
-      <p className="text-cosmic-starlight/80 max-w-2xl mx-auto">
+      <h1 className="text-4xl font-bold text-cosmic-gold mb-4">Hi! I'm your career assistant</h1>
+      <p className="text-cosmic-starlight/80 max-w-2xl mx-auto text-lg mb-8">
         Ask me anything about my healthcare technology background, technical skills, or career journey
       </p>
     </div>

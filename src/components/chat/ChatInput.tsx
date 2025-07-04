@@ -18,7 +18,7 @@ const ChatInput: React.FC<ChatInputProps> = ({
   disabled 
 }) => {
   return (
-    <div className="p-6 border-t border-cosmic-gold/20 bg-gradient-to-r from-cosmic-gold/5 to-cosmic-gold/10">
+    <div className="p-6 border-t border-cosmic-gold/20 bg-gradient-to-r from-cosmic-gold/5 to-cosmic-gold/10 backdrop-blur-sm sticky bottom-0">
       <div className="flex gap-4 items-end max-w-4xl mx-auto">
         <div className="flex-1 relative">
           <textarea
