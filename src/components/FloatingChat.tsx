@@ -1,11 +1,18 @@
 
 import React, { useState } from 'react';
 import { MessageSquare, X } from 'lucide-react';
+import { useLocation } from 'react-router-dom';
 import AIChat from './AIChat';
 
 const FloatingChat = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [isFullscreen, setIsFullscreen] = useState(false);
+  const location = useLocation();
+
+  // Don't show floating chat on the dedicated chat page
+  if (location.pathname === '/chat') {
+    return null;
+  }
 
   const toggleChat = () => {
     setIsOpen(!isOpen);
