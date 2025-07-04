@@ -1,6 +1,6 @@
 
 import React, { useState } from 'react';
-import { Menu, X, Home, User, Briefcase, FileText, Mail, Zap, BookOpen } from 'lucide-react';
+import { Menu, X, Home, User, Briefcase, FileText, Mail, Zap, Linkedin, Award, Users } from 'lucide-react';
 import { Link, useLocation } from 'react-router-dom';
 
 const Navigation = () => {
@@ -10,10 +10,12 @@ const Navigation = () => {
   const navItems = [
     { icon: Home, label: 'Home', path: '/' },
     { icon: User, label: 'About', path: '/about' },
+    { icon: Award, label: 'Skills', path: '/skills' },
     { icon: Briefcase, label: 'Projects', path: '/projects' },
-    { icon: BookOpen, label: 'Blog', path: '/blog' },
     { icon: FileText, label: 'Resume', path: '/resume' },
-    { icon: Mail, label: 'Contact', path: '/contact' }
+    { icon: Users, label: 'References', path: '/references' },
+    { icon: Mail, label: 'Contact', path: '/contact' },
+    { icon: Linkedin, label: 'LinkedIn', path: 'https://linkedin.com/in/austin-wood-healthcare', external: true }
   ];
 
   const toggleSidebar = () => setIsOpen(!isOpen);
@@ -70,14 +72,27 @@ const Navigation = () => {
               
               return (
                 <li key={item.path}>
-                  <Link
-                    to={item.path}
-                    onClick={toggleSidebar}
-                    className={`nav-item ${isActive ? 'active' : ''}`}
-                  >
-                    <Icon className="w-5 h-5" />
-                    <span>{item.label}</span>
-                  </Link>
+                  {item.external ? (
+                    <a
+                      href={item.path}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      onClick={toggleSidebar}
+                      className={`nav-item`}
+                    >
+                      <Icon className="w-5 h-5" />
+                      <span>{item.label}</span>
+                    </a>
+                  ) : (
+                    <Link
+                      to={item.path}
+                      onClick={toggleSidebar}
+                      className={`nav-item ${isActive ? 'active' : ''}`}
+                    >
+                      <Icon className="w-5 h-5" />
+                      <span>{item.label}</span>
+                    </Link>
+                  )}
                 </li>
               );
             })}

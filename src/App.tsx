@@ -1,51 +1,54 @@
 
+import { Suspense, lazy } from "react";
 import { Toaster } from "@/components/ui/toaster";
-import { Toaster as Sonner } from "@/components/ui/sonner";
-import { TooltipProvider } from "@/components/ui/tooltip";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Navigation from "./components/Navigation";
+import FloatingChat from "./components/FloatingChat";
 import AnimatedCursor from "./components/AnimatedCursor";
-import { FloatingParticles } from "./components/ui/floating-particles";
-import { BackToTop } from "./components/ui/back-to-top";
-import Home from "./pages/Home";
-import About from "./pages/About";
-import Projects from "./pages/Projects";
-import Blog from "./pages/Blog";
-import Chat from "./pages/Chat";
-import Resume from "./pages/Resume";
-import Contact from "./pages/Contact";
-import NotFound from "./pages/NotFound";
+
+const Home = lazy(() => import("./pages/Home"));
+const About = lazy(() => import("./pages/About"));
+const Projects = lazy(() => import("./pages/Projects"));
+const Skills = lazy(() => import("./pages/Skills"));
+const Resume = lazy(() => import("./pages/Resume"));
+const References = lazy(() => import("./pages/References"));
+const Contact = lazy(() => import("./pages/Contact"));
+const Chat = lazy(() => import("./pages/Chat"));
+const Index = lazy(() => import("./pages/Index"));
+const NotFound = lazy(() => import("./pages/NotFound"));
 
 const queryClient = new QueryClient();
 
-const App = () => (
-  <QueryClientProvider client={queryClient}>
-    <TooltipProvider>
-      <Toaster />
-      <Sonner />
-      <BrowserRouter>
-        <div className="relative">
-          <FloatingParticles count={75} />
+function App() {
+  return (
+    <QueryClientProvider client={queryClient}>
+      <Router>
+        <div className="min-h-screen bg-cosmic-black text-cosmic-starlight relative overflow-x-hidden">
           <AnimatedCursor />
           <Navigation />
-          <BackToTop />
-          <div className="page-transition-container">
+          <Suspense fallback={<div className="cosmic-bg min-h-screen flex items-center justify-center">
+            <div className="text-cosmic-gold text-xl">Loading...</div>
+          </div>}>
             <Routes>
               <Route path="/" element={<Home />} />
               <Route path="/about" element={<About />} />
               <Route path="/projects" element={<Projects />} />
-              <Route path="/blog" element={<Blog />} />
-              <Route path="/chat" element={<Chat />} />
+              <Route path="/skills" element={<Skills />} />
               <Route path="/resume" element={<Resume />} />
+              <Route path="/references" element={<References />} />
               <Route path="/contact" element={<Contact />} />
+              <Route path="/chat" element={<Chat />} />
+              <Route path="/index" element={<Index />} />
               <Route path="*" element={<NotFound />} />
             </Routes>
-          </div>
+          </Suspense>
+          <FloatingChat />
+          <Toaster />
         </div>
-      </BrowserRouter>
-    </TooltipProvider>
-  </QueryClientProvider>
-);
+      </Router>
+    </QueryClientProvider>
+  );
+}
 
 export default App;
