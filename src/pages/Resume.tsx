@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { Download, Mail, Phone, MapPin, Github, Linkedin, Award, FileText, Globe } from 'lucide-react';
 import { pdfGeneratorService } from '../services/pdfGenerator';
@@ -50,11 +49,11 @@ const Resume = () => {
             <div className="flex flex-wrap justify-center gap-6 text-sm text-cosmic-starlight/70">
               <div className="flex items-center gap-2">
                 <Mail className="w-4 h-4 text-cosmic-gold" />
-                austinwood2024@gmail.com
+                19austinwood96@gmail.com
               </div>
               <div className="flex items-center gap-2">
                 <Phone className="w-4 h-4 text-cosmic-gold" />
-                (541) 520-8949
+                (219) 299-3702
               </div>
               <div className="flex items-center gap-2">
                 <MapPin className="w-4 h-4 text-cosmic-gold" />

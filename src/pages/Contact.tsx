@@ -221,7 +221,7 @@ const Contact = () => {
                     <Phone className="w-6 h-6 text-cosmic-gold" />
                     <div>
                       <p className="font-medium text-cosmic-gold">Phone</p>
-                      <p className="text-sm text-cosmic-starlight/70">219.299.3702</p>
+                      <p className="text-sm text-cosmic-starlight/70">(219) 299-3702</p>
                     </div>
                   </a>
 
