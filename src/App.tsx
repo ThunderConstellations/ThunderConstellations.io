@@ -27,22 +27,27 @@ function App() {
         <div className="min-h-screen bg-cosmic-black text-cosmic-starlight relative overflow-x-hidden">
           <AnimatedCursor />
           <Navigation />
-          <Suspense fallback={<div className="cosmic-bg min-h-screen flex items-center justify-center">
-            <div className="text-cosmic-gold text-xl">Loading...</div>
-          </div>}>
-            <Routes>
-              <Route path="/" element={<Home />} />
-              <Route path="/about" element={<About />} />
-              <Route path="/projects" element={<Projects />} />
-              <Route path="/skills" element={<Skills />} />
-              <Route path="/resume" element={<Resume />} />
-              <Route path="/references" element={<References />} />
-              <Route path="/contact" element={<Contact />} />
-              <Route path="/chat" element={<Chat />} />
-              <Route path="/index" element={<Index />} />
-              <Route path="*" element={<NotFound />} />
-            </Routes>
-          </Suspense>
+          
+          {/* Main content with proper spacing for sidebar */}
+          <div className="ml-0 transition-all duration-300">
+            <Suspense fallback={<div className="cosmic-bg min-h-screen flex items-center justify-center">
+              <div className="text-cosmic-gold text-xl">Loading...</div>
+            </div>}>
+              <Routes>
+                <Route path="/" element={<Home />} />
+                <Route path="/about" element={<About />} />
+                <Route path="/projects" element={<Projects />} />
+                <Route path="/skills" element={<Skills />} />
+                <Route path="/resume" element={<Resume />} />
+                <Route path="/references" element={<References />} />
+                <Route path="/contact" element={<Contact />} />
+                <Route path="/chat" element={<Chat />} />
+                <Route path="/index" element={<Index />} />
+                <Route path="*" element={<NotFound />} />
+              </Routes>
+            </Suspense>
+          </div>
+          
           <FloatingChat />
           <Toaster />
         </div>
