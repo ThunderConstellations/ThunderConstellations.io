@@ -14,7 +14,7 @@ const AnimatedCursor = () => {
       setIsMoving(true);
 
       clearTimeout(timeoutId);
-      timeoutId = setTimeout(() => setIsMoving(false), 200);
+      timeoutId = setTimeout(() => setIsMoving(false), 150);
     };
 
     const handleMouseDown = () => setIsClicking(true);
@@ -40,7 +40,7 @@ const AnimatedCursor = () => {
     opacity: number;
   }) => (
     <div
-      className={`absolute rounded-full transition-all duration-300 ${
+      className={`absolute rounded-full transition-all duration-150 ${
         isMoving ? `opacity-${Math.floor(opacity * 100)}` : 'opacity-20'
       } ${isClicking ? 'scale-150' : 'scale-100'}`}
       style={{
@@ -58,7 +58,7 @@ const AnimatedCursor = () => {
   // Improved star particles
   const StarParticle = ({ delay, radius, size }: { delay: number; radius: number; size: number }) => (
     <div
-      className={`absolute transition-all duration-300 ${
+      className={`absolute transition-all duration-200 ${
         isMoving ? 'opacity-70' : 'opacity-30'
       }`}
       style={{
@@ -78,7 +78,7 @@ const AnimatedCursor = () => {
   // Enhanced electric trails
   const ElectricTrail = ({ delay, distance, length }: { delay: number; distance: number; length: number }) => (
     <div
-      className={`absolute transition-all duration-200 ${
+      className={`absolute transition-all duration-100 ${
         isMoving ? 'opacity-60' : 'opacity-0'
       }`}
       style={{
@@ -96,9 +96,9 @@ const AnimatedCursor = () => {
 
   return (
     <div className="pointer-events-none fixed inset-0 z-50">
-      {/* Central Enhanced Core */}
+      {/* Central Enhanced Core - reduced transition duration for better tracking */}
       <div
-        className={`absolute transition-all duration-200 ease-out ${
+        className={`absolute transition-all duration-75 ease-out ${
           isMoving ? 'opacity-100 scale-100' : 'opacity-60 scale-75'
         } ${isClicking ? 'scale-125' : ''}`}
         style={{
@@ -145,7 +145,7 @@ const AnimatedCursor = () => {
 
       {/* Inner Energy Ring */}
       <div
-        className={`absolute rounded-full transition-all duration-300 ${
+        className={`absolute rounded-full transition-all duration-200 ${
           isMoving 
             ? 'opacity-50' 
             : 'opacity-20'
@@ -163,7 +163,7 @@ const AnimatedCursor = () => {
 
       {/* Outer Energy Ring */}
       <div
-        className={`absolute rounded-full border transition-all duration-300 ${
+        className={`absolute rounded-full border transition-all duration-200 ${
           isMoving 
             ? 'border-cosmic-gold/20 opacity-40' 
             : 'border-cosmic-gold/10 opacity-10'
@@ -180,7 +180,7 @@ const AnimatedCursor = () => {
 
       {/* Pulsing Background Glow */}
       <div
-        className={`absolute rounded-full transition-all duration-500 ${
+        className={`absolute rounded-full transition-all duration-300 ${
           isMoving 
             ? 'opacity-30' 
             : 'opacity-10'

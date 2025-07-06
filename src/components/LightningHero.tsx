@@ -16,7 +16,7 @@ const LightningHero = () => {
       
       {/* Enhanced Lightning Constellation SVG with Framer Motion */}
       <motion.div 
-        className="relative z-30 mb-8"
+        className="relative z-30 mb-4"
         initial={{ scale: 0.5, opacity: 0, rotateY: -180 }}
         animate={{ 
           scale: isVisible ? 1 : 0.5, 

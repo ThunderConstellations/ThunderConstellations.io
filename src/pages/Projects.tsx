@@ -1,12 +1,15 @@
 
 import React from 'react';
 import GitHubRepos from '../components/GitHubRepos';
+import BackgroundLayers from '../components/graphics/BackgroundLayers';
 
 const Projects = () => {
   return (
-    <div className="cosmic-bg min-h-screen">
+    <div className="cosmic-bg min-h-screen relative">
+      <BackgroundLayers variant="full" />
+      
       {/* Add padding to account for navigation button */}
-      <div className="max-w-6xl mx-auto px-4 py-16 pt-24">
+      <div className="max-w-6xl mx-auto px-4 py-16 pt-24 relative z-10">
         <div className="text-center mb-12">
           <h2 className="text-4xl font-bold mb-6">
             <span className="text-cosmic-starlight">My</span>
