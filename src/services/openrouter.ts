@@ -1,3 +1,4 @@
+import { supabase } from '../integrations/supabase/client';
 
 export interface OpenRouterMessage {
   role: 'user' | 'assistant' | 'system';
@@ -5,64 +6,43 @@ export interface OpenRouterMessage {
 }
 
 export interface OpenRouterResponse {
-  choices: Array<{
-    message: {
-      content: string;
-    };
-  }>;
+  content: string;
 }
 
 export class OpenRouterService {
-  private apiKey: string | null = null;
-  private baseUrl = 'https://openrouter.ai/api/v1';
-  private model = 'deepseek/deepseek-r1-0528:free';
+  async chat(messages: OpenRouterMessage[]): Promise<string> {
+    try {
+      console.log('Calling openrouter-chat edge function with', messages.length, 'messages');
+      
+      const { data, error } = await supabase.functions.invoke('openrouter-chat', {
+        body: { messages }
+      });
 
-  constructor() {
-    // Try to get API key from localStorage (user will add it manually)
-    this.apiKey = localStorage.getItem('openrouter_api_key');
+      if (error) {
+        console.error('Supabase function error:', error);
+        throw new Error(`Function error: ${error.message}`);
+      }
+
+      if (data?.error) {
+        console.error('OpenRouter API error:', data.error);
+        throw new Error(data.error);
+      }
+
+      return data?.content || 'No response generated';
+    } catch (error) {
+      console.error('OpenRouter service error:', error);
+      throw error;
+    }
+  }
+
+  // Keep these methods for backwards compatibility, but they're no longer needed
+  hasApiKey(): boolean {
+    return true; // Always return true since we use server-side API key
   }
 
   setApiKey(key: string) {
-    this.apiKey = key;
-    localStorage.setItem('openrouter_api_key', key);
-  }
-
-  hasApiKey(): boolean {
-    return !!this.apiKey;
-  }
-
-  async chat(messages: OpenRouterMessage[]): Promise<string> {
-    if (!this.apiKey) {
-      throw new Error('OpenRouter API key not configured');
-    }
-
-    try {
-      const response = await fetch(`${this.baseUrl}/chat/completions`, {
-        method: 'POST',
-        headers: {
-          'Authorization': `Bearer ${this.apiKey}`,
-          'Content-Type': 'application/json',
-          'HTTP-Referer': window.location.origin,
-          'X-Title': 'Austin Wood Portfolio'
-        },
-        body: JSON.stringify({
-          model: this.model,
-          messages,
-          temperature: 0.7,
-          max_tokens: 1000
-        })
-      });
-
-      if (!response.ok) {
-        throw new Error(`OpenRouter API error: ${response.statusText}`);
-      }
-
-      const data: OpenRouterResponse = await response.json();
-      return data.choices[0]?.message?.content || 'No response generated';
-    } catch (error) {
-      console.error('OpenRouter API error:', error);
-      throw error;
-    }
+    // No-op since we use server-side API key
+    console.log('API key setting is handled server-side');
   }
 }
 

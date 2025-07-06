@@ -59,10 +59,6 @@ Respond naturally and conversationally. Keep responses concise but informative.`
 
   async generateIntelligentResponse(userInput: string): Promise<IntelligentResponse> {
     try {
-      if (!openRouterService.hasApiKey()) {
-        return this.getFallbackResponse(userInput);
-      }
-
       // Add user message to conversation
       this.conversationHistory.push({ role: 'user', content: userInput });
 

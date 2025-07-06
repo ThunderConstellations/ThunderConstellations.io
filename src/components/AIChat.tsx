@@ -5,11 +5,9 @@ import ChatMessage from './chat/ChatMessage';
 import TypingIndicator from './chat/TypingIndicator';
 import ChatInput from './chat/ChatInput';
 import TerminalMessage from './chat/TerminalMessage';
-import ApiKeySetup from './chat/ApiKeySetup';
 import { Message } from './chat/types';
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, PieChart, Pie, Cell } from 'recharts';
 import { Download, FileText, Heart, Code, Users, Sparkles } from 'lucide-react';
-import { openRouterService } from '../services/openrouter';
 import { aiIntelligenceService } from '../services/aiIntelligence';
 import { pdfGeneratorService } from '../services/pdfGenerator';
 import EnhancedQuickPrompts from './chat/EnhancedQuickPrompts';
@@ -30,7 +28,6 @@ const AIChat: React.FC<AIChatProps> = ({ isFullscreen = false, onToggleFullscree
   const [showPrompts, setShowPrompts] = useState(true);
   const [showTerminalIntro, setShowTerminalIntro] = useState(false);
   const [terminalComplete, setTerminalComplete] = useState(false);
-  const [hasApiKey, setHasApiKey] = useState(false);
   const messagesEndRef = useRef<HTMLDivElement>(null);
 
   const scrollToBottom = () => {
@@ -42,9 +39,6 @@ const AIChat: React.FC<AIChatProps> = ({ isFullscreen = false, onToggleFullscree
   }, [messages, showTerminalIntro]);
 
   useEffect(() => {
-    // Check if API key is available
-    setHasApiKey(openRouterService.hasApiKey());
-
     const timer = setTimeout(() => {
       setIsTyping(true);
       setTimeout(() => {
@@ -55,10 +49,6 @@ const AIChat: React.FC<AIChatProps> = ({ isFullscreen = false, onToggleFullscree
 
     return () => clearTimeout(timer);
   }, []);
-
-  const handleApiKeySet = () => {
-    setHasApiKey(true);
-  };
 
   const handleTerminalComplete = () => {
     setTerminalComplete(true);
@@ -474,11 +464,20 @@ Would you like position-specific information or references?`;
         }
         
         setIsTyping(false);
-      }, hasApiKey ? 1200 + Math.random() * 800 : 800);
+      }, 1200 + Math.random() * 800);
 
     } catch (error) {
       console.error('Error generating response:', error);
-      setIsTyping(false);
+      setTimeout(() => {
+        const errorMessage: Message = {
+          id: Date.now() + 1,
+          type: 'assistant',
+          content: "I'm sorry, I'm having trouble connecting to the AI service right now. Please try again in a moment, or feel free to browse my portfolio in the meantime!",
+          timestamp: new Date()
+        };
+        setMessages(prev => [...prev, errorMessage]);
+        setIsTyping(false);
+      }, 800);
     }
   };
 
@@ -524,13 +523,8 @@ Would you like position-specific information or references?`;
             <TerminalMessage onComplete={handleTerminalComplete} />
           )}
 
-          {/* API Setup */}
-          {terminalComplete && !hasApiKey && (
-            <ApiKeySetup onApiKeySet={handleApiKeySet} />
-          )}
-
           {/* AI Status */}
-          {terminalComplete && hasApiKey && (
+          {terminalComplete && (
             <div className="mb-4 p-3 bg-cosmic-gold/10 rounded-lg border border-cosmic-gold/20">
               <div className="flex items-center gap-2">
                 <Sparkles className="w-4 h-4 text-cosmic-gold animate-pulse" />
