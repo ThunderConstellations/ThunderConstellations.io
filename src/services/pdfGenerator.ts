@@ -97,41 +97,100 @@ export class PDFGeneratorService {
     const doc = new jsPDF();
     let yPos = 20;
 
-    // Header
-    yPos = this.addHeader(doc, resumeData.name, [
-      `Email: ${resumeData.email}`,
-      `Phone: ${resumeData.phone}`,
-      `Location: ${resumeData.location}`,
-      `LinkedIn: ${resumeData.linkedin}`
-    ]);
+    // Header with title
+    doc.setFontSize(22);
+    doc.setFont('helvetica', 'bold');
+    doc.text('Austin Wood', 20, yPos);
+    yPos += 8;
+    
+    doc.setFontSize(14);
+    doc.setFont('helvetica', 'normal');
+    doc.text('Healthcare Professional & Technology Innovator', 20, yPos);
+    yPos += 15;
+
+    // Contact information
+    doc.setFontSize(10);
+    doc.setFont('helvetica', 'normal');
+    const contactInfo = [
+      '19austinwood96@gmail.com',
+      '(219) 299-3702',
+      'Chicago, IL 60626',
+      'linkedin.com/in/austin-wood-a1b2c3/'
+    ];
+    
+    contactInfo.forEach(info => {
+      doc.text(info, 20, yPos);
+      yPos += 5;
+    });
+    yPos += 10;
 
     // Professional Summary
     yPos = this.addSection(doc, 'Professional Summary', yPos);
     doc.setFontSize(10);
     doc.setFont('helvetica', 'normal');
-    yPos = this.wrapText(doc, resumeData.summary, 20, yPos, 170) + 10;
+    const summaryText = 'Versatile healthcare professional and technology innovator with 10+ years combined experience in care coordination, crisis intervention, and team leadership. Founded and led the Virtual Studio programming club, teaching CAD, animation, and coding to 30+ students. Proven track record of managing 300+ patients while implementing quality improvement initiatives that reduced readmission rates by 25%. Google IT Support certified with growing technical expertise in automation and digital systems.';
+    yPos = this.wrapText(doc, summaryText, 20, yPos, 170) + 10;
 
     // Professional Experience
     yPos = this.checkPageSpace(doc, yPos, 50);
     yPos = this.addSection(doc, 'Professional Experience', yPos);
     
-    resumeData.experience.forEach(exp => {
+    // Experience entries
+    const experiences = [
+      {
+        position: 'Shift Lead',
+        company: 'Walgreens',
+        duration: 'February 2024 - Present',
+        location: 'Chicago, IL',
+        responsibilities: [
+          'Manage daily store operations, supervising staff and managing customer service systems',
+          'Troubleshoot technical issues and train associates on digital tools and procedures',
+          'Handle vendor relations, inventory management, and administrative coordination',
+          'Deliver exceptional customer service while ensuring operational compliance'
+        ]
+      },
+      {
+        position: 'Lead Case Manager & RP Supervisor',
+        company: 'Grasmere Place',
+        duration: 'September 2020 - August 2023',
+        location: 'Chicago, IL',
+        responsibilities: [
+          'Managed comprehensive care coordination for 300+ residents across multiple service areas',
+          'Led quality improvement initiatives that reduced readmission rates by 25%',
+          'Designed innovative documentation systems that improved operational efficiency',
+          'Supervised staff training and development while maintaining regulatory compliance'
+        ]
+      },
+      {
+        position: 'Lead MHP / PRSC',
+        company: 'Bryn Mawr Care',
+        duration: 'July 2019 - September 2020',
+        location: 'Chicago, IL',
+        responsibilities: [
+          'Provided comprehensive case management and behavioral health support for 30+ residents',
+          'Coordinated interdisciplinary care teams and external service providers',
+          'Implemented crisis intervention protocols that improved response efficiency',
+          'Maintained detailed documentation and treatment planning systems'
+        ]
+      }
+    ];
+
+    experiences.forEach(exp => {
       yPos = this.checkPageSpace(doc, yPos, 40);
       
       // Position and Company
       doc.setFontSize(12);
       doc.setFont('helvetica', 'bold');
-      doc.text(`${exp.position} - ${exp.company}`, 20, yPos);
+      doc.text(exp.position, 20, yPos);
       yPos += 7;
       
-      // Duration
+      // Company and Duration
       doc.setFontSize(10);
-      doc.setFont('helvetica', 'italic');
-      doc.text(exp.duration, 20, yPos);
+      doc.setFont('helvetica', 'normal');
+      doc.text(`${exp.company} • ${exp.duration} • ${exp.location}`, 20, yPos);
       yPos += 8;
       
       // Responsibilities
-      doc.setFont('helvetica', 'normal');
       exp.responsibilities.forEach(resp => {
         yPos = this.checkPageSpace(doc, yPos);
         yPos = this.wrapText(doc, `• ${resp}`, 25, yPos, 165) + 3;
@@ -139,46 +198,163 @@ export class PDFGeneratorService {
       yPos += 5;
     });
 
-    // Education
-    yPos = this.checkPageSpace(doc, yPos, 40);
-    yPos = this.addSection(doc, 'Education & Leadership', yPos);
+    // Core Skills
+    yPos = this.checkPageSpace(doc, yPos, 60);
+    yPos = this.addSection(doc, 'Core Skills', yPos);
     
-    resumeData.education.forEach(edu => {
-      doc.setFontSize(12);
+    const skillCategories = [
+      {
+        name: 'Healthcare Expertise',
+        skills: ['Care Coordination', 'Mental Health Support', 'Patient Advocacy', 'Clinical Documentation', 'Crisis Intervention', 'HIPAA Compliance', 'Quality Improvement', 'Interdisciplinary Teams']
+      },
+      {
+        name: 'Leadership & Management',
+        skills: ['Team Leadership', 'Process Improvement', 'Quality Assurance', 'Training & Development', 'Staff Supervision', 'Project Management']
+      },
+      {
+        name: 'Technical Skills',
+        skills: ['IT Support', 'EHR Systems', 'Microsoft Office', 'Google Workspace', 'Documentation Systems', 'POS Systems', 'CAD Software', 'Animation', 'Programming']
+      }
+    ];
+
+    skillCategories.forEach(category => {
+      yPos = this.checkPageSpace(doc, yPos, 25);
+      
+      doc.setFontSize(11);
       doc.setFont('helvetica', 'bold');
-      doc.text(edu.degree, 20, yPos);
-      yPos += 7;
+      doc.text(category.name, 20, yPos);
+      yPos += 5;
       
       doc.setFontSize(10);
       doc.setFont('helvetica', 'normal');
-      doc.text(edu.institution, 20, yPos);
-      yPos += 8;
-      
-      if (edu.details) {
-        edu.details.forEach(detail => {
-          yPos = this.checkPageSpace(doc, yPos);
-          yPos = this.wrapText(doc, `• ${detail}`, 25, yPos, 165) + 3;
-        });
-      }
-      yPos += 5;
+      const skillsText = category.skills.join(' • ');
+      yPos = this.wrapText(doc, skillsText, 20, yPos, 170) + 8;
     });
 
-    // Skills
-    yPos = this.checkPageSpace(doc, yPos, 30);
-    yPos = this.addSection(doc, 'Core Skills', yPos);
+    // Education & Leadership
+    yPos = this.checkPageSpace(doc, yPos, 60);
+    yPos = this.addSection(doc, 'Education & Leadership', yPos);
+    
+    doc.setFontSize(12);
+    doc.setFont('helvetica', 'bold');
+    doc.text('Associate of Psychology', 20, yPos);
+    yPos += 7;
     
     doc.setFontSize(10);
     doc.setFont('helvetica', 'normal');
-    const skillsText = resumeData.skills.join(' • ');
-    yPos = this.wrapText(doc, skillsText, 20, yPos, 170) + 10;
+    doc.text('Ivy Tech Community College • 2016-2018', 20, yPos);
+    yPos += 10;
+    
+    // Leadership details
+    const leadershipItems = [
+      {
+        title: 'Founder & President - Virtual Studio Programming Club',
+        duration: '2016-2018 • 2 Years Leadership',
+        details: [
+          'Founded innovative programming club focused on CAD, animation, and coding education',
+          'Led weekly workshops teaching AutoCAD, Blender, and programming fundamentals',
+          'Grew club membership from 5 to 30+ active participants',
+          'Collaborated with college IT department to secure lab access and software licenses',
+          'Organized inter-collegiate programming competitions and design showcases'
+        ]
+      },
+      {
+        title: 'Vice President - DECA',
+        duration: '',
+        details: ['Business and marketing leadership development']
+      },
+      {
+        title: 'Group Counseling Aide & Volunteer',
+        duration: '',
+        details: ['5 years total: 2.5 years group therapy + 2.5 years minority support group']
+      }
+    ];
 
-    // Certifications
-    yPos = this.checkPageSpace(doc, yPos, 30);
+    leadershipItems.forEach(item => {
+      yPos = this.checkPageSpace(doc, yPos, 30);
+      
+      doc.setFontSize(11);
+      doc.setFont('helvetica', 'bold');
+      doc.text(item.title, 20, yPos);
+      yPos += 5;
+      
+      if (item.duration) {
+        doc.setFontSize(9);
+        doc.setFont('helvetica', 'italic');
+        doc.text(item.duration, 20, yPos);
+        yPos += 5;
+      }
+      
+      doc.setFontSize(9);
+      doc.setFont('helvetica', 'normal');
+      item.details.forEach(detail => {
+        yPos = this.checkPageSpace(doc, yPos);
+        yPos = this.wrapText(doc, `• ${detail}`, 25, yPos, 165) + 3;
+      });
+      yPos += 5;
+    });
+
+    // Certifications & Professional Development
+    yPos = this.checkPageSpace(doc, yPos, 50);
     yPos = this.addSection(doc, 'Certifications & Professional Development', yPos);
     
-    resumeData.certifications.forEach(cert => {
+    // Google IT Support Certificate
+    doc.setFontSize(11);
+    doc.setFont('helvetica', 'bold');
+    doc.text('Google IT Support Certificate', 20, yPos);
+    yPos += 5;
+    
+    doc.setFontSize(10);
+    doc.setFont('helvetica', 'normal');  
+    doc.text('Comprehensive IT support training covering:', 20, yPos);
+    yPos += 5;
+    
+    const googleCertDetails = [
+      'Technical troubleshooting and system administration',
+      'Network protocols and security fundamentals',
+      'Customer service and help desk operations'
+    ];
+    
+    googleCertDetails.forEach(detail => {
       yPos = this.checkPageSpace(doc, yPos);
-      yPos = this.wrapText(doc, `• ${cert}`, 20, yPos, 170) + 5;
+      yPos = this.wrapText(doc, `• ${detail}`, 25, yPos, 165) + 3;
+    });
+    
+    doc.setFontSize(9);
+    doc.setFont('helvetica', 'italic');
+    doc.text('Verification: coursera.org/verify/WT6EVZUJU9ZX', 20, yPos);
+    yPos += 10;
+    
+    // QSEP COVID-19 Training
+    yPos = this.checkPageSpace(doc, yPos, 15);
+    doc.setFontSize(11);
+    doc.setFont('helvetica', 'bold');
+    doc.text('QSEP COVID-19 Training – CMS', 20, yPos);
+    yPos += 5;
+    
+    doc.setFontSize(10);
+    doc.setFont('helvetica', 'normal');
+    doc.text('Centers for Medicare & Medicaid Services • 2020', 20, yPos);
+    yPos += 10;
+    
+    // Currently Pursuing
+    yPos = this.checkPageSpace(doc, yPos, 20);
+    doc.setFontSize(11);
+    doc.setFont('helvetica', 'bold');
+    doc.text('Currently Pursuing', 20, yPos);
+    yPos += 5;
+    
+    const pursuing = [
+      'CompTIA A+ Certification',
+      'Microsoft Azure Fundamentals',
+      'AWS Cloud Practitioner'
+    ];
+    
+    doc.setFontSize(10);
+    doc.setFont('helvetica', 'normal');
+    pursuing.forEach(cert => {
+      yPos = this.checkPageSpace(doc, yPos);
+      yPos = this.wrapText(doc, `• ${cert}`, 25, yPos, 165) + 3;
     });
 
     // References
@@ -311,10 +487,10 @@ Versatile IT Support professional with leadership experience and foundational ba
 **Professional Experience**
 
 **Shift Lead, Walgreens** (February 2024 – Present) | Chicago, IL
-• Manage daily store operations, supervising staff and supporting customer service tools, POS systems, and handheld tech
-• Troubleshoot on-site tech issues including barcode scanners, printers, and POS terminals
-• Provide training to new associates on digital systems, shift logs, and procedural tools
-• Ensure documentation accuracy and workflow efficiency across multiple departments
+• Manage daily store operations, supervising staff and managing customer service systems
+• Troubleshoot technical issues and train associates on digital tools and procedures
+• Handle vendor relations, inventory management, and administrative coordination
+• Deliver exceptional customer service while ensuring operational compliance
 
 **Lead Case Manager / RP Supervisor, Grasmere Place** (September 2020 – August 2023) | Chicago, IL
 • Trained staff on digital documentation systems (Matrix), remote workflows, and file organization
