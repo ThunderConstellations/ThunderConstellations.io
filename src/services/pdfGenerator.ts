@@ -81,10 +81,163 @@ export class PDFGeneratorService {
     return yPos;
   }
 
+  downloadComprehensiveResume() {
+    const resumeData = this.getComprehensiveResumeData();
+    const doc = this.generateComprehensiveResumePDF(resumeData);
+    doc.save('Austin_Wood_Complete_Resume_with_References.pdf');
+  }
+
   downloadResumePDF(type: ResumeType = 'general') {
     const resumeContent = this.getPositionSpecificResumeContent(type);
     const doc = this.generateResumePDF(resumeContent, type);
     doc.save(`Austin_Wood_Resume_${type}.pdf`);
+  }
+
+  private generateComprehensiveResumePDF(resumeData: ResumeData): jsPDF {
+    const doc = new jsPDF();
+    let yPos = 20;
+
+    // Header
+    yPos = this.addHeader(doc, resumeData.name, [
+      `Email: ${resumeData.email}`,
+      `Phone: ${resumeData.phone}`,
+      `Location: ${resumeData.location}`,
+      `LinkedIn: ${resumeData.linkedin}`
+    ]);
+
+    // Professional Summary
+    yPos = this.addSection(doc, 'Professional Summary', yPos);
+    doc.setFontSize(10);
+    doc.setFont('helvetica', 'normal');
+    yPos = this.wrapText(doc, resumeData.summary, 20, yPos, 170) + 10;
+
+    // Professional Experience
+    yPos = this.checkPageSpace(doc, yPos, 50);
+    yPos = this.addSection(doc, 'Professional Experience', yPos);
+    
+    resumeData.experience.forEach(exp => {
+      yPos = this.checkPageSpace(doc, yPos, 40);
+      
+      // Position and Company
+      doc.setFontSize(12);
+      doc.setFont('helvetica', 'bold');
+      doc.text(`${exp.position} - ${exp.company}`, 20, yPos);
+      yPos += 7;
+      
+      // Duration
+      doc.setFontSize(10);
+      doc.setFont('helvetica', 'italic');
+      doc.text(exp.duration, 20, yPos);
+      yPos += 8;
+      
+      // Responsibilities
+      doc.setFont('helvetica', 'normal');
+      exp.responsibilities.forEach(resp => {
+        yPos = this.checkPageSpace(doc, yPos);
+        yPos = this.wrapText(doc, `• ${resp}`, 25, yPos, 165) + 3;
+      });
+      yPos += 5;
+    });
+
+    // Education
+    yPos = this.checkPageSpace(doc, yPos, 40);
+    yPos = this.addSection(doc, 'Education & Leadership', yPos);
+    
+    resumeData.education.forEach(edu => {
+      doc.setFontSize(12);
+      doc.setFont('helvetica', 'bold');
+      doc.text(edu.degree, 20, yPos);
+      yPos += 7;
+      
+      doc.setFontSize(10);
+      doc.setFont('helvetica', 'normal');
+      doc.text(edu.institution, 20, yPos);
+      yPos += 8;
+      
+      if (edu.details) {
+        edu.details.forEach(detail => {
+          yPos = this.checkPageSpace(doc, yPos);
+          yPos = this.wrapText(doc, `• ${detail}`, 25, yPos, 165) + 3;
+        });
+      }
+      yPos += 5;
+    });
+
+    // Skills
+    yPos = this.checkPageSpace(doc, yPos, 30);
+    yPos = this.addSection(doc, 'Core Skills', yPos);
+    
+    doc.setFontSize(10);
+    doc.setFont('helvetica', 'normal');
+    const skillsText = resumeData.skills.join(' • ');
+    yPos = this.wrapText(doc, skillsText, 20, yPos, 170) + 10;
+
+    // Certifications
+    yPos = this.checkPageSpace(doc, yPos, 30);
+    yPos = this.addSection(doc, 'Certifications & Professional Development', yPos);
+    
+    resumeData.certifications.forEach(cert => {
+      yPos = this.checkPageSpace(doc, yPos);
+      yPos = this.wrapText(doc, `• ${cert}`, 20, yPos, 170) + 5;
+    });
+
+    // References
+    yPos = this.checkPageSpace(doc, yPos, 50);
+    yPos = this.addSection(doc, 'Professional References', yPos);
+    
+    resumeData.references.forEach(ref => {
+      yPos = this.checkPageSpace(doc, yPos, 60);
+      
+      // Reference header
+      doc.setFontSize(11);
+      doc.setFont('helvetica', 'bold');
+      doc.text(`${ref.name} - ${ref.title}`, 20, yPos);
+      yPos += 6;
+      
+      doc.setFontSize(9);
+      doc.setFont('helvetica', 'normal');
+      doc.text(`${ref.organization} | ${ref.relationship} (${ref.duration})`, 20, yPos);
+      yPos += 5;
+      
+      if (ref.email) {
+        doc.text(`Email: ${ref.email}`, 20, yPos);
+        yPos += 4;
+      }
+      
+      if (ref.phone) {
+        doc.text(`Phone: ${ref.phone}`, 20, yPos);
+        yPos += 6;
+      }
+      
+      // Highlights
+      if (ref.highlights && ref.highlights.length > 0) {
+        doc.setFont('helvetica', 'bold');
+        doc.text('Key Highlights:', 20, yPos);
+        yPos += 4;
+        
+        doc.setFont('helvetica', 'normal');
+        ref.highlights.forEach(highlight => {
+          yPos = this.checkPageSpace(doc, yPos);
+          yPos = this.wrapText(doc, `• ${highlight}`, 25, yPos, 165) + 3;
+        });
+        yPos += 3;
+      }
+      
+      // Testimonial
+      if (ref.testimonial) {
+        yPos = this.checkPageSpace(doc, yPos, 20);
+        doc.setFont('helvetica', 'bold');
+        doc.text('Testimonial:', 20, yPos);
+        yPos += 4;
+        
+        doc.setFont('helvetica', 'italic');
+        yPos = this.wrapText(doc, `"${ref.testimonial}"`, 20, yPos, 170) + 8;
+      }
+      
+      yPos += 5;
+    });
+
+    return doc;
   }
 
   private generateResumePDF(resumeContent: string, type: ResumeType): jsPDF {
