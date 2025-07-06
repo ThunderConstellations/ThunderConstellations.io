@@ -1,6 +1,5 @@
 
 import React, { useEffect, useState } from 'react';
-import { Zap } from 'lucide-react';
 import { motion } from 'framer-motion';
 
 const LightningHero = () => {
@@ -179,26 +178,6 @@ const LightningHero = () => {
         >
           Illuminating the path between technology and compassionate care
         </motion.p>
-        
-        <motion.div 
-          className="flex justify-center"
-          initial={{ scale: 0 }}
-          animate={{ scale: 1 }}
-          transition={{ 
-            duration: 0.5, 
-            delay: 3,
-            type: "spring",
-            stiffness: 500 
-          }}
-        >
-          <motion.div
-            whileHover={{ scale: 1.2, rotate: 180 }}
-            whileTap={{ scale: 0.9 }}
-            transition={{ type: "spring", stiffness: 400 }}
-          >
-            <Zap className="w-8 h-8 text-cosmic-gold animate-pulse" />
-          </motion.div>
-        </motion.div>
       </motion.div>
     </div>
   );
