@@ -1,4 +1,3 @@
-
 import jsPDF from 'jspdf';
 
 export interface ResumeData {
@@ -34,6 +33,8 @@ export interface ResumeData {
     testimonial: string;
   }>;
 }
+
+export type ResumeType = 'general' | 'healthcare' | 'it' | 'admin';
 
 export class PDFGeneratorService {
   private addHeader(doc: jsPDF, name: string, contact: string[]) {
@@ -78,6 +79,254 @@ export class PDFGeneratorService {
       return 20;
     }
     return yPos;
+  }
+
+  downloadResumePDF(type: ResumeType = 'general') {
+    const resumeContent = this.getPositionSpecificResumeContent(type);
+    const doc = this.generateResumePDF(resumeContent, type);
+    doc.save(`Austin_Wood_Resume_${type}.pdf`);
+  }
+
+  private generateResumePDF(resumeContent: string, type: ResumeType): jsPDF {
+    const doc = new jsPDF();
+    let yPos = 20;
+
+    // Split content into sections
+    const sections = resumeContent.split('\n\n');
+    
+    doc.setFontSize(10);
+    doc.setFont('helvetica', 'normal');
+
+    sections.forEach(section => {
+      if (!section.trim()) return;
+      
+      yPos = this.checkPageSpace(doc, yPos, 20);
+      
+      // Check if this is a header (starts with **)
+      if (section.startsWith('**') && section.endsWith('**')) {
+        doc.setFontSize(14);
+        doc.setFont('helvetica', 'bold');
+        const headerText = section.replace(/\*\*/g, '');
+        doc.text(headerText, 20, yPos);
+        yPos += 10;
+      } else if (section.includes('**')) {
+        // Handle mixed formatting
+        const lines = section.split('\n');
+        lines.forEach(line => {
+          yPos = this.checkPageSpace(doc, yPos);
+          
+          if (line.startsWith('**') && line.includes('**')) {
+            doc.setFontSize(12);
+            doc.setFont('helvetica', 'bold');
+            const boldText = line.replace(/\*\*/g, '');
+            doc.text(boldText, 20, yPos);
+          } else if (line.startsWith('•')) {
+            doc.setFontSize(10);
+            doc.setFont('helvetica', 'normal');
+            yPos = this.wrapText(doc, line, 20, yPos, 170);
+          } else {
+            doc.setFontSize(10);
+            doc.setFont('helvetica', 'normal');
+            yPos = this.wrapText(doc, line, 20, yPos, 170);
+          }
+          yPos += 5;
+        });
+      } else {
+        // Regular text
+        doc.setFontSize(10);
+        doc.setFont('helvetica', 'normal');
+        yPos = this.wrapText(doc, section, 20, yPos, 170) + 8;
+      }
+    });
+
+    return doc;
+  }
+
+  private getPositionSpecificResumeContent(position: ResumeType): string {
+    const contactHeader = `Austin Wood
+📧 19austinwood96@gmail.com | 📱 (219) 299-3702 | 📍 Chicago, IL 60626
+🌐 auconstellations.wordpress.com | 💼 linkedin.com/in/austin-wood-a1b2c3/`;
+
+    if (position === 'it') {
+      return `${contactHeader}
+
+**IT Support / Helpdesk Professional**
+
+**Professional Summary**
+Versatile IT Support professional with leadership experience and foundational background in troubleshooting, end-user support, and documentation systems. Google IT Support certified, with growing technical fluency in automation tools like N8N and code-assist platforms like Cursor. Strong communication, adaptability, and problem-solving skills honed through years of hands-on experience in customer-facing and high-pressure support environments.
+
+**Professional Experience**
+
+**Shift Lead, Walgreens** (February 2024 – Present) | Chicago, IL
+• Manage daily store operations, supervising staff and supporting customer service tools, POS systems, and handheld tech
+• Troubleshoot on-site tech issues including barcode scanners, printers, and POS terminals
+• Provide training to new associates on digital systems, shift logs, and procedural tools
+• Ensure documentation accuracy and workflow efficiency across multiple departments
+
+**Lead Case Manager / RP Supervisor, Grasmere Place** (September 2020 – August 2023) | Chicago, IL
+• Trained staff on digital documentation systems (Matrix), remote workflows, and file organization
+• Maintained case files and created streamlined electronic record systems for 300+ patients
+• Assisted with telehealth coordination and electronic communication
+• Created time-saving digital filing structures that improved access speed for reports
+
+**Lead MHP - PRSC, Bryn Mawr Care** (July 2019 – September 2020) | Chicago, IL
+• Provided digital support for social service documentation and internal reporting
+• Created manuals and training documentation for software and filing systems
+• Troubleshot data entry issues and offered tech literacy support to coworkers
+• Managed Matrix case management software and led record audits
+
+**Education & Leadership**
+**Associate of Psychology**, Ivy Tech Community College (2016-2018) | Valparaiso, IN
+Minor: Computer Science / Web App Development
+• President, Virtual Studio Programming Club (2 years) - Founded and led programming club teaching CAD, animation, and coding
+• Vice President, DECA (Marketing & Business Competition)
+• Mental Health Group Counseling Aide & Volunteer (3 years)
+
+**Core Competencies**
+Help Desk Support, Technical Troubleshooting, Remote Tech Support, PC & Peripheral Maintenance, AI Workflow Tools (Cursor), Customer Service, Windows Environments, Ticketing Systems, End-User Support, POS & Inventory Systems, Automation Tools (N8N), Documentation Systems
+
+**Certifications & Professional Development**
+• Google IT Support Certificate: https://coursera.org/verify/WT6EVZUJU9ZX
+• QSEP CMS COVID-19 Certification (2020)
+• In Progress: CompTIA A+, Microsoft Azure Fundamentals, AWS Cloud Practitioner
+
+**Technical Skills**
+Windows OS, Microsoft Office, Basic Linux (iSH Terminal), Cursor (code assistant), Digital Documentation Systems, Google Workspace, Matrix (EHR), N8N (workflow automation), Slack / Zoom / Remote Tools`;
+    }
+    
+    if (position === 'healthcare') {
+      return `${contactHeader}
+
+**Care Coordinator / Case Manager**
+
+**Professional Summary**
+Compassionate and experienced case manager with 10+ years combined healthcare experience including care coordination, crisis intervention, documentation, and psycho-social support. Proven success working with diverse populations in mental health, long-term care, and transitional living environments. Natural communicator and team leader, with extensive experience managing 300-400+ patients across various healthcare settings.
+
+**Professional Experience**
+
+**Shift Lead, Walgreens** (February 2024 – Present) | Chicago, IL
+• Supervise retail staff, handle shift operations, vendor coordination, and customer service escalations
+• Support patient-facing services including pharmacy liaison tasks and accessibility of products
+• Maintain workflow documentation, improve team task efficiency, and manage conflict resolution
+• Train new employees and support peer communication with empathy and clarity
+
+**Lead Case Manager / RP Supervisor, Grasmere Place** (September 2020 – August 2023) | Chicago, IL
+• Managed care plans for 300+ residents and supervised CNA staff through hands-on training
+• Delivered motivational interviewing, harm reduction education, and facilitated psycho-social groups
+• Designed custom documentation and filing systems that improved COVID testing and lab compliance
+• Completed admission/discharge paperwork, medication tracking, and coordinated with healthcare providers
+
+**Lead MHP / PRSC, Bryn Mawr Care** (July 2019 – September 2020) | Chicago, IL
+• Oversaw case management for 30+ residents, delivering 1:1 behavioral interventions
+• Created treatment plans, completed intake assessments, and maintained timely documentation through Matrix
+• Acted as liaison between residents, medical staff, external programs, and legal guardians
+• Trained junior staff and developed internal guides to improve service quality
+
+**Additional Healthcare Experience**
+• Group Therapy Counseling Aide (2.5 years) - Provided support in therapeutic group settings
+• Minority Support Group Facilitator (2.5 years) - Led and coordinated community support initiatives
+
+**Education**
+**Associate of Psychology**, Ivy Tech Community College (2016-2018) | Valparaiso, IN
+• President, Virtual Studio Programming Club (2 years) - Demonstrated leadership and mentoring abilities
+
+**Core Competencies**
+Care Coordination, Case Management, Behavioral Health Support, Crisis Intervention, Psycho-Social Assessments, Electronic Documentation, Patient Advocacy, Interdisciplinary Team Collaboration, HIPAA Compliance, Cultural Sensitivity, File Organization, Discharge Planning, Documentation Systems, Motivational Interviewing
+
+**Certifications & Professional Development**
+• Google IT Support Certificate: https://coursera.org/verify/WT6EVZUJU9ZX
+• QSEP COVID-19 Compliance Training – CMS Certified (2020)
+• In Progress: CompTIA A+, Microsoft Azure Fundamentals, Healthcare IT Certifications`;
+    }
+    
+    if (position === 'admin') {
+      return `${contactHeader}
+
+**Administrative / Office Support Professional**
+
+**Summary**
+Efficient administrative support professional with over 5 years of experience in documentation, filing systems, and process improvement across healthcare and retail environments. Proven success in managing records, leading clerical teams, and streamlining operations to improve accuracy and time efficiency.
+
+**Experience**
+
+**Shift Lead, Walgreens** (February 2024 – Present) | Chicago, IL
+• Oversee daily store operations, including inventory reporting, cash handling, and coordinating shift tasks
+• Train associates and delegate administrative responsibilities including data logging and restock documentation
+• Act as point-of-contact for vendor check-ins and invoice receipt accuracy
+• Handle customer service escalations and maintain professional communication standards
+
+**Lead Case Manager & RP Supervisor, Grasmere Place Nursing Center** (September 2020 – August 2023) | Chicago, IL
+• Managed all intake, discharge, and case documentation for 300+ residents
+• Designed and maintained customized filing systems that significantly reduced retrieval time
+• Ensured accuracy and compliance with all CMS documentation standards
+• Supervised clerical and care staff, maintaining calm and structured office workflow
+
+**Lead MHP - PRSC, Bryn Mawr Care** (July 2019 – September 2020) | Chicago, IL
+• Tracked documentation using Matrix case management software and led record audits
+• Scheduled and documented appointments for over 70 residents weekly
+• Created internal procedural documentation and manuals for new office employees
+• Maintained relationships with external agencies and legal guardians
+
+**Education**
+**Associate of Psychology**, Ivy Tech Community College (2016-2018) | Valparaiso, IN
+Minor: Computer Science / Web App Development
+• President, Virtual Studio Programming Club (2 years)
+• Vice President, DECA (Marketing & Business Competition)
+• Mental Health Counseling Aide & Volunteer (3 years)
+
+**Administrative Skills**
+Filing & Documentation, Calendar Coordination, Customer Communication, Intake/Discharge Forms, Data Entry, Organizational Development, Office Workflow Management, Staff Supervision, Compliance Tracking, Digital File Systems, Front Desk Operations
+
+**Certifications & Systems**
+• Google IT Support Certificate: https://coursera.org/verify/WT6EVZUJU9ZX
+• QSEP COVID-19 CMS Certification (2020)
+• Proficient: Microsoft Office Suite, Google Docs/Sheets, Matrix (Case Software), N8N (automation)`;
+    }
+    
+    return this.getGeneralResumeContent();
+  }
+
+  private getGeneralResumeContent(): string {
+    return `Austin Wood
+📧 19austinwood96@gmail.com | 📱 (219) 299-3702 | 📍 Chicago, IL 60626
+🌐 auconstellations.wordpress.com | 💼 linkedin.com/in/austin-wood-a1b2c3/
+
+**Professional Resume**
+
+**Summary**
+Motivated, adaptable professional with 10+ years combined experience in healthcare, leadership, and technical support. Google IT certified with growing knowledge of automation and tech tools. Known for strong interpersonal skills, crisis management, and team coordination. Successfully managed 300-400+ patients across various healthcare settings.
+
+**Experience**
+
+**Shift Lead, Walgreens** (February 2024 – Present) | Chicago, IL
+• Supervise store associates, manage daily operational tasks, and ensure compliance
+• Handle vendor relations, invoice processing, merchandise resets, and shift scheduling
+• Provide customer assistance, conflict resolution, and team leadership
+
+**Lead Case Manager & RP Supervisor, Grasmere Place** (September 2020 – August 2023) | Chicago, IL
+• Oversaw resident care planning for 300+ individuals, intake/discharge documentation, and trained staff
+• Created filing systems that improved regulatory compliance and workflow speed
+• Conducted psycho-social groups, crisis response, and harm-reduction education
+
+**Lead MHP - PRSC, Bryn Mawr Care** (July 2019 – September 2020) | Chicago, IL
+• Supervised mental health professionals and managed documentation across services
+• Communicated with external agencies and stakeholders to coordinate care
+• Audited client files, trained staff, and provided direct support to high-need residents
+
+**Education & Leadership**
+**Associate of Psychology**, Ivy Tech Community College (2016-2018) | Valparaiso, IN
+Minor: Computer Science / Web App Development
+• President, Virtual Studio Programming Club (2 years) - Founded and led programming club teaching CAD, animation, and coding
+• Vice President, DECA
+• Group Counseling Aide & Volunteer (5 years total experience)
+
+**Skills & Competencies**
+Team Leadership, Documentation, Office Software, Case Management, Filing Systems, Task Delegation, Customer Service, Crisis Management, Staff Training, Basic AI/Automation Tools, Organization, Communication
+
+**Certifications & Professional Development**
+• Google IT Support Certificate: https://coursera.org/verify/WT6EVZUJU9ZX
+• QSEP COVID-19 Training – CMS, 2020
+• In Progress: CompTIA A+, Microsoft Azure Fundamentals, AWS Cloud Practitioner`;
   }
 
   generateComprehensiveResumePDF(): jsPDF {
