@@ -1,6 +1,9 @@
 
 import React, { useState } from 'react';
 import { Send, Mail, Github, Linkedin, MessageSquare, MapPin, Phone, Globe } from 'lucide-react';
+import { formspreeService } from '../services/formspree';
+import { emailJSService } from '../services/emailjs';
+import { useToast } from '../hooks/use-toast';
 
 const Contact = () => {
   const [formData, setFormData] = useState({
@@ -11,22 +14,52 @@ const Contact = () => {
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const { toast } = useToast();
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
     
-    // Simulate form submission
-    setTimeout(() => {
-      setIsSubmitting(false);
-      setIsSubmitted(true);
-      setFormData({ name: '', email: '', subject: '', message: '' });
+    try {
+      // Try Formspree first, then EmailJS as backup
+      let success = await formspreeService.submitForm(formData);
       
-      // Reset success message after 5 seconds
-      setTimeout(() => {
-        setIsSubmitted(false);
-      }, 5000);
-    }, 2000);
+      if (!success) {
+        console.log('Formspree failed, trying EmailJS...');
+        success = await emailJSService.sendEmail({
+          from_name: formData.name,
+          from_email: formData.email,
+          subject: formData.subject,
+          message: formData.message,
+          to_email: '19austinwood96@gmail.com'
+        });
+      }
+
+      if (success) {
+        setIsSubmitted(true);
+        setFormData({ name: '', email: '', subject: '', message: '' });
+        toast({
+          title: "Message sent successfully!",
+          description: "Thank you for your message. I'll get back to you within 24 hours.",
+        });
+        
+        // Reset success message after 5 seconds
+        setTimeout(() => {
+          setIsSubmitted(false);
+        }, 5000);
+      } else {
+        throw new Error('Both email services failed');
+      }
+    } catch (error) {
+      console.error('Error sending message:', error);
+      toast({
+        title: "Error sending message",
+        description: "There was a problem sending your message. Please try again or contact me directly.",
+        variant: "destructive",
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {

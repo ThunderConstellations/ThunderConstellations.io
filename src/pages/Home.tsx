@@ -2,6 +2,7 @@
 import React, { useState } from 'react';
 import LightningHero from '../components/LightningHero';
 import AIChat from '../components/AIChat';
+import GitHubRepos from '../components/GitHubRepos';
 
 const Home = () => {
   return (
@@ -9,6 +10,9 @@ const Home = () => {
       <LightningHero />
       <div className="relative">
         <AIChat />
+        <div className="max-w-6xl mx-auto px-4 py-16">
+          <GitHubRepos />
+        </div>
       </div>
     </div>
   );
