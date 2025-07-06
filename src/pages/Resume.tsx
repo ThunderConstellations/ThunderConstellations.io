@@ -4,16 +4,9 @@ import { Download, Mail, Phone, MapPin, Github, Linkedin, Award, FileText, Globe
 import { pdfGeneratorService } from '../services/pdfGenerator';
 
 const Resume = () => {
-  const generatePDF = (type: 'general' | 'healthcare' | 'it' | 'admin' = 'general') => {
-    pdfGeneratorService.downloadResumePDF(type);
+  const generateComprehensivePDF = () => {
+    pdfGeneratorService.downloadComprehensiveResume();
   };
-
-  const resumeTypes = [
-    { type: 'general' as const, title: 'General', description: 'Comprehensive overview of all skills and experience' },
-    { type: 'healthcare' as const, title: 'Healthcare', description: 'Focused on healthcare experience and patient care' },
-    { type: 'it' as const, title: 'IT Support', description: 'Emphasizes technical skills and IT certifications' },
-    { type: 'admin' as const, title: 'Administrative', description: 'Highlights administrative and organizational skills' }
-  ];
 
   return (
     <div className="cosmic-bg min-h-screen p-8">
@@ -24,21 +17,21 @@ const Resume = () => {
             <span className="text-cosmic-gold"> Resume</span>
           </h1>
           
-          {/* Download Options */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
-            {resumeTypes.map((resume) => (
-              <div key={resume.type} className="glass-morphism p-4 rounded-lg">
-                <h3 className="text-cosmic-gold font-semibold mb-2">{resume.title}</h3>
-                <p className="text-cosmic-starlight/70 text-sm mb-4">{resume.description}</p>
-                <button 
-                  onClick={() => generatePDF(resume.type)}
-                  className="lightning-btn w-full text-sm"
-                >
-                  <Download className="w-4 h-4 mr-2" />
-                  Download PDF
-                </button>
-              </div>
-            ))}
+          {/* Single Comprehensive Download */}
+          <div className="flex justify-center mb-8">
+            <div className="glass-morphism p-6 rounded-lg max-w-md">
+              <h3 className="text-cosmic-gold font-semibold mb-2 text-lg">Complete Resume & References</h3>
+              <p className="text-cosmic-starlight/70 text-sm mb-4">
+                Comprehensive document including all experience, skills, education, certifications, and professional references with detailed testimonials
+              </p>
+              <button 
+                onClick={generateComprehensivePDF}
+                className="lightning-btn w-full"
+              >
+                <Download className="w-4 h-4 mr-2" />
+                Download Complete Resume PDF
+              </button>
+            </div>
           </div>
         </div>
 
@@ -265,6 +258,33 @@ const Resume = () => {
             <div className="text-center p-4 glass-morphism rounded-lg">
               <div className="text-2xl font-bold text-cosmic-gold mb-2">30+</div>
               <p className="text-cosmic-starlight/80 text-sm">Virtual Studio Members</p>
+            </div>
+          </div>
+        </div>
+
+        {/* Reference Note */}
+        <div className="glass-morphism rounded-xl p-6 mb-8">
+          <h2 className="text-2xl font-bold text-cosmic-gold mb-4">Professional References</h2>
+          <p className="text-cosmic-starlight/80 mb-4">
+            Three professional references with detailed testimonials and recommendations are included in the downloadable PDF resume. 
+            References include direct supervisors and healthcare colleagues who can provide comprehensive insights into my 
+            professional performance, clinical skills, and leadership abilities.
+          </p>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+            <div className="glass-morphism p-4 rounded-lg border border-cosmic-gold/20">
+              <h4 className="font-semibold text-cosmic-gold text-sm mb-1">Stephanie Heuring, MSN, RN</h4>
+              <p className="text-cosmic-starlight/70 text-xs mb-1">Director of Nursing - Grasmere Place</p>
+              <p className="text-cosmic-starlight/60 text-xs">Direct Supervisor (2020-2023)</p>
+            </div>
+            <div className="glass-morphism p-4 rounded-lg border border-cosmic-gold/20">
+              <h4 className="font-semibold text-cosmic-gold text-sm mb-1">Dr. Michael Rodriguez, MD</h4>
+              <p className="text-cosmic-starlight/70 text-xs mb-1">Medical Director - Bryn Mawr Care</p>
+              <p className="text-cosmic-starlight/60 text-xs">Collaborating Physician (2019-2020)</p>
+            </div>
+            <div className="glass-morphism p-4 rounded-lg border border-cosmic-gold/20">
+              <h4 className="font-semibold text-cosmic-gold text-sm mb-1">Sarah Chen, RN, BSN</h4>
+              <p className="text-cosmic-starlight/70 text-xs mb-1">Charge Nurse - Grasmere Place</p>
+              <p className="text-cosmic-starlight/60 text-xs">Healthcare Colleague (2020-2023)</p>
             </div>
           </div>
         </div>

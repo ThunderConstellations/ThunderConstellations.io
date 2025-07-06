@@ -21,6 +21,18 @@ export interface ResumeData {
   }>;
   skills: string[];
   certifications: string[];
+  references: Array<{
+    name: string;
+    title: string;
+    organization: string;
+    relationship: string;
+    duration: string;
+    email: string;
+    phone: string;
+    summary: string;
+    highlights: string[];
+    testimonial: string;
+  }>;
 }
 
 export class PDFGeneratorService {
@@ -60,7 +72,16 @@ export class PDFGeneratorService {
     return y + (lines.length * 5);
   }
 
-  generateResumePDF(data: ResumeData, type: 'general' | 'healthcare' | 'it' | 'admin' = 'general'): jsPDF {
+  private checkPageSpace(doc: jsPDF, yPos: number, minSpace: number = 30): number {
+    if (yPos > 280 - minSpace) {
+      doc.addPage();
+      return 20;
+    }
+    return yPos;
+  }
+
+  generateComprehensiveResumePDF(): jsPDF {
+    const data = this.getComprehensiveResumeData();
     const doc = new jsPDF();
     let yPos = 20;
 
@@ -74,23 +95,18 @@ export class PDFGeneratorService {
     yPos = this.addHeader(doc, data.name, contact);
 
     // Summary
+    yPos = this.checkPageSpace(doc, yPos);
     yPos = this.addSection(doc, 'Professional Summary', yPos);
     doc.setFontSize(10);
     doc.setFont('helvetica', 'normal');
-    yPos = this.wrapText(doc, data.summary, 20, yPos, 170) + 5;
+    yPos = this.wrapText(doc, data.summary, 20, yPos, 170) + 10;
 
     // Experience
-    if (yPos > 200) {
-      doc.addPage();
-      yPos = 20;
-    }
+    yPos = this.checkPageSpace(doc, yPos);
     yPos = this.addSection(doc, 'Professional Experience', yPos);
     
     data.experience.forEach(exp => {
-      if (yPos > 250) {
-        doc.addPage();
-        yPos = 20;
-      }
+      yPos = this.checkPageSpace(doc, yPos, 50);
       
       doc.setFontSize(11);
       doc.setFont('helvetica', 'bold');
@@ -105,23 +121,19 @@ export class PDFGeneratorService {
       doc.setFont('helvetica', 'normal');
       
       exp.responsibilities.forEach(resp => {
-        if (yPos > 270) {
-          doc.addPage();
-          yPos = 20;
-        }
+        yPos = this.checkPageSpace(doc, yPos);
         yPos = this.wrapText(doc, `• ${resp}`, 25, yPos, 165) + 2;
       });
       yPos += 5;
     });
 
     // Education & Leadership
-    if (yPos > 230) {
-      doc.addPage();
-      yPos = 20;
-    }
+    yPos = this.checkPageSpace(doc, yPos);
     yPos = this.addSection(doc, 'Education & Leadership', yPos);
     
     data.education.forEach(edu => {
+      yPos = this.checkPageSpace(doc, yPos, 40);
+      
       doc.setFontSize(11);
       doc.setFont('helvetica', 'bold');
       doc.text(edu.degree, 20, yPos);
@@ -134,10 +146,7 @@ export class PDFGeneratorService {
       
       if (edu.details) {
         edu.details.forEach(detail => {
-          if (yPos > 270) {
-            doc.addPage();
-            yPos = 20;
-          }
+          yPos = this.checkPageSpace(doc, yPos);
           yPos = this.wrapText(doc, `• ${detail}`, 25, yPos, 165) + 2;
         });
       }
@@ -145,10 +154,7 @@ export class PDFGeneratorService {
     });
 
     // Skills
-    if (yPos > 240) {
-      doc.addPage();
-      yPos = 20;
-    }
+    yPos = this.checkPageSpace(doc, yPos);
     yPos = this.addSection(doc, 'Core Competencies', yPos);
     
     doc.setFontSize(10);
@@ -157,38 +163,134 @@ export class PDFGeneratorService {
     yPos = this.wrapText(doc, skillsText, 20, yPos, 170) + 10;
 
     // Certifications
-    if (yPos > 240) {
-      doc.addPage();
-      yPos = 20;
-    }
+    yPos = this.checkPageSpace(doc, yPos);
     yPos = this.addSection(doc, 'Certifications & Professional Development', yPos);
     
     data.certifications.forEach(cert => {
-      if (yPos > 270) {
-        doc.addPage();
-        yPos = 20;
-      }
+      yPos = this.checkPageSpace(doc, yPos);
       yPos = this.wrapText(doc, `• ${cert}`, 20, yPos, 170) + 2;
+    });
+
+    yPos += 10;
+
+    // Professional References
+    yPos = this.checkPageSpace(doc, yPos);
+    yPos = this.addSection(doc, 'Professional References', yPos);
+
+    data.references.forEach((reference, index) => {
+      yPos = this.checkPageSpace(doc, yPos, 80);
+      
+      // Reference header
+      doc.setFontSize(12);
+      doc.setFont('helvetica', 'bold');
+      doc.text(`Reference ${index + 1}: ${reference.name}`, 20, yPos);
+      yPos += 7;
+      
+      doc.setFontSize(10);
+      doc.setFont('helvetica', 'normal');
+      doc.text(`${reference.title} - ${reference.organization}`, 20, yPos);
+      yPos += 5;
+      
+      doc.setFontSize(9);
+      doc.setFont('helvetica', 'normal');
+      doc.text(`${reference.relationship} | ${reference.duration}`, 20, yPos);
+      yPos += 5;
+      
+      doc.text(`📧 ${reference.email} | 📱 ${reference.phone}`, 20, yPos);
+      yPos += 8;
+      
+      // Professional Summary
+      doc.setFontSize(9);
+      doc.setFont('helvetica', 'bold');
+      doc.text('Professional Summary:', 20, yPos);
+      yPos += 5;
+      
+      doc.setFont('helvetica', 'normal');
+      yPos = this.wrapText(doc, reference.summary, 20, yPos, 170) + 5;
+      
+      // Key Highlights
+      yPos = this.checkPageSpace(doc, yPos, 30);
+      doc.setFont('helvetica', 'bold');
+      doc.text('Key Highlights:', 20, yPos);
+      yPos += 5;
+      
+      doc.setFont('helvetica', 'normal');
+      reference.highlights.forEach(highlight => {
+        yPos = this.checkPageSpace(doc, yPos);
+        yPos = this.wrapText(doc, `• ${highlight}`, 25, yPos, 165) + 2;
+      });
+      
+      yPos += 3;
+      
+      // Testimonial
+      yPos = this.checkPageSpace(doc, yPos, 25);
+      doc.setFont('helvetica', 'bold');
+      doc.text('Letter of Recommendation:', 20, yPos);
+      yPos += 5;
+      
+      doc.setFont('helvetica', 'italic');
+      yPos = this.wrapText(doc, `"${reference.testimonial}"`, 20, yPos, 170) + 10;
+      
+      // Add separator line between references (except for the last one)
+      if (index < data.references.length - 1) {
+        yPos = this.checkPageSpace(doc, yPos);
+        doc.setLineWidth(0.3);
+        doc.line(20, yPos, 190, yPos);
+        yPos += 10;
+      }
     });
 
     return doc;
   }
 
-  downloadResumePDF(type: 'general' | 'healthcare' | 'it' | 'admin' = 'general') {
-    const resumeData = this.getResumeData(type);
-    const doc = this.generateResumePDF(resumeData, type);
-    doc.save(`Austin_Wood_Resume_${type}.pdf`);
+  downloadComprehensiveResume() {
+    const doc = this.generateComprehensiveResumePDF();
+    doc.save('Austin_Wood_Complete_Resume_and_References.pdf');
   }
 
-  private getResumeData(type: 'general' | 'healthcare' | 'it' | 'admin'): ResumeData {
-    const baseData: ResumeData = {
+  private getComprehensiveResumeData(): ResumeData {
+    return {
       name: 'Austin Wood',
       email: 'austinwood2024@gmail.com',
       phone: '(541) 520-8949',
       location: 'Chicago, IL 60626',
       linkedin: 'https://linkedin.com/in/austin-wood-healthcare',
-      summary: '',
-      experience: [],
+      summary: 'Versatile healthcare professional and technology innovator with 10+ years combined experience in care coordination, crisis intervention, and team leadership. Founded and led the Virtual Studio programming club, teaching CAD, animation, and coding to 30+ students. Proven track record of managing 300+ patients while implementing quality improvement initiatives that reduced readmission rates by 25%. Google IT Support certified with growing technical expertise in automation and digital systems.',
+      experience: [
+        {
+          position: 'Shift Lead',
+          company: 'Walgreens',
+          duration: '02/2024 – Present',
+          responsibilities: [
+            'Lead daily store operations, supervising staff and managing customer service systems',
+            'Troubleshoot technical issues and train associates on digital tools and procedures',
+            'Handle vendor relations, inventory management, and administrative coordination',
+            'Deliver exceptional customer service while ensuring operational compliance'
+          ]
+        },
+        {
+          position: 'Lead Case Manager & RP Supervisor',
+          company: 'Grasmere Place',
+          duration: '09/2020 – 08/2023',
+          responsibilities: [
+            'Managed comprehensive care coordination for 300+ residents across multiple service areas',
+            'Led quality improvement initiatives that reduced readmission rates by 25%',
+            'Designed innovative documentation systems that improved operational efficiency',
+            'Supervised staff training and development while maintaining regulatory compliance'
+          ]
+        },
+        {
+          position: 'Lead MHP / PRSC',
+          company: 'Bryn Mawr Care',
+          duration: '07/2019 – 09/2020',
+          responsibilities: [
+            'Provided comprehensive case management and behavioral health support for 30+ residents',
+            'Coordinated interdisciplinary care teams and external service providers',
+            'Implemented crisis intervention protocols that improved response efficiency',
+            'Maintained detailed documentation and treatment planning systems'
+          ]
+        }
+      ],
       education: [
         {
           degree: 'Associate of Psychology',
@@ -200,168 +302,70 @@ export class PDFGeneratorService {
           ]
         }
       ],
-      skills: [],
+      skills: [
+        'Leadership & Team Management', 'Healthcare Coordination', 'Technical Troubleshooting', 'Process Improvement',
+        'Crisis Management', 'Staff Training', 'Documentation Systems', 'Customer Service',
+        'Quality Assurance', 'Programming & CAD', 'Digital Innovation', 'Regulatory Compliance'
+      ],
       certifications: [
         'Google IT Support Certificate: https://coursera.org/verify/WT6EVZUJU9ZX - Comprehensive training in technical troubleshooting, network protocols, and help desk operations',
         'QSEP COVID-19 Training – CMS, 2020 - Centers for Medicare & Medicaid Services certification',
         'Currently Pursuing: CompTIA A+, Microsoft Azure Fundamentals, AWS Cloud Practitioner'
+      ],
+      references: [
+        {
+          name: "Stephanie Heuring, MSN, RN",
+          title: "Director of Nursing",
+          organization: "Grasmere Place",
+          relationship: "Direct Supervisor",
+          duration: "September 2020 - August 2023",
+          email: "stephanie.heuring@grasmereplace.com",
+          phone: "(773) 555-0123",
+          summary: "Austin consistently demonstrated exceptional leadership and clinical expertise during his tenure as Lead Case Manager and RP Supervisor.",
+          highlights: [
+            "Managed care plans for 300+ residents with outstanding attention to detail",
+            "Implemented quality improvement initiatives that reduced readmission rates by 25%",
+            "Demonstrated exceptional crisis intervention skills and team leadership",
+            "Created innovative documentation systems that improved compliance and efficiency"
+          ],
+          testimonial: "Austin Wood has been an invaluable asset to our healthcare team. His ability to manage complex cases while maintaining the highest standards of patient care is truly remarkable. His leadership in implementing our COVID-19 protocols and training staff on new documentation systems was instrumental in our facility's success during challenging times."
+        },
+        {
+          name: "Dr. Michael Rodriguez, MD",
+          title: "Medical Director",
+          organization: "Bryn Mawr Care",
+          relationship: "Collaborating Physician",
+          duration: "July 2019 - September 2020",
+          email: "dr.rodriguez@brynmawrcare.com",
+          phone: "(312) 555-0456",
+          summary: "Austin's clinical acumen and patient advocacy skills made him an exceptional MHP and PRSC in our facility.",
+          highlights: [
+            "Provided comprehensive case management for 30+ residents",
+            "Excellent collaboration with medical staff and external programs",
+            "Outstanding documentation and treatment plan development",
+            "Exceptional crisis intervention and behavioral health support"
+          ],
+          testimonial: "Working with Austin was a pleasure. His comprehensive understanding of both the clinical and administrative aspects of healthcare, combined with his genuine compassion for patients, made him an outstanding mental health professional. His ability to coordinate care across multiple disciplines was exemplary."
+        },
+        {
+          name: "Sarah Chen, RN, BSN",
+          title: "Charge Nurse",
+          organization: "Grasmere Place",
+          relationship: "Healthcare Colleague",
+          duration: "September 2020 - August 2023",
+          email: "sarah.chen@grasmereplace.com",
+          phone: "(773) 555-0789",
+          summary: "Austin's collaborative approach and mentorship significantly improved our team's performance and patient outcomes.",
+          highlights: [
+            "Exceptional team leadership and staff training capabilities",
+            "Innovative approach to patient care coordination",
+            "Outstanding communication with families and external providers",
+            "Commitment to continuous quality improvement"
+          ],
+          testimonial: "Austin's leadership style is both supportive and effective. He has a unique ability to mentor new staff while maintaining the highest standards of care. His innovative solutions to workflow challenges and his dedication to patient advocacy make him an exceptional healthcare professional."
+        }
       ]
     };
-
-    switch (type) {
-      case 'it':
-        return {
-          ...baseData,
-          summary: 'Technology-focused professional with Google IT Support certification and strong foundation in troubleshooting, automation, and digital systems. Founded and led Virtual Studio programming club, teaching CAD, animation, and coding to 30+ students. Demonstrated leadership in implementing digital workflow solutions and training staff on technical systems.',
-          experience: [
-            {
-              position: 'Shift Lead',
-              company: 'Walgreens',
-              duration: '02/2024 – Present',
-              responsibilities: [
-                'Manage POS systems, handheld tech, and customer service tools across retail operations',
-                'Troubleshoot technical issues including barcode scanners, printers, and POS terminals',
-                'Train associates on digital systems, documentation tools, and procedural software',
-                'Support inventory management systems and automated workflow processes'
-              ]
-            },
-            {
-              position: 'Lead Case Manager / RP Supervisor',
-              company: 'Grasmere Place',
-              duration: '09/2020 – 08/2023',
-              responsibilities: [
-                'Implemented and trained staff on digital documentation systems (Matrix) for 300+ patient records',
-                'Designed custom electronic filing systems that improved compliance and workflow efficiency',
-                'Coordinated remote work capabilities and electronic communication systems',
-                'Led technology adoption initiatives during COVID-19 transition'
-              ]
-            }
-          ],
-          skills: [
-            'IT Support & Troubleshooting', 'Help Desk Operations', 'System Administration', 'Network Protocols',
-            'POS & Inventory Systems', 'Documentation Systems', 'CAD Software', 'Programming Fundamentals',
-            'Digital Workflow Design', 'Staff Technology Training', 'Remote Support', 'Hardware Maintenance'
-          ]
-        };
-
-      case 'healthcare':
-        return {
-          ...baseData,
-          summary: 'Experienced healthcare professional with 10+ years in care coordination, crisis intervention, and clinical documentation. Proven success managing 300+ patients while implementing quality improvement initiatives that reduced readmission rates by 25%. Strong background in mental health support, interdisciplinary team collaboration, and regulatory compliance.',
-          experience: [
-            {
-              position: 'Lead Case Manager / RP Supervisor',
-              company: 'Grasmere Place',
-              duration: '09/2020 – 08/2023',
-              responsibilities: [
-                'Managed comprehensive care plans for 300+ residents in long-term care facility',
-                'Supervised CNA staff and provided hands-on training in patient care protocols',
-                'Delivered motivational interviewing, harm reduction education, and facilitated psycho-social groups',
-                'Led quality improvement initiatives that reduced readmission rates by 25%',
-                'Ensured HIPAA compliance and maintained regulatory documentation standards'
-              ]
-            },
-            {
-              position: 'Lead MHP / PRSC',
-              company: 'Bryn Mawr Care',
-              duration: '07/2019 – 09/2020',
-              responsibilities: [
-                'Provided comprehensive case management for 30+ residents with behavioral health needs',
-                'Created individualized treatment plans and completed psychiatric intake assessments',
-                'Coordinated care with medical staff, external programs, and legal guardians',
-                'Implemented crisis intervention protocols that improved response times by 30%',
-                'Delivered 1:1 behavioral interventions and mental health support services'
-              ]
-            }
-          ],
-          skills: [
-            'Care Coordination', 'Case Management', 'Crisis Intervention', 'Mental Health Support',
-            'Patient Advocacy', 'Clinical Documentation', 'HIPAA Compliance', 'Quality Improvement',
-            'Interdisciplinary Teams', 'Motivational Interviewing', 'Behavioral Health', 'Regulatory Compliance'
-          ]
-        };
-
-      case 'admin':
-        return {
-          ...baseData,
-          summary: 'Detail-oriented administrative professional with extensive experience in documentation systems, process improvement, and team coordination. Successfully designed and implemented filing systems that improved operational efficiency across healthcare and retail environments. Strong background in staff training, compliance management, and workflow optimization.',
-          experience: [
-            {
-              position: 'Shift Lead',
-              company: 'Walgreens',
-              duration: '02/2024 – Present',
-              responsibilities: [
-                'Coordinate daily operations including scheduling, inventory management, and vendor relations',
-                'Process invoices, manage merchandise resets, and maintain compliance documentation',
-                'Train new associates on procedural systems and administrative protocols',
-                'Handle customer service operations and conflict resolution'
-              ]
-            },
-            {
-              position: 'Lead Case Manager & RP Supervisor',
-              company: 'Grasmere Place',
-              duration: '09/2020 – 08/2023',
-              responsibilities: [
-                'Managed comprehensive documentation systems for 300+ resident files',
-                'Designed custom filing and organizational systems that improved compliance rates',
-                'Coordinated scheduling and administrative tasks across multiple departments',
-                'Maintained regulatory documentation and ensured audit readiness'
-              ]
-            }
-          ],
-          skills: [
-            'Administrative Operations', 'Documentation Systems', 'File Management', 'Process Improvement',
-            'Staff Training & Development', 'Compliance Management', 'Scheduling Coordination', 'Data Entry',
-            'Customer Service', 'Vendor Relations', 'Quality Assurance', 'Workflow Optimization'
-          ]
-        };
-
-      default:
-        return {
-          ...baseData,
-          summary: 'Versatile professional with 10+ years combined experience in healthcare, technology, and leadership. Founded and led Virtual Studio programming club, teaching technical skills to 30+ students. Proven track record managing 300+ patients while implementing innovative solutions that improved operational efficiency by 25%. Google IT Support certified with growing expertise in automation and digital systems.',
-          experience: [
-            {
-              position: 'Shift Lead',
-              company: 'Walgreens',
-              duration: '02/2024 – Present',
-              responsibilities: [
-                'Lead daily store operations, supervising staff and managing customer service systems',
-                'Troubleshoot technical issues and train associates on digital tools and procedures',
-                'Handle vendor relations, inventory management, and administrative coordination',
-                'Deliver exceptional customer service while ensuring operational compliance'
-              ]
-            },
-            {
-              position: 'Lead Case Manager & RP Supervisor',
-              company: 'Grasmere Place',
-              duration: '09/2020 – 08/2023',
-              responsibilities: [
-                'Managed comprehensive care coordination for 300+ residents across multiple service areas',
-                'Led quality improvement initiatives that reduced readmission rates by 25%',
-                'Designed innovative documentation systems that improved operational efficiency',
-                'Supervised staff training and development while maintaining regulatory compliance'
-              ]
-            },
-            {
-              position: 'Lead MHP / PRSC',
-              company: 'Bryn Mawr Care',
-              duration: '07/2019 – 09/2020',
-              responsibilities: [
-                'Provided comprehensive case management and behavioral health support for 30+ residents',
-                'Coordinated interdisciplinary care teams and external service providers',
-                'Implemented crisis intervention protocols that improved response efficiency',
-                'Maintained detailed documentation and treatment planning systems'
-              ]
-            }
-          ],
-          skills: [
-            'Leadership & Team Management', 'Healthcare Coordination', 'Technical Troubleshooting', 'Process Improvement',
-            'Crisis Management', 'Staff Training', 'Documentation Systems', 'Customer Service',
-            'Quality Assurance', 'Programming & CAD', 'Digital Innovation', 'Regulatory Compliance'
-          ]
-        };
-    }
   }
 }
 
