@@ -1,3 +1,4 @@
+
 #root {
   max-width: 1280px;
   margin: 0 auto;
@@ -39,4 +40,69 @@
 
 .read-the-docs {
   color: #888;
+}
+
+/* Lightning and Star Animations */
+@keyframes lightning-glow {
+  0%, 100% {
+    filter: drop-shadow(0 0 5px #fbbf24) drop-shadow(0 0 10px #fbbf24);
+  }
+  50% {
+    filter: drop-shadow(0 0 10px #fbbf24) drop-shadow(0 0 20px #fbbf24) drop-shadow(0 0 30px #fde047);
+  }
+}
+
+@keyframes star-twinkle {
+  0%, 100% {
+    opacity: 0.6;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.2);
+  }
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.animate-lightning-glow {
+  animation: lightning-glow 3s ease-in-out infinite;
+}
+
+.animate-star-twinkle {
+  animation: star-twinkle 2s ease-in-out infinite;
+}
+
+/* Starfield Background */
+.starfield {
+  background-image: 
+    radial-gradient(2px 2px at 20px 30px, #fde047, transparent),
+    radial-gradient(2px 2px at 40px 70px, #fbbf24, transparent),
+    radial-gradient(1px 1px at 90px 40px, #fde047, transparent),
+    radial-gradient(1px 1px at 130px 80px, #fbbf24, transparent),
+    radial-gradient(2px 2px at 160px 30px, #fde047, transparent);
+  background-repeat: repeat;
+  background-size: 200px 100px;
+  animation: starfield-move 20s linear infinite;
+}
+
+@keyframes starfield-move {
+  from {
+    transform: translate3d(0, 0, 0);
+  }
+  to {
+    transform: translate3d(-200px, -100px, 0);
+  }
+}
+
+/* Cosmic Background Colors */
+.cosmic-bg {
+  background: linear-gradient(135deg, #0f0f23 0%, #1a1a2e 25%, #16213e 50%, #1a1a2e 75%, #0f0f23 100%);
 }

@@ -11,13 +11,13 @@ const LightningHero = () => {
   }, []);
 
   return (
-    <div className="relative min-h-screen flex items-center justify-center overflow-hidden">
+    <div className="relative min-h-screen flex flex-col items-center justify-center overflow-hidden px-4">
       {/* Original Starfield Background - kept for additional depth */}
       <div className="absolute inset-0 starfield opacity-20" />
       
       {/* Enhanced Lightning Constellation SVG with Framer Motion */}
       <motion.div 
-        className="relative z-30"
+        className="relative z-30 mb-8"
         initial={{ scale: 0.5, opacity: 0, rotateY: -180 }}
         animate={{ 
           scale: isVisible ? 1 : 0.5, 
@@ -31,10 +31,10 @@ const LightningHero = () => {
         }}
       >
         <motion.svg
-          width="400"
-          height="400"
+          width="300"
+          height="300"
           viewBox="0 0 400 400"
-          className="animate-lightning-glow"
+          className="animate-lightning-glow w-full max-w-sm md:max-w-md"
           whileHover={{ scale: 1.1, rotate: 5 }}
           transition={{ type: "spring", stiffness: 300 }}
         >
@@ -128,7 +128,7 @@ const LightningHero = () => {
 
       {/* Enhanced Main Content with Motion */}
       <motion.div 
-        className="absolute bottom-32 left-1/2 transform -translate-x-1/2 text-center z-30"
+        className="text-center z-30 max-w-4xl mx-auto"
         initial={{ y: 50, opacity: 0 }}
         animate={{ 
           y: isVisible ? 0 : 50, 
@@ -141,7 +141,7 @@ const LightningHero = () => {
         }}
       >
         <motion.h1 
-          className="text-5xl md:text-7xl font-bold mb-6"
+          className="text-4xl md:text-6xl lg:text-7xl font-bold mb-6"
           initial={{ scale: 0.8 }}
           animate={{ scale: 1 }}
           transition={{ 
@@ -152,7 +152,7 @@ const LightningHero = () => {
           }}
         >
           <motion.span 
-            className="text-cosmic-starlight"
+            className="text-cosmic-starlight block md:inline"
             whileHover={{ 
               textShadow: "0 0 20px rgba(248, 250, 252, 0.8)",
               scale: 1.05
@@ -161,7 +161,7 @@ const LightningHero = () => {
             Thunder
           </motion.span>
           <motion.span 
-            className="text-cosmic-gold ml-2"
+            className="text-cosmic-gold block md:inline md:ml-2"
             whileHover={{ 
               textShadow: "0 0 20px rgba(251, 191, 36, 0.8)",
               scale: 1.05
@@ -172,7 +172,7 @@ const LightningHero = () => {
         </motion.h1>
         
         <motion.p 
-          className="text-xl text-cosmic-starlight/80 mb-8 max-w-2xl"
+          className="text-lg md:text-xl text-cosmic-starlight/80 mb-8 max-w-2xl mx-auto px-4"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1, delay: 2.5 }}
