@@ -21,8 +21,8 @@ const QuickContactCard: React.FC = () => {
       id: 'phone',
       icon: Phone,
       label: 'Phone',
-      value: '(555) 123-4567',
-      href: 'tel:+15551234567',
+      value: '(470) 592-5802',
+      href: 'tel:+14705925802',
       description: 'Available weekdays 9AM-5PM'
     },
     {
