@@ -1,6 +1,11 @@
 
 import React, { useEffect, useState } from 'react';
 import { Zap } from 'lucide-react';
+import { motion } from 'framer-motion';
+import StarField3D from './graphics/StarField3D';
+import LightningEffects from './graphics/LightningEffects';
+import ParticleSystem from './graphics/ParticleSystem';
+import InteractiveConstellation from './graphics/InteractiveConstellation';
 
 const LightningHero = () => {
   const [isVisible, setIsVisible] = useState(false);
@@ -11,102 +16,200 @@ const LightningHero = () => {
 
   return (
     <div className="relative min-h-screen flex items-center justify-center overflow-hidden">
-      {/* Starfield Background */}
-      <div className="absolute inset-0 starfield opacity-30" />
+      {/* Enhanced Background Layers */}
+      <StarField3D className="opacity-40" />
+      <InteractiveConstellation starCount={30} className="opacity-60" />
+      <ParticleSystem particleCount={80} className="opacity-50" />
+      <LightningEffects isActive={true} intensity={0.8} className="opacity-70" />
       
-      {/* Lightning Constellation SVG */}
-      <div className={`
-        relative z-10 transform transition-all duration-2000 ease-out
-        ${isVisible ? 'scale-100 opacity-100' : 'scale-50 opacity-0'}
-      `}>
-        <svg
+      {/* Original Starfield Background - kept for compatibility */}
+      <div className="absolute inset-0 starfield opacity-20" />
+      
+      {/* Enhanced Lightning Constellation SVG with Framer Motion */}
+      <motion.div 
+        className="relative z-30"
+        initial={{ scale: 0.5, opacity: 0, rotateY: -180 }}
+        animate={{ 
+          scale: isVisible ? 1 : 0.5, 
+          opacity: isVisible ? 1 : 0,
+          rotateY: isVisible ? 0 : -180
+        }}
+        transition={{ 
+          duration: 2,
+          ease: "easeOut",
+          delay: 0.5
+        }}
+      >
+        <motion.svg
           width="400"
           height="400"
           viewBox="0 0 400 400"
           className="animate-lightning-glow"
+          whileHover={{ scale: 1.1, rotate: 5 }}
+          transition={{ type: "spring", stiffness: 300 }}
         >
-          {/* Constellation lines */}
-          <g stroke="#fbbf24" strokeWidth="1" opacity="0.4">
-            <line x1="50" y1="100" x2="120" y2="80" className="animate-pulse" />
-            <line x1="120" y1="80" x2="200" y2="120" className="animate-pulse" />
-            <line x1="280" y1="100" x2="350" y2="80" className="animate-pulse" />
-            <line x1="280" y1="300" x2="350" y2="320" className="animate-pulse" />
-            <line x1="50" y1="300" x2="120" y2="320" className="animate-pulse" />
+          {/* Enhanced Constellation lines with motion */}
+          <g stroke="#fbbf24" strokeWidth="1" opacity="0.6">
+            {[
+              { x1: 50, y1: 100, x2: 120, y2: 80 },
+              { x1: 120, y1: 80, x2: 200, y2: 120 },
+              { x1: 280, y1: 100, x2: 350, y2: 80 },
+              { x1: 280, y1: 300, x2: 350, y2: 320 },
+              { x1: 50, y1: 300, x2: 120, y2: 320 }
+            ].map((line, index) => (
+              <motion.line
+                key={index}
+                x1={line.x1}
+                y1={line.y1}
+                x2={line.x2}
+                y2={line.y2}
+                initial={{ pathLength: 0 }}
+                animate={{ pathLength: 1 }}
+                transition={{ duration: 2, delay: index * 0.3 }}
+                className="animate-pulse"
+              />
+            ))}
           </g>
 
-          {/* Constellation stars */}
+          {/* Enhanced Constellation stars */}
           <g>
             {[
               { x: 50, y: 100 }, { x: 120, y: 80 }, { x: 200, y: 120 },
               { x: 280, y: 100 }, { x: 350, y: 80 }, { x: 350, y: 320 },
               { x: 280, y: 300 }, { x: 120, y: 320 }, { x: 50, y: 300 }
             ].map((star, index) => (
-              <circle
+              <motion.circle
                 key={index}
                 cx={star.x}
                 cy={star.y}
                 r="3"
                 fill="#fde047"
+                initial={{ scale: 0, opacity: 0 }}
+                animate={{ scale: 1, opacity: 1 }}
+                transition={{ 
+                  duration: 0.6, 
+                  delay: index * 0.2,
+                  type: "spring",
+                  stiffness: 500
+                }}
                 className="animate-star-twinkle"
                 style={{ animationDelay: `${index * 0.3}s` }}
               />
             ))}
           </g>
 
-          {/* Central Lightning Bolt */}
-          <g className="animate-lightning-glow">
-            <path
+          {/* Enhanced Central Lightning Bolt */}
+          <motion.g 
+            className="animate-lightning-glow"
+            whileHover={{ 
+              filter: "drop-shadow(0 0 20px #fbbf24)",
+              scale: 1.05 
+            }}
+          >
+            <motion.path
               d="M200 80 L180 160 L220 160 L160 320 L240 180 L200 180 L220 80 Z"
-              fill="url(#lightningGradient)"
+              fill="url(#enhancedLightningGradient)"
               stroke="#fbbf24"
               strokeWidth="2"
+              initial={{ pathLength: 0, opacity: 0 }}
+              animate={{ pathLength: 1, opacity: 1 }}
+              transition={{ duration: 1.5, delay: 1 }}
             />
-          </g>
+          </motion.g>
 
-          {/* Gradient Definitions */}
+          {/* Enhanced Gradient Definitions */}
           <defs>
-            <linearGradient id="lightningGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+            <linearGradient id="enhancedLightningGradient" x1="0%" y1="0%" x2="0%" y2="100%">
               <stop offset="0%" stopColor="#fde047" />
-              <stop offset="50%" stopColor="#fbbf24" />
+              <stop offset="30%" stopColor="#fbbf24" />
+              <stop offset="70%" stopColor="#f59e0b" />
               <stop offset="100%" stopColor="#d97706" />
             </linearGradient>
+            <filter id="glow">
+              <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
+              <feMerge> 
+                <feMergeNode in="coloredBlur"/>
+                <feMergeNode in="SourceGraphic"/>
+              </feMerge>
+            </filter>
           </defs>
-        </svg>
-      </div>
+        </motion.svg>
+      </motion.div>
 
-      {/* Floating Particles */}
-      <div className="absolute inset-0 pointer-events-none">
-        {[...Array(12)].map((_, i) => (
-          <div
-            key={i}
-            className="absolute w-1 h-1 bg-cosmic-gold rounded-full animate-float"
-            style={{
-              left: `${Math.random() * 100}%`,
-              top: `${Math.random() * 100}%`,
-              animationDelay: `${Math.random() * 6}s`,
-              animationDuration: `${4 + Math.random() * 4}s`
+      {/* Enhanced Main Content with Motion */}
+      <motion.div 
+        className="absolute bottom-32 left-1/2 transform -translate-x-1/2 text-center z-30"
+        initial={{ y: 50, opacity: 0 }}
+        animate={{ 
+          y: isVisible ? 0 : 50, 
+          opacity: isVisible ? 1 : 0 
+        }}
+        transition={{ 
+          duration: 1, 
+          delay: 1.5,
+          ease: "easeOut" 
+        }}
+      >
+        <motion.h1 
+          className="text-5xl md:text-7xl font-bold mb-6"
+          initial={{ scale: 0.8 }}
+          animate={{ scale: 1 }}
+          transition={{ 
+            duration: 1.2, 
+            delay: 2,
+            type: "spring",
+            stiffness: 200
+          }}
+        >
+          <motion.span 
+            className="text-cosmic-starlight"
+            whileHover={{ 
+              textShadow: "0 0 20px rgba(248, 250, 252, 0.8)",
+              scale: 1.05
             }}
-          />
-        ))}
-      </div>
-
-      {/* Main Content */}
-      <div className={`
-        absolute bottom-32 left-1/2 transform -translate-x-1/2 text-center
-        transition-all duration-1000 delay-500 ease-out
-        ${isVisible ? 'translate-y-0 opacity-100' : 'translate-y-8 opacity-0'}
-      `}>
-        <h1 className="text-5xl md:text-7xl font-bold mb-6">
-          <span className="text-cosmic-starlight">Thunder</span>
-          <span className="text-cosmic-gold"> Constellations</span>
-        </h1>
-        <p className="text-xl text-cosmic-starlight/80 mb-8 max-w-2xl">
+          >
+            Thunder
+          </motion.span>
+          <motion.span 
+            className="text-cosmic-gold ml-2"
+            whileHover={{ 
+              textShadow: "0 0 20px rgba(251, 191, 36, 0.8)",
+              scale: 1.05
+            }}
+          >
+            Constellations
+          </motion.span>
+        </motion.h1>
+        
+        <motion.p 
+          className="text-xl text-cosmic-starlight/80 mb-8 max-w-2xl"
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 1, delay: 2.5 }}
+        >
           Illuminating the path between technology and compassionate care
-        </p>
-        <div className="flex justify-center">
-          <Zap className="w-8 h-8 text-cosmic-gold animate-pulse" />
-        </div>
-      </div>
+        </motion.p>
+        
+        <motion.div 
+          className="flex justify-center"
+          initial={{ scale: 0 }}
+          animate={{ scale: 1 }}
+          transition={{ 
+            duration: 0.5, 
+            delay: 3,
+            type: "spring",
+            stiffness: 500 
+          }}
+        >
+          <motion.div
+            whileHover={{ scale: 1.2, rotate: 180 }}
+            whileTap={{ scale: 0.9 }}
+            transition={{ type: "spring", stiffness: 400 }}
+          >
+            <Zap className="w-8 h-8 text-cosmic-gold animate-pulse" />
+          </motion.div>
+        </motion.div>
+      </motion.div>
     </div>
   );
 };

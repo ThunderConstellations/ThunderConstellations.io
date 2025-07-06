@@ -1,16 +1,22 @@
 
 import React, { useState } from 'react';
+import { motion } from 'framer-motion';
 import LightningHero from '../components/LightningHero';
 import AIChat from '../components/AIChat';
 
 const Home = () => {
   return (
-    <div className="cosmic-bg min-h-screen">
+    <motion.div 
+      className="cosmic-bg min-h-screen"
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{ duration: 1.5 }}
+    >
       <LightningHero />
       <div className="relative">
         <AIChat />
       </div>
-    </div>
+    </motion.div>
   );
 };
 
