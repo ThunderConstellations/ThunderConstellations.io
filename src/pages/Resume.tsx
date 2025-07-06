@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { Download, Mail, Phone, MapPin, Github, Linkedin, Award, FileText, Globe, Users, Code, Zap } from 'lucide-react';
 import { pdfGeneratorService } from '../services/pdfGenerator';
@@ -43,11 +42,11 @@ const Resume = () => {
             <div className="flex flex-wrap justify-center gap-6 text-sm text-cosmic-starlight/70">
               <div className="flex items-center gap-2">
                 <Mail className="w-4 h-4 text-cosmic-gold" />
-                austinwood2024@gmail.com
+                19austinwood96@gmail.com
               </div>
               <div className="flex items-center gap-2">
                 <Phone className="w-4 h-4 text-cosmic-gold" />
-                (541) 520-8949
+                (219) 299-3702
               </div>
               <div className="flex items-center gap-2">
                 <MapPin className="w-4 h-4 text-cosmic-gold" />
@@ -55,7 +54,7 @@ const Resume = () => {
               </div>
               <div className="flex items-center gap-2">
                 <Linkedin className="w-4 h-4 text-cosmic-gold" />
-                linkedin.com/in/austin-wood-healthcare
+                linkedin.com/in/austin-wood-a1b2c3
               </div>
             </div>
           </div>
@@ -266,25 +265,25 @@ const Resume = () => {
         <div className="glass-morphism rounded-xl p-6 mb-8">
           <h2 className="text-2xl font-bold text-cosmic-gold mb-4">Professional References</h2>
           <p className="text-cosmic-starlight/80 mb-4">
-            Three professional references with detailed testimonials and recommendations are included in the downloadable PDF resume. 
-            References include direct supervisors and healthcare colleagues who can provide comprehensive insights into my 
-            professional performance, clinical skills, and leadership abilities.
+            Five professional references with detailed testimonials and recommendations are included in the downloadable PDF resume. 
+            References include direct supervisors, healthcare colleagues, academic advisors, and educators who can provide comprehensive insights into my 
+            professional performance, clinical skills, leadership abilities, and character.
           </p>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
             <div className="glass-morphism p-4 rounded-lg border border-cosmic-gold/20">
-              <h4 className="font-semibold text-cosmic-gold text-sm mb-1">Stephanie Heuring, MSN, RN</h4>
-              <p className="text-cosmic-starlight/70 text-xs mb-1">Director of Nursing - Grasmere Place</p>
-              <p className="text-cosmic-starlight/60 text-xs">Direct Supervisor (2020-2023)</p>
+              <h4 className="font-semibold text-cosmic-gold text-sm mb-1">Dr. Jacob Fyda, MD</h4>
+              <p className="text-cosmic-starlight/70 text-xs mb-1">Psychiatrist - Private Practice</p>
+              <p className="text-cosmic-starlight/60 text-xs">Collaborating Physician (2020)</p>
             </div>
             <div className="glass-morphism p-4 rounded-lg border border-cosmic-gold/20">
-              <h4 className="font-semibold text-cosmic-gold text-sm mb-1">Dr. Michael Rodriguez, MD</h4>
-              <p className="text-cosmic-starlight/70 text-xs mb-1">Medical Director - Bryn Mawr Care</p>
-              <p className="text-cosmic-starlight/60 text-xs">Collaborating Physician (2019-2020)</p>
+              <h4 className="font-semibold text-cosmic-gold text-sm mb-1">Jessie Lintz, MA, LPC</h4>
+              <p className="text-cosmic-starlight/70 text-xs mb-1">Social Services Director - Central Nursing Home</p>
+              <p className="text-cosmic-starlight/60 text-xs">Direct Supervisor (2019-2020)</p>
             </div>
             <div className="glass-morphism p-4 rounded-lg border border-cosmic-gold/20">
-              <h4 className="font-semibold text-cosmic-gold text-sm mb-1">Sarah Chen, RN, BSN</h4>
-              <p className="text-cosmic-starlight/70 text-xs mb-1">Charge Nurse - Grasmere Place</p>
-              <p className="text-cosmic-starlight/60 text-xs">Healthcare Colleague (2020-2023)</p>
+              <h4 className="font-semibold text-cosmic-gold text-sm mb-1">Cynthia M Czapla, MALS</h4>
+              <p className="text-cosmic-starlight/70 text-xs mb-1">Academic Advisor - Ivy Tech Community College</p>
+              <p className="text-cosmic-starlight/60 text-xs">Academic Advisor (2016-2018)</p>
             </div>
           </div>
         </div>

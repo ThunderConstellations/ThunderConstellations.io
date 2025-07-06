@@ -500,10 +500,10 @@ Team Leadership, Documentation, Office Software, Case Management, Filing Systems
   private getComprehensiveResumeData(): ResumeData {
     return {
       name: 'Austin Wood',
-      email: 'austinwood2024@gmail.com',
-      phone: '(541) 520-8949',
+      email: '19austinwood96@gmail.com',
+      phone: '(219) 299-3702',
       location: 'Chicago, IL 60626',
-      linkedin: 'https://linkedin.com/in/austin-wood-healthcare',
+      linkedin: 'https://www.linkedin.com/in/austin-wood-a1b2c3/',
       summary: 'Versatile healthcare professional and technology innovator with 10+ years combined experience in care coordination, crisis intervention, and team leadership. Founded and led the Virtual Studio programming club, teaching CAD, animation, and coding to 30+ students. Proven track record of managing 300+ patients while implementing quality improvement initiatives that reduced readmission rates by 25%. Google IT Support certified with growing technical expertise in automation and digital systems.',
       experience: [
         {
@@ -563,55 +563,96 @@ Team Leadership, Documentation, Office Software, Case Management, Filing Systems
       ],
       references: [
         {
-          name: "Stephanie Heuring, MSN, RN",
-          title: "Director of Nursing",
-          organization: "Grasmere Place",
-          relationship: "Direct Supervisor",
-          duration: "September 2020 - August 2023",
-          email: "stephanie.heuring@grasmereplace.com",
-          phone: "(773) 555-0123",
-          summary: "Austin consistently demonstrated exceptional leadership and clinical expertise during his tenure as Lead Case Manager and RP Supervisor.",
-          highlights: [
-            "Managed care plans for 300+ residents with outstanding attention to detail",
-            "Implemented quality improvement initiatives that reduced readmission rates by 25%",
-            "Demonstrated exceptional crisis intervention skills and team leadership",
-            "Created innovative documentation systems that improved compliance and efficiency"
-          ],
-          testimonial: "Austin Wood has been an invaluable asset to our healthcare team. His ability to manage complex cases while maintaining the highest standards of patient care is truly remarkable. His leadership in implementing our COVID-19 protocols and training staff on new documentation systems was instrumental in our facility's success during challenging times."
-        },
-        {
-          name: "Dr. Michael Rodriguez, MD",
-          title: "Medical Director",
-          organization: "Bryn Mawr Care",
+          name: "Dr. Jacob Fyda, MD",
+          title: "Psychiatrist",
+          organization: "Private Practice",
           relationship: "Collaborating Physician",
-          duration: "July 2019 - September 2020",
-          email: "dr.rodriguez@brynmawrcare.com",
-          phone: "(312) 555-0456",
-          summary: "Austin's clinical acumen and patient advocacy skills made him an exceptional MHP and PRSC in our facility.",
+          duration: "September 2020",
+          email: "jacobfyda@gmail.com",
+          phone: "(727) 415-3993",
+          summary: "Dr. Fyda provided a comprehensive recommendation during Austin's work at Bryn Mawr Care, highlighting his exceptional organizational and patient care abilities.",
           highlights: [
-            "Provided comprehensive case management for 30+ residents",
-            "Excellent collaboration with medical staff and external programs",
-            "Outstanding documentation and treatment plan development",
-            "Exceptional crisis intervention and behavioral health support"
+            "Assisted in scheduling appointments for a large caseload of patients",
+            "Coordinated clinic visits with exceptional organizational skills",
+            "Demonstrated ability to work with challenging patients effectively",
+            "Quick at learning, very dynamic, and hard-working",
+            "Excellent written and verbal communication skills"
           ],
-          testimonial: "Working with Austin was a pleasure. His comprehensive understanding of both the clinical and administrative aspects of healthcare, combined with his genuine compassion for patients, made him an outstanding mental health professional. His ability to coordinate care across multiple disciplines was exemplary."
+          testimonial: "It is with great enthusiasm that I write this letter to refer Austin T. Wood in his pursuit of assisting others in the Health Care field. During my interaction with Mr. Wood at Bryn Mawr Care, he had assisted me in scheduled appointments a large caseload of patients, and coordinated their visits. He was tasked with organizing a clinic that was often dynamic and unpredictable. He was able to execute this flawlessly and was a great asset in my work there. Mr. Wood is quick at learning, very dynamic, and hard-working. He worked well with our most challenging patients. Mr. Wood has shown to maneuver schedules to adjust with flexibility to ensure that patients were able to meet with me within a timely manner. He is also passionate at work, is very willing to take over new challenges and responsibilities, and has excellent written and verbal communication skills. I have total confidence that Mr. Wood would be a valuable asset to any organization."
         },
         {
-          name: "Sarah Chen, RN, BSN",
-          title: "Charge Nurse",
-          organization: "Grasmere Place",
-          relationship: "Healthcare Colleague",
-          duration: "September 2020 - August 2023",
-          email: "sarah.chen@grasmereplace.com",
-          phone: "(773) 555-0789",
-          summary: "Austin's collaborative approach and mentorship significantly improved our team's performance and patient outcomes.",
+          name: "Jessie Lintz, MA, LPC",
+          title: "Social Services Director",
+          organization: "Central Nursing Home",
+          relationship: "Direct Supervisor",
+          duration: "2019 - 2020",
+          email: "Not provided",
+          phone: "(773) 998-1333",
+          summary: "Jessie Lintz supervised Austin during his role as Mental Health Professional at Bryn Mawr Care, praising his effectiveness and empathy.",
           highlights: [
-            "Exceptional team leadership and staff training capabilities",
-            "Innovative approach to patient care coordination",
-            "Outstanding communication with families and external providers",
-            "Commitment to continuous quality improvement"
+            "Hard worker, intelligent, and effective in duties",
+            "Displayed appropriate and effective empathy and support to clients",
+            "Managed a caseload of 30 consumers at a Specialized Mental Health Facility",
+            "Successful completion of documentation in timely fashion",
+            "Impactful and creative employee"
           ],
-          testimonial: "Austin's leadership style is both supportive and effective. He has a unique ability to mentor new staff while maintaining the highest standards of care. His innovative solutions to workflow challenges and his dedication to patient advocacy make him an exceptional healthcare professional."
+          testimonial: "Austin was an employee of mine for approximately a year as a MHP when I was Social Services Director at Bryn Mawr Care from 2019 - 2020. They were a hard worker, intelligent, and effective in their duties. Austin displayed appropriate and effective empathy and support to his clients. They managed a caseload of 30 consumers at a Specialized Mental Health Facility and their duties included behavioral management, psychoeducational groups, 1:1 sessions, documentation, assessment, etc. Austin successfully completed documentation and in a timely fashion, supported coworkers and clients. Austin proved to be a impactful and creative employee, and would be a benefit for your company."
+        },
+        {
+          name: "Cynthia M Czapla, MALS",
+          title: "Academic Advisor",
+          organization: "Ivy Tech Community College - Valparaiso Campus",
+          relationship: "Academic Advisor",
+          duration: "2016 - 2018",
+          email: "cczapla@ivytech.edu",
+          phone: "Not provided",
+          summary: "Cynthia served as Austin's academic advisor during his Associate Degree in Psychology and observed his exceptional academic and leadership qualities.",
+          highlights: [
+            "Efficient, detail-oriented, and extremely competent",
+            "Successfully finished tasks well before deadlines",
+            "Extremely organized and never missed meetings",
+            "Excelled in coursework with excellent rapport with professors and peers",
+            "Excellent communication skills (both written and verbal)"
+          ],
+          testimonial: "This letter serves as a character reference for Austin Wood, one of my former students at Ivy Tech Community College, Valparaiso Campus. I had the pleasure of being Austin's academic advisor for his Associate Degree in Psychology, and he was also a student in my Interpersonal Communication course. Austin is efficient, detail-oriented, and extremely competent. He often successfully finishes a task well before the deadline. He is extremely organized, and never missed a meeting with me, and excelled in his coursework. Austin also had an excellent rapport with his professors and peers at Ivy Tech Community College. His excellent communication skills (both written and verbal) allowed him to connect with all kinds of people and to inspire them. In summary, Austin has been a wonderful student of good character, and I believe wholeheartedly that he will be an asset to any employer that chooses to hire him."
+        },
+        {
+          name: "Julie A. Moore",
+          title: "Teacher/Counselor",
+          organization: "Washington Township Middle-High School",
+          relationship: "High School Teacher",
+          duration: "2013 - 2015",
+          email: "Not provided",
+          phone: "Not provided",
+          summary: "Julie Moore taught Austin during high school and witnessed his remarkable leadership abilities and academic excellence.",
+          highlights: [
+            "Remarkable young man who really stands out",
+            "Takes challenging courses and excels at them",
+            "Excellent balance between academics and extracurricular activities",
+            "Tremendous amount of leadership and determination",
+            "Started Virtual Studio club teaching programming to students",
+            "Good role model for other students"
+          ],
+          testimonial: "I am writing this letter of recommendation for Austin Wood. I have gotten to know Austin both inside and outside the classroom. He is a remarkable young man. Austin is a student who really stands out. He takes courses that are challenging and excels at them, including my dual-credit Business Law course this year. He is able to manage his time well between academics and extracurricular activities. Through his many activities, Austin has been able to show a tremendous amount of leadership and determination. Austin has competed on my DECA team and did well. Austin also started a Virtual Studio club where he taught various aspects of programming to students who has little to no experience, which takes a great amount of skill. He would hold meetings outside of school and challenged the members to develop a solid foundation in the world of coding. In my opinion, Austin is a good role model for other students. By juggling many activities and his academics, Austin is truly an incredible young man. His level of devotion to various activities and academics is amazing. I am confident he will be successful in anything that he does."
+        },
+        {
+          name: "Jennifer L. Symer",
+          title: "Counselor",
+          organization: "Washington Township MS/HS",
+          relationship: "High School Counselor",
+          duration: "2013 - 2015",
+          email: "Jennifer.symer@eastporter.k12.in.us",
+          phone: "(219) 464-3598 x5367",
+          summary: "Jennifer Symer worked with Austin as his high school guidance counselor and recognized his exceptional motivation and leadership skills.",
+          highlights: [
+            "Consistently demonstrated high level of motivation and strong work ethic",
+            "Very positive attitude and attention to detail",
+            "Started new club called Virtual Studio at the school",
+            "Knowledge and love for computers led to impressive club growth",
+            "Leadership skills blossomed during high school years",
+            "Ready for college-level challenges"
+          ],
+          testimonial: "It is with great pleasure that I write this letter of recommendation for Austin Wood. I have worked with Austin for two years as his high school guidance counselor, and he has consistently demonstrated a high level of motivation, a strong work ethic, and a very positive attitude. Austin is a good student who strives diligently to accomplish the goals he has set for himself. He pays attention to detail, works well with others, and sees every task through to completion. One of the most exceptional things about Austin is that he started a new club at our school last year called Virtual Studio. Austin's knowledge of, and love for computers led him to this venture and the club has grown impressively under his guidance as president. Austin's leadership skills have blossomed during his time at Washington Township and I know that he is ready for the rewards and challenges that college level study will provide. I recommend him highly for admission to your institution."
         }
       ]
     };
