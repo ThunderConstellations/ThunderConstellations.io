@@ -55,6 +55,96 @@ const AIChat: React.FC<AIChatProps> = ({ isFullscreen = false, onToggleFullscree
     setShowPrompts(true);
   };
 
+  const generateSkillsChart = () => {
+    const skillsData = [
+      { name: 'Healthcare Coordination', years: 10, color: '#8B5CF6' },
+      { name: 'Case Management', years: 5, color: '#06B6D4' },
+      { name: 'Team Leadership', years: 7, color: '#10B981' },
+      { name: 'Technical Support', years: 3, color: '#F59E0B' },
+      { name: 'Crisis Intervention', years: 5, color: '#EF4444' },
+      { name: 'Documentation', years: 8, color: '#8B5CF6' }
+    ];
+
+    return (
+      <div className="bg-cosmic-black/50 p-3 sm:p-4 rounded-lg">
+        <div className="flex items-center gap-2 mb-4">
+          <Code className="w-4 h-4 sm:w-5 sm:h-5 text-cosmic-gold" />
+          <h4 className="text-cosmic-gold font-semibold text-sm sm:text-base">Core Skills & Experience</h4>
+        </div>
+        <div className="h-48 sm:h-64">
+          <ResponsiveContainer width="100%" height="100%">
+            <BarChart data={skillsData} margin={{ top: 20, right: 30, left: 20, bottom: 5 }}>
+              <CartesianGrid strokeDasharray="3 3" stroke="#374151" />
+              <XAxis 
+                dataKey="name" 
+                stroke="#9CA3AF" 
+                fontSize={12}
+                angle={-45}
+                textAnchor="end"
+                height={80}
+              />
+              <YAxis stroke="#9CA3AF" fontSize={12} />
+              <Tooltip 
+                contentStyle={{ 
+                  backgroundColor: '#1F2937', 
+                  border: '1px solid #374151',
+                  borderRadius: '8px',
+                  color: '#F3F4F6'
+                }}
+              />
+              <Bar dataKey="years" fill="#F59E0B" radius={[4, 4, 0, 0]} />
+            </BarChart>
+          </ResponsiveContainer>
+        </div>
+      </div>
+    );
+  };
+
+  const generateExperienceChart = () => {
+    const experienceData = [
+      { name: 'Healthcare', value: 60, color: '#8B5CF6' },
+      { name: 'Leadership', value: 25, color: '#06B6D4' },
+      { name: 'Technical', value: 15, color: '#10B981' }
+    ];
+
+    return (
+      <div className="bg-cosmic-black/50 p-3 sm:p-4 rounded-lg">
+        <div className="flex items-center gap-2 mb-4">
+          <Heart className="w-4 h-4 sm:w-5 sm:h-5 text-cosmic-gold" />
+          <h4 className="text-cosmic-gold font-semibold text-sm sm:text-base">Experience Distribution</h4>
+        </div>
+        <div className="h-48 sm:h-64">
+          <ResponsiveContainer width="100%" height="100%">
+            <PieChart>
+              <Pie
+                data={experienceData}
+                cx="50%"
+                cy="50%"
+                labelLine={false}
+                label={({ name, percent }) => `${name} ${(percent * 100).toFixed(0)}%`}
+                outerRadius={80}
+                fill="#8884d8"
+                dataKey="value"
+              >
+                {experienceData.map((entry, index) => (
+                  <Cell key={`cell-${index}`} fill={entry.color} />
+                ))}
+              </Pie>
+              <Tooltip 
+                contentStyle={{ 
+                  backgroundColor: '#1F2937', 
+                  border: '1px solid #374151',
+                  borderRadius: '8px',
+                  color: '#F3F4F6'
+                }}
+              />
+            </PieChart>
+          </ResponsiveContainer>
+        </div>
+      </div>
+    );
+  };
+
   const downloadResume = (type: ResumeType = 'general', format: 'txt' | 'pdf' = 'txt') => {
     if (format === 'pdf') {
       pdfGeneratorService.downloadResumePDF(type);
