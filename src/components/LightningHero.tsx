@@ -2,10 +2,6 @@
 import React, { useEffect, useState } from 'react';
 import { Zap } from 'lucide-react';
 import { motion } from 'framer-motion';
-import StarField3D from './graphics/StarField3D';
-import LightningEffects from './graphics/LightningEffects';
-import ParticleSystem from './graphics/ParticleSystem';
-import InteractiveConstellation from './graphics/InteractiveConstellation';
 
 const LightningHero = () => {
   const [isVisible, setIsVisible] = useState(false);
@@ -16,13 +12,7 @@ const LightningHero = () => {
 
   return (
     <div className="relative min-h-screen flex items-center justify-center overflow-hidden">
-      {/* Enhanced Background Layers */}
-      <StarField3D className="opacity-40" />
-      <InteractiveConstellation starCount={30} className="opacity-60" />
-      <ParticleSystem particleCount={80} className="opacity-50" />
-      <LightningEffects isActive={true} intensity={0.8} className="opacity-70" />
-      
-      {/* Original Starfield Background - kept for compatibility */}
+      {/* Original Starfield Background - kept for additional depth */}
       <div className="absolute inset-0 starfield opacity-20" />
       
       {/* Enhanced Lightning Constellation SVG with Framer Motion */}
