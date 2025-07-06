@@ -25,22 +25,28 @@ const InteractiveConstellation: React.FC<{
     const canvas = canvasRef.current;
     if (!canvas) return;
 
-    starsRef.current = Array.from({ length: starCount }, (_, index) => {
-      const star: Star = {
+    // Initialize empty array first
+    const newStars: Star[] = [];
+    
+    // Create stars without connections first
+    for (let i = 0; i < starCount; i++) {
+      newStars.push({
         x: Math.random() * canvas.width,
         y: Math.random() * canvas.height,
         size: Math.random() * 3 + 1,
         brightness: Math.random() * 0.5 + 0.5,
         pulseSpeed: Math.random() * 0.02 + 0.01,
         connections: []
-      };
+      });
+    }
 
-      // Create connections to nearby stars
+    // Now add connections
+    newStars.forEach((star, index) => {
       const maxConnections = 3;
       const connectionDistance = 150;
       
       for (let i = 0; i < index && star.connections.length < maxConnections; i++) {
-        const otherStar = starsRef.current[i];
+        const otherStar = newStars[i];
         const distance = Math.sqrt(
           Math.pow(star.x - otherStar.x, 2) + Math.pow(star.y - otherStar.y, 2)
         );
@@ -49,9 +55,9 @@ const InteractiveConstellation: React.FC<{
           star.connections.push(i);
         }
       }
-
-      return star;
     });
+
+    starsRef.current = newStars;
   };
 
   const animate = () => {

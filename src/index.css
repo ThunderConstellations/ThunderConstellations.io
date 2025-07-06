@@ -127,6 +127,44 @@ All colors MUST be HSL.
       box-shadow: 0 0 40px rgba(251, 191, 36, 0.6), 0 0 60px rgba(251, 191, 36, 0.3);
     }
   }
+
+  @keyframes star-twinkle {
+    0%, 100% { opacity: 0.8; }
+    50% { opacity: 1; }
+  }
+
+  @keyframes pulse-gold {
+    0%, 100% { color: #fbbf24; }
+    50% { color: #fde047; }
+  }
+
+  @keyframes lightning-glow {
+    0%, 100% { 
+      filter: drop-shadow(0 0 10px rgba(251, 191, 36, 0.8));
+    }
+    50% { 
+      filter: drop-shadow(0 0 20px rgba(251, 191, 36, 1)) drop-shadow(0 0 30px rgba(253, 224, 71, 0.5));
+    }
+  }
+
+  @keyframes star-twinkle-keyframe {
+    0%, 100% { 
+      opacity: 0.6;
+      transform: scale(1);
+    }
+    50% { 
+      opacity: 1;
+      transform: scale(1.2);
+    }
+  }
+
+  .animate-lightning-glow {
+    animation: lightning-glow 3s ease-in-out infinite;
+  }
+
+  .animate-star-twinkle {
+    animation: star-twinkle-keyframe 2s ease-in-out infinite;
+  }
 }
 
 @layer components {
