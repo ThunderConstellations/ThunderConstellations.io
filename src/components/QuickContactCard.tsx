@@ -13,16 +13,16 @@ const QuickContactCard: React.FC = () => {
       id: 'email',
       icon: Mail,
       label: 'Email',
-      value: 'brandonharris.prof@gmail.com',
-      href: 'mailto:brandonharris.prof@gmail.com',
+      value: '19austinwood96@gmail.com',
+      href: 'mailto:19austinwood96@gmail.com',
       description: 'Best for detailed inquiries'
     },
     {
       id: 'phone',
       icon: Phone,
       label: 'Phone',
-      value: '(470) 592-5802',
-      href: 'tel:+14705925802',
+      value: '(219) 299-3702',
+      href: 'tel:+12192993702',
       description: 'Available weekdays 9AM-5PM'
     },
     {
@@ -116,7 +116,7 @@ const QuickContactCard: React.FC = () => {
 
         <AnimatedSection animation="fade-up" delay={800}>
           <button
-            onClick={() => window.open('https://calendly.com/brandonharris', '_blank')}
+            onClick={() => window.open('https://calendly.com/austinwood', '_blank')}
             className="group text-cosmic-starlight/80 hover:text-cosmic-gold px-6 py-4 rounded-full 
                      transition-colors duration-300 flex items-center gap-2"
           >

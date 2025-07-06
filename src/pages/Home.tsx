@@ -22,7 +22,7 @@ const Home = () => {
           <AnimatedSection animation="fade-in" delay={300}>
             <div className="mb-8">
               <TypingAnimation 
-                text="Brandon Harris" 
+                text="Austin Wood" 
                 className="text-6xl md:text-8xl font-bold text-cosmic-starlight mb-4"
                 speed={100}
               />
@@ -72,9 +72,9 @@ const Home = () => {
           <AnimatedSection animation="fade-in" delay={1600}>
             <div className="flex justify-center gap-6 mt-12">
               {[
-                { icon: Mail, href: 'mailto:brandonharris.prof@gmail.com', label: 'Email' },
-                { icon: Github, href: 'https://github.com/brandonharris177', label: 'GitHub' },
-                { icon: Linkedin, href: 'https://linkedin.com/in/brandonharris177', label: 'LinkedIn' }
+                { icon: Mail, href: 'mailto:19austinwood96@gmail.com', label: 'Email' },
+                { icon: Github, href: 'https://github.com/austinwood', label: 'GitHub' },
+                { icon: Linkedin, href: 'https://linkedin.com/in/austinwood', label: 'LinkedIn' }
               ].map((social, index) => (
                 <HoverEffectWrapper key={social.label} effect="lift" intensity="medium">
                   <a
