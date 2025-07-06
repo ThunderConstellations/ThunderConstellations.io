@@ -47,25 +47,25 @@ const Navigation = () => {
         ${isOpen ? 'translate-x-0' : '-translate-x-full'}
         glass-morphism border-r border-cosmic-gold/20
       `}>
-        <div className="p-8 h-full flex flex-col">
-          {/* Enhanced Logo/Brand with Name */}
-          <div className="mb-8 mt-16">
-            <div className="flex items-center gap-3 mb-4">
-              <Zap className="w-8 h-8 text-cosmic-gold animate-lightning-glow" />
+        <div className="p-6 h-full flex flex-col">
+          {/* Compact Logo/Brand */}
+          <div className="mb-6 mt-16">
+            <div className="flex items-center gap-3 mb-3">
+              <Zap className="w-7 h-7 text-cosmic-gold animate-lightning-glow" />
               <div>
-                <h2 className="text-xl font-bold text-cosmic-gold">Austin Wood</h2>
-                <p className="text-sm text-cosmic-starlight/70">Healthcare Professional</p>
+                <h2 className="text-lg font-bold text-cosmic-gold">Austin Wood</h2>
+                <p className="text-xs text-cosmic-starlight/70">Healthcare Professional</p>
               </div>
             </div>
             <div className="text-center">
               <div className="text-xs text-cosmic-gold font-medium mb-2">Portfolio</div>
-              <div className="w-16 h-0.5 bg-gradient-to-r from-cosmic-gold to-transparent mx-auto"></div>
+              <div className="w-12 h-0.5 bg-gradient-to-r from-cosmic-gold to-transparent mx-auto"></div>
             </div>
           </div>
 
-          {/* Navigation Items - with better spacing and overflow handling */}
-          <div className="flex-1 overflow-y-auto">
-            <ul className="space-y-3">
+          {/* Navigation Items - optimized spacing without scroll */}
+          <div className="flex-1 flex flex-col justify-center">
+            <ul className="space-y-2">
               {navItems.map((item) => {
                 const Icon = item.icon;
                 const isActive = location.pathname === item.path;
@@ -76,15 +76,15 @@ const Navigation = () => {
                       to={item.path}
                       onClick={toggleSidebar}
                       className={`
-                        flex items-center gap-4 px-4 py-3 rounded-lg transition-all duration-200
+                        flex items-center gap-3 px-4 py-2.5 rounded-lg transition-all duration-200
                         ${isActive 
                           ? 'bg-cosmic-gold/20 text-cosmic-gold border border-cosmic-gold/30' 
                           : 'text-cosmic-starlight/80 hover:text-cosmic-gold hover:bg-cosmic-gold/10 border border-transparent hover:border-cosmic-gold/20'
                         }
                       `}
                     >
-                      <Icon className="w-5 h-5 flex-shrink-0" />
-                      <span className="font-medium">{item.label}</span>
+                      <Icon className="w-4 h-4 flex-shrink-0" />
+                      <span className="font-medium text-sm">{item.label}</span>
                     </Link>
                   </li>
                 );
@@ -92,11 +92,11 @@ const Navigation = () => {
             </ul>
           </div>
 
-          {/* Enhanced Footer */}
-          <div className="mt-8">
-            <div className="glass-morphism p-4 rounded-lg text-center border border-cosmic-gold/20">
-              <div className="mb-3">
-                <p className="text-sm font-medium text-cosmic-gold mb-1">Austin Wood</p>
+          {/* Compact Footer */}
+          <div className="mt-6">
+            <div className="glass-morphism p-3 rounded-lg text-center border border-cosmic-gold/20">
+              <div className="mb-2">
+                <p className="text-xs font-medium text-cosmic-gold mb-1">Austin Wood</p>
                 <p className="text-xs text-cosmic-starlight/60">
                   Healthcare & Technology
                 </p>
