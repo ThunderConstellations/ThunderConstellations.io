@@ -51,15 +51,21 @@ const MobileOptimizedChat: React.FC<MobileOptimizedChatProps> = ({
   }
 
   return (
-    <div className={`
-      mobile-chat-container
-      ${isFullscreen ? 'fixed inset-0 z-50' : 'fixed bottom-0 right-0 left-0 z-40'}
-      ${isKeyboardVisible ? 'h-screen' : isFullscreen ? 'h-screen' : 'h-[80vh]'}
-      bg-gradient-to-br from-cosmic-dark via-cosmic-black to-cosmic-dark
-      transition-all duration-300 ease-out
-      ${!isFullscreen ? 'rounded-t-2xl' : ''}
-      border-t-2 border-cosmic-gold/20
-    `}>
+    <div 
+      className={`
+        mobile-chat-container
+        ${isFullscreen ? 'fixed inset-0 z-50' : 'fixed bottom-0 right-0 left-0 z-40'}
+        ${isKeyboardVisible ? 'h-screen' : isFullscreen ? 'h-screen' : 'h-[80vh]'}
+        bg-gradient-to-br from-cosmic-dark via-cosmic-black to-cosmic-dark
+        transition-all duration-300 ease-out
+        ${!isFullscreen ? 'rounded-t-2xl' : ''}
+        border-t-2 border-cosmic-gold/20
+      `}
+      style={{
+        touchAction: 'manipulation',
+        WebkitOverflowScrolling: 'touch'
+      }}
+    >
       {/* Mobile header with drag indicator */}
       {!isFullscreen && (
         <div className="flex flex-col items-center py-2 px-4 bg-cosmic-black/50">
@@ -78,23 +84,6 @@ const MobileOptimizedChat: React.FC<MobileOptimizedChatProps> = ({
       <div className="flex-1 overflow-hidden">
         {children}
       </div>
-
-      {/* Mobile-specific styles */}
-      <style jsx>{`
-        .mobile-chat-container {
-          touch-action: manipulation;
-          -webkit-overflow-scrolling: touch;
-        }
-        
-        @media (max-width: 768px) {
-          .mobile-chat-container input,
-          .mobile-chat-container textarea {
-            font-size: 16px; /* Prevents zoom on iOS */
-            -webkit-appearance: none;
-            border-radius: 8px;
-          }
-        }
-      `}</style>
     </div>
   );
 };
