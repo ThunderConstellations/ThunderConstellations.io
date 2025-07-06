@@ -1,3 +1,4 @@
+
 import { openRouterService, OpenRouterMessage } from './openrouter';
 
 export interface IntelligentResponse {
@@ -40,11 +41,12 @@ PERSONALITY & APPROACH:
 - Strong communicator
 - Adaptable and quick learner
 
-CONTACT INFO:
-- Email: austinwood2024@gmail.com
-- Phone: (541) 520-8949
-- Location: Chicago, IL
-- LinkedIn: linkedin.com/in/austin-wood-healthcare
+CORRECT CONTACT INFO:
+- Email: 19austinwood96@gmail.com
+- Phone: (219) 299-3702
+- Location: Chicago, IL 60626
+- Website: auconstellations.wordpress.com
+- LinkedIn: linkedin.com/in/austin-wood-a1b2c3/
 
 INSTRUCTIONS:
 - Be conversational and helpful
@@ -177,7 +179,7 @@ Respond naturally and conversationally. Keep responses concise but informative.`
     // Contact info fallback
     if (lowerInput.includes('contact') || lowerInput.includes('reach') || lowerInput.includes('email')) {
       return {
-        text: "You can reach me at austinwood2024@gmail.com or (541) 520-8949. I'm based in Chicago, IL and actively seeking new opportunities that leverage my healthcare, technical, and leadership experience.",
+        text: "You can reach me at 19austinwood96@gmail.com or (219) 299-3702. I'm based in Chicago, IL and actively seeking new opportunities that leverage my healthcare, technical, and leadership experience.",
         confidence: 0.9
       };
     }
