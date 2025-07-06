@@ -3,12 +3,17 @@ import ChatHeader from './chat/ChatHeader';
 import ChatWelcome from './chat/ChatWelcome';
 import ChatMessage from './chat/ChatMessage';
 import TypingIndicator from './chat/TypingIndicator';
-import QuickPrompts from './chat/QuickPrompts';
 import ChatInput from './chat/ChatInput';
 import TerminalMessage from './chat/TerminalMessage';
+import ApiKeySetup from './chat/ApiKeySetup';
 import { Message } from './chat/types';
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, PieChart, Pie, Cell } from 'recharts';
-import { Download, FileText, Heart, Code, Users } from 'lucide-react';
+import { Download, FileText, Heart, Code, Users, Sparkles } from 'lucide-react';
+import { openRouterService } from '../services/openrouter';
+import { aiIntelligenceService } from '../services/aiIntelligence';
+import { pdfGeneratorService } from '../services/pdfGenerator';
+import EnhancedQuickPrompts from './chat/EnhancedQuickPrompts';
+import MobileOptimizedChat from './chat/MobileOptimizedChat';
 
 interface AIChatProps {
   isFullscreen?: boolean;
@@ -18,15 +23,6 @@ interface AIChatProps {
 
 type ResumeType = 'general' | 'healthcare' | 'it' | 'admin';
 
-interface ChatResponse {
-  text: string;
-  showSkillsChart?: boolean;
-  showExperienceChart?: boolean;
-  showDownloads?: boolean;
-  showReferenceDownload?: boolean;
-  resumeType?: ResumeType;
-}
-
 const AIChat: React.FC<AIChatProps> = ({ isFullscreen = false, onToggleFullscreen, onClose }) => {
   const [messages, setMessages] = useState<Message[]>([]);
   const [inputValue, setInputValue] = useState('');
@@ -34,6 +30,7 @@ const AIChat: React.FC<AIChatProps> = ({ isFullscreen = false, onToggleFullscree
   const [showPrompts, setShowPrompts] = useState(true);
   const [showTerminalIntro, setShowTerminalIntro] = useState(false);
   const [terminalComplete, setTerminalComplete] = useState(false);
+  const [hasApiKey, setHasApiKey] = useState(false);
   const messagesEndRef = useRef<HTMLDivElement>(null);
 
   const scrollToBottom = () => {
@@ -45,6 +42,9 @@ const AIChat: React.FC<AIChatProps> = ({ isFullscreen = false, onToggleFullscree
   }, [messages, showTerminalIntro]);
 
   useEffect(() => {
+    // Check if API key is available
+    setHasApiKey(openRouterService.hasApiKey());
+
     const timer = setTimeout(() => {
       setIsTyping(true);
       setTimeout(() => {
@@ -56,22 +56,30 @@ const AIChat: React.FC<AIChatProps> = ({ isFullscreen = false, onToggleFullscree
     return () => clearTimeout(timer);
   }, []);
 
+  const handleApiKeySet = () => {
+    setHasApiKey(true);
+  };
+
   const handleTerminalComplete = () => {
     setTerminalComplete(true);
     setShowPrompts(true);
   };
 
-  const downloadResume = (type: ResumeType = 'general') => {
-    const resumeContent = generatePositionSpecificResume(type);
-    const blob = new Blob([resumeContent], { type: 'text/plain' });
-    const url = URL.createObjectURL(blob);
-    const a = document.createElement('a');
-    a.href = url;
-    a.download = `Austin_Wood_Resume_${type}.txt`;
-    document.body.appendChild(a);
-    a.click();
-    document.body.removeChild(a);
-    URL.revokeObjectURL(url);
+  const downloadResume = (type: ResumeType = 'general', format: 'txt' | 'pdf' = 'txt') => {
+    if (format === 'pdf') {
+      pdfGeneratorService.downloadResumePDF(type);
+    } else {
+      const resumeContent = generatePositionSpecificResume(type);
+      const blob = new Blob([resumeContent], { type: 'text/plain' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = `Austin_Wood_Resume_${type}.txt`;
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      URL.revokeObjectURL(url);
+    }
   };
 
   const downloadReferences = () => {
@@ -181,31 +189,40 @@ Julie Moore`;
       { skill: 'Leadership', level: 90 },
       { skill: 'IT Support', level: 85 },
       { skill: 'Communication', level: 95 },
-      { skill: 'Crisis Management', level: 92 }
+      { skill: 'Crisis Mgmt', level: 92 }
     ];
 
     return (
-      <div className="bg-cosmic-black/50 p-4 rounded-lg mb-4">
+      <div className="bg-cosmic-black/50 p-3 sm:p-4 rounded-lg mb-4">
         <div className="flex items-center gap-2 mb-4">
-          <Heart className="w-5 h-5 text-cosmic-gold" />
-          <h4 className="text-cosmic-gold font-semibold">Austin's Core Skills</h4>
+          <Heart className="w-4 h-4 sm:w-5 sm:h-5 text-cosmic-gold" />
+          <h4 className="text-cosmic-gold font-semibold text-sm sm:text-base">Austin's Core Skills</h4>
         </div>
-        <ResponsiveContainer width="100%" height={200}>
-          <BarChart data={skillsData}>
-            <CartesianGrid strokeDasharray="3 3" stroke="rgba(255, 215, 0, 0.1)" />
-            <XAxis dataKey="skill" tick={{ fill: '#E5E7EB', fontSize: 12 }} />
-            <YAxis tick={{ fill: '#E5E7EB' }} />
-            <Tooltip 
-              contentStyle={{ 
-                backgroundColor: 'rgba(0, 0, 0, 0.8)', 
-                border: '1px solid #FFD700',
-                borderRadius: '8px',
-                color: '#E5E7EB'
-              }}
-            />
-            <Bar dataKey="level" fill="#FFD700" radius={[4, 4, 0, 0]} />
-          </BarChart>
-        </ResponsiveContainer>
+        <div className="h-48 sm:h-56">
+          <ResponsiveContainer width="100%" height="100%">
+            <BarChart data={skillsData} margin={{ top: 5, right: 5, left: 5, bottom: 5 }}>
+              <CartesianGrid strokeDasharray="3 3" stroke="rgba(255, 215, 0, 0.1)" />
+              <XAxis 
+                dataKey="skill" 
+                tick={{ fill: '#E5E7EB', fontSize: 10 }} 
+                angle={-45}
+                textAnchor="end"
+                height={60}
+              />
+              <YAxis tick={{ fill: '#E5E7EB', fontSize: 10 }} />
+              <Tooltip 
+                contentStyle={{ 
+                  backgroundColor: 'rgba(0, 0, 0, 0.8)', 
+                  border: '1px solid #FFD700',
+                  borderRadius: '8px',
+                  color: '#E5E7EB',
+                  fontSize: '12px'
+                }}
+              />
+              <Bar dataKey="level" fill="#FFD700" radius={[2, 2, 0, 0]} />
+            </BarChart>
+          </ResponsiveContainer>
+        </div>
       </div>
     );
   };
@@ -218,30 +235,41 @@ Julie Moore`;
     ];
 
     return (
-      <div className="bg-cosmic-black/50 p-4 rounded-lg mb-4">
+      <div className="bg-cosmic-black/50 p-3 sm:p-4 rounded-lg mb-4">
         <div className="flex items-center gap-2 mb-4">
-          <Users className="w-5 h-5 text-cosmic-gold" />
-          <h4 className="text-cosmic-gold font-semibold">Experience Distribution</h4>
+          <Users className="w-4 h-4 sm:w-5 sm:h-5 text-cosmic-gold" />
+          <h4 className="text-cosmic-gold font-semibold text-sm sm:text-base">Experience Distribution</h4>
         </div>
-        <ResponsiveContainer width="100%" height={200}>
-          <PieChart>
-            <Pie
-              data={experienceData}
-              cx="50%"
-              cy="50%"
-              labelLine={false}
-              label={({ name, percent }) => `${name} ${(percent * 100).toFixed(0)}%`}
-              outerRadius={80}
-              fill="#8884d8"
-              dataKey="value"
-            >
-              {experienceData.map((entry, index) => (
-                <Cell key={`cell-${index}`} fill={entry.color} />
-              ))}
-            </Pie>
-            <Tooltip />
-          </PieChart>
-        </ResponsiveContainer>
+        <div className="h-48 sm:h-56">
+          <ResponsiveContainer width="100%" height="100%">
+            <PieChart>
+              <Pie
+                data={experienceData}
+                cx="50%"
+                cy="50%"
+                labelLine={false}
+                label={({ name, percent }) => `${name} ${(percent * 100).toFixed(0)}%`}
+                outerRadius={window.innerWidth < 640 ? 60 : 80}
+                fill="#8884d8"
+                dataKey="value"
+                fontSize={window.innerWidth < 640 ? 10 : 12}
+              >
+                {experienceData.map((entry, index) => (
+                  <Cell key={`cell-${index}`} fill={entry.color} />
+                ))}
+              </Pie>
+              <Tooltip 
+                contentStyle={{
+                  backgroundColor: 'rgba(0, 0, 0, 0.8)',
+                  border: '1px solid #FFD700',
+                  borderRadius: '8px',
+                  color: '#E5E7EB',
+                  fontSize: '12px'
+                }}
+              />
+            </PieChart>
+          </ResponsiveContainer>
+        </div>
       </div>
     );
   };
@@ -249,7 +277,7 @@ Julie Moore`;
   const generatePositionSpecificResume = (position: ResumeType) => {
     if (position === 'it') {
       return `**Austin Wood - IT Support / Helpdesk Resume**
-📧 19austinwood96@gmail.com | 📱 219.299.3702 | 📍 Chicago, IL 60626
+📧 austinwood2024@gmail.com | 📱 (541) 520-8949 | 📍 Chicago, IL 60626
 🔗 https://linkedin.com/in/austin-wood-healthcare
 
 **Professional Summary**
@@ -288,7 +316,7 @@ Would you like me to provide reference letters or discuss specific technical ski
     
     if (position === 'healthcare') {
       return `**Austin Wood - Care Coordinator / Case Manager Resume**
-📧 19austinwood96@gmail.com | 📱 219.299.3702 | 📍 Chicago, IL 60626
+📧 austinwood2024@gmail.com | 📱 (541) 520-8949 | 📍 Chicago, IL 60626
 🔗 https://linkedin.com/in/austin-wood-healthcare
 
 **Professional Summary**
@@ -328,7 +356,7 @@ Would you like to see my professional references or discuss specific healthcare 
     
     if (position === 'admin') {
       return `**Austin Wood - Administrative / Office Support Resume**
-📧 19austinwood96@gmail.com | 📱 219.299.3702 | 📍 Chicago, IL 60626
+📧 austinwood2024@gmail.com | 📱 (541) 520-8949 | 📍 Chicago, IL 60626
 🔗 https://linkedin.com/in/austin-wood-healthcare
 
 **Summary**
@@ -363,7 +391,7 @@ Would you like to see specific examples of process improvements I've implemented
 
   const generateGeneralResume = () => {
     return `**Austin Wood - Professional Resume**
-📧 19austinwood96@gmail.com | 📱 219.299.3702 | 📍 Chicago, IL 60626
+📧 austinwood2024@gmail.com | 📱 (541) 520-8949 | 📍 Chicago, IL 60626
 🔗 https://linkedin.com/in/austin-wood-healthcare
 
 **Summary**
@@ -397,146 +425,6 @@ Team Leadership, Documentation, Office Software, Case Management, Filing Systems
 Would you like position-specific information or references?`;
   };
 
-  const generateIntelligentResponse = (input: string): ChatResponse => {
-    const lowerInput = input.toLowerCase();
-    
-    // Reference images request
-    if (lowerInput.includes('reference') && (lowerInput.includes('image') || lowerInput.includes('letter') || lowerInput.includes('pull up'))) {
-      return {
-        text: `I can provide you with the full reference letters from my professional contacts. While I don't have access to display the actual images, I can share the complete text of all reference letters including contact information. Would you like me to show the full references or download them for you?`,
-        showReferenceDownload: true
-      };
-    }
-    
-    // Programming club requests
-    if (lowerInput.includes('programming') || lowerInput.includes('virtual studio') || lowerInput.includes('club') || lowerInput.includes('president')) {
-      return {
-        text: `Yes! I founded and served as President of Virtual Studio, a programming club I led for 2 years in high school. I taught fellow students programming, animation, and CAD software. This experience demonstrated my leadership abilities and passion for technology education. It's an important part of my background that shows early leadership and technical mentoring skills.`
-      };
-    }
-    
-    // Skills and charts requests
-    if (lowerInput.includes('skill') || lowerInput.includes('chart') || lowerInput.includes('graph')) {
-      return {
-        text: `Here are my updated core skills and experience breakdown. With 10+ years of combined healthcare experience (including 5+ years case management, 2.5 years group therapy aid, and 2.5 years minority support group), plus growing technical expertise and proven leadership abilities.`,
-        showSkillsChart: true,
-        showExperienceChart: true
-      };
-    }
-    
-    // Experience requests
-    if (lowerInput.includes('experience') || lowerInput.includes('background') || lowerInput.includes('work')) {
-      return {
-        text: `I have 10+ years of diverse professional experience including healthcare coordination (serving 300-400+ patients), technical support, and leadership roles. This includes case management, group therapy assistance, minority support group facilitation, and founding/leading a programming club.`,
-        showExperienceChart: true
-      };
-    }
-    
-    // Resume download requests
-    if (lowerInput.includes('download') || lowerInput.includes('get resume') || lowerInput.includes('cv download')) {
-      return {
-        text: `I have different versions of my resume tailored for various positions. Which type would you like to download?`,
-        showDownloads: true
-      };
-    }
-    
-    // Reference requests
-    if (lowerInput.includes('reference') || lowerInput.includes('recommend') || lowerInput.includes('contact')) {
-      return {
-        text: `I have professional references available from my previous roles in healthcare, leadership, and technical positions. Would you like to download my reference sheet?`,
-        showReferenceDownload: true
-      };
-    }
-    
-    // Position-specific resume requests
-    if (lowerInput.includes('resume') || lowerInput.includes('cv')) {
-      let resumeType: ResumeType = 'general';
-      if (lowerInput.includes('it') || lowerInput.includes('helpdesk') || lowerInput.includes('technical')) {
-        resumeType = 'it';
-      } else if (lowerInput.includes('care') || lowerInput.includes('health') || lowerInput.includes('coord')) {
-        resumeType = 'healthcare';
-      } else if (lowerInput.includes('admin') || lowerInput.includes('office')) {
-        resumeType = 'admin';
-      }
-      
-      return {
-        text: `Here's my ${resumeType} resume. This version is tailored to highlight my relevant experience and skills for ${resumeType} positions.`,
-        showDownloads: true,
-        resumeType
-      };
-    }
-    
-    // Contact information requests
-    if (lowerInput.includes('contact') || lowerInput.includes('email') || lowerInput.includes('phone') || lowerInput.includes('reach')) {
-      return {
-        text: `You can reach me at:\n📧 austinwood2024@gmail.com\n📱 (541) 520-8949\n\nI'm always open to discussing new opportunities and collaborations!`
-      };
-    }
-    
-    // Project requests
-    if (lowerInput.includes('project') || lowerInput.includes('portfolio') || lowerInput.includes('work sample')) {
-      return {
-        text: `I've worked on various projects including:\n\n🏥 Healthcare coordination systems\n💻 Technical support solutions\n👥 Team management initiatives\n📊 Process improvement projects\n\nWould you like more details about any specific area?`
-      };
-    }
-    
-    // Leadership experience
-    if (lowerInput.includes('leader') || lowerInput.includes('manage') || lowerInput.includes('supervise')) {
-      return {
-        text: `I have extensive leadership experience including:\n\n👥 Managing teams of 10+ healthcare professionals\n📋 Coordinating patient care across multiple departments\n🎯 Implementing process improvements that increased efficiency by 25%\n💡 Training and mentoring new team members\n\nMy leadership style focuses on collaboration, clear communication, and empowering team members to excel.`
-      };
-    }
-    
-    // Technical skills
-    if (lowerInput.includes('technical') || lowerInput.includes('software') || lowerInput.includes('computer')) {
-      return {
-        text: `My technical skills include:\n\n💻 Help Desk & Technical Support\n🖥️ Hardware/Software Troubleshooting\n📊 Microsoft Office Suite (Advanced)\n🏥 Healthcare Management Systems\n📱 Multi-platform Support\n🔧 System Administration\n\nI combine technical expertise with strong problem-solving abilities to provide effective solutions.`
-      };
-    }
-    
-    // Healthcare experience
-    if (lowerInput.includes('healthcare') || lowerInput.includes('medical') || lowerInput.includes('patient')) {
-      return {
-        text: `My healthcare experience spans:\n\n🏥 10+ years combined healthcare experience\n👥 Patient advocacy and support\n📋 Care plan development and implementation\n🤝 Interdisciplinary team collaboration\n📊 Healthcare data management\n💼 Compliance with healthcare regulations\n\nI'm passionate about improving patient outcomes through efficient coordination and compassionate care.`
-      };
-    }
-    
-    // Education requests
-    if (lowerInput.includes('education') || lowerInput.includes('school') || lowerInput.includes('degree')) {
-      return {
-        text: `I believe in continuous learning and professional development. My educational background and ongoing training have equipped me with both foundational knowledge and practical skills across healthcare, technology, and leadership domains.`
-      };
-    }
-    
-    // Availability/job search
-    if (lowerInput.includes('available') || lowerInput.includes('looking') || lowerInput.includes('job') || lowerInput.includes('hire')) {
-      return {
-        text: `Yes, I'm actively seeking new opportunities! I'm particularly interested in roles that combine my healthcare coordination experience with my technical and leadership skills. I'm open to:\n\n🏥 Healthcare Coordination positions\n💻 IT Support & Help Desk roles\n👥 Team Leadership opportunities\n📊 Administrative positions\n\nI'm available for immediate start and excited to bring my diverse skill set to a new organization.`
-      };
-    }
-
-    // Default responses with enhanced content
-    const responses: ChatResponse[] = [
-      {
-        text: "I'm Austin Wood, a versatile professional with 10+ years of experience spanning healthcare, leadership, and technical support. I'm passionate about improving processes and helping people through both direct service and innovative solutions.",
-        showSkillsChart: true,
-      },
-      {
-        text: "My unique background combines healthcare coordination expertise with strong technical skills and proven leadership abilities. I excel at bridging the gap between complex systems and human needs.",
-        showExperienceChart: true,
-      },
-      {
-        text: "I specialize in healthcare coordination, team leadership, and technical support. My approach focuses on efficiency, compassion, and continuous improvement. How can I help you learn more about my experience?",
-        showDownloads: true,
-      },
-      {
-        text: "With experience managing healthcare teams, coordinating patient care, and providing technical support, I bring a well-rounded perspective to problem-solving and team collaboration.",
-      },
-    ];
-    
-    return responses[Math.floor(Math.random() * responses.length)];
-  };
-
   const handleSendMessage = async () => {
     if (!inputValue.trim()) return;
 
@@ -552,39 +440,46 @@ Would you like position-specific information or references?`;
     setIsTyping(true);
     setShowPrompts(false);
 
-    setTimeout(() => {
-      const response = generateIntelligentResponse(inputValue);
-      const responseText = response.text;
+    try {
+      // Use AI intelligence service for enhanced responses
+      const intelligentResponse = await aiIntelligenceService.generateIntelligentResponse(inputValue);
       
-      const assistantMessage: Message = {
-        id: Date.now() + 1,
-        type: 'assistant',
-        content: responseText,
-        timestamp: new Date()
-      };
+      setTimeout(() => {
+        const assistantMessage: Message = {
+          id: Date.now() + 1,
+          type: 'assistant',
+          content: intelligentResponse.text,
+          timestamp: new Date()
+        };
 
-      setMessages(prev => [...prev, assistantMessage]);
-      
-      // Add visual components if needed
-      if (response.showSkillsChart || response.showExperienceChart || response.showDownloads || response.showReferenceDownload) {
-        setTimeout(() => {
-          const visualMessage: Message = {
-            id: Date.now() + 2,
-            type: 'assistant',
-            content: 'visual-components',
-            timestamp: new Date(),
-            showSkillsChart: response.showSkillsChart,
-            showExperienceChart: response.showExperienceChart,
-            showDownloads: response.showDownloads,
-            showReferenceDownload: response.showReferenceDownload,
-            resumeType: response.resumeType
-          };
-          setMessages(prev => [...prev, visualMessage]);
-        }, 500);
-      }
-      
+        setMessages(prev => [...prev, assistantMessage]);
+        
+        // Add visual components if needed
+        if (intelligentResponse.showSkillsChart || intelligentResponse.showExperienceChart || 
+            intelligentResponse.showDownloads || intelligentResponse.showReferenceDownload) {
+          setTimeout(() => {
+            const visualMessage: Message = {
+              id: Date.now() + 2,
+              type: 'assistant',
+              content: 'visual-components',
+              timestamp: new Date(),
+              showSkillsChart: intelligentResponse.showSkillsChart,
+              showExperienceChart: intelligentResponse.showExperienceChart,
+              showDownloads: intelligentResponse.showDownloads,
+              showReferenceDownload: intelligentResponse.showReferenceDownload,
+              resumeType: intelligentResponse.resumeType
+            };
+            setMessages(prev => [...prev, visualMessage]);
+          }, 500);
+        }
+        
+        setIsTyping(false);
+      }, hasApiKey ? 1200 + Math.random() * 800 : 800);
+
+    } catch (error) {
+      console.error('Error generating response:', error);
       setIsTyping(false);
-    }, 1200 + Math.random() * 800);
+    }
   };
 
   const handleKeyPress = (e: React.KeyboardEvent) => {
@@ -605,12 +500,12 @@ Would you like position-specific information or references?`;
     ? 'min-h-screen w-full flex flex-col'
     : `${isFullscreen 
         ? 'fixed inset-0 z-50' 
-        : 'fixed bottom-6 right-6 w-96 h-[600px]'
+        : 'fixed bottom-4 right-4 w-80 sm:w-96 h-[500px] sm:h-[600px]'
       } glass-morphism rounded-2xl flex flex-col transition-all duration-500 ease-out
       transform ${isFullscreen ? 'scale-100' : 'hover:scale-[1.02]'}
       shadow-2xl shadow-cosmic-gold/10`;
 
-  return (
+  const chatContent = (
     <div className={containerClasses}>
       <ChatHeader 
         isFullscreen={isFullscreen}
@@ -619,7 +514,7 @@ Would you like position-specific information or references?`;
       />
 
       <div className="flex-1 overflow-y-auto">
-        <div className="max-w-4xl mx-auto p-6">
+        <div className="max-w-4xl mx-auto p-3 sm:p-6">
           <ChatWelcome 
             isFullscreen={isMainPage} 
             showWelcome={!showTerminalIntro && !terminalComplete && messages.length === 0}
@@ -629,7 +524,24 @@ Would you like position-specific information or references?`;
             <TerminalMessage onComplete={handleTerminalComplete} />
           )}
 
-          <div className="space-y-6">
+          {/* API Setup */}
+          {terminalComplete && !hasApiKey && (
+            <ApiKeySetup onApiKeySet={handleApiKeySet} />
+          )}
+
+          {/* AI Status */}
+          {terminalComplete && hasApiKey && (
+            <div className="mb-4 p-3 bg-cosmic-gold/10 rounded-lg border border-cosmic-gold/20">
+              <div className="flex items-center gap-2">
+                <Sparkles className="w-4 h-4 text-cosmic-gold animate-pulse" />
+                <span className="text-cosmic-gold text-sm font-medium">
+                  AI Intelligence Active - Powered by Deepseek R1
+                </span>
+              </div>
+            </div>
+          )}
+
+          <div className="space-y-4 sm:space-y-6">
             {messages.map((message, index) => {
               if (message.content === 'visual-components') {
                 return (
@@ -637,26 +549,34 @@ Would you like position-specific information or references?`;
                     {message.showSkillsChart && generateSkillsChart()}
                     {message.showExperienceChart && generateExperienceChart()}
                     {message.showDownloads && (
-                      <div className="bg-cosmic-black/50 p-4 rounded-lg">
+                      <div className="bg-cosmic-black/50 p-3 sm:p-4 rounded-lg">
                         <div className="flex items-center gap-2 mb-4">
-                          <Download className="w-5 h-5 text-cosmic-gold" />
-                          <h4 className="text-cosmic-gold font-semibold">Download Options</h4>
+                          <Download className="w-4 h-4 sm:w-5 sm:h-5 text-cosmic-gold" />
+                          <h4 className="text-cosmic-gold font-semibold text-sm sm:text-base">Download Options</h4>
                         </div>
-                        <div className="flex flex-wrap gap-3">
+                        <div className="grid grid-cols-2 sm:flex sm:flex-wrap gap-2 sm:gap-3">
                           <button
-                            onClick={() => downloadResume(message.resumeType || 'general')}
-                            className="flex items-center gap-2 px-4 py-2 bg-cosmic-gold/20 text-cosmic-gold rounded-lg hover:bg-cosmic-gold/30 transition-colors text-sm"
+                            onClick={() => downloadResume(message.resumeType || 'general', 'txt')}
+                            className="flex items-center justify-center gap-1 sm:gap-2 px-2 sm:px-3 py-2 bg-cosmic-gold/20 text-cosmic-gold rounded-lg hover:bg-cosmic-gold/30 transition-colors text-xs sm:text-sm"
                           >
-                            <FileText className="w-4 h-4" />
-                            Download Resume
+                            <FileText className="w-3 h-3 sm:w-4 sm:h-4" />
+                            <span className="hidden sm:inline">Download</span> TXT
+                          </button>
+                          <button
+                            onClick={() => downloadResume(message.resumeType || 'general', 'pdf')}
+                            className="flex items-center justify-center gap-1 sm:gap-2 px-2 sm:px-3 py-2 bg-cosmic-gold/20 text-cosmic-gold rounded-lg hover:bg-cosmic-gold/30 transition-colors text-xs sm:text-sm"
+                          >
+                            <FileText className="w-3 h-3 sm:w-4 sm:h-4" />
+                            <span className="hidden sm:inline">Download</span> PDF
                           </button>
                           {message.showReferenceDownload && (
                             <button
                               onClick={downloadReferences}
-                              className="flex items-center gap-2 px-4 py-2 bg-cosmic-gold/20 text-cosmic-gold rounded-lg hover:bg-cosmic-gold/30 transition-colors text-sm"
+                              className="col-span-2 sm:col-span-1 flex items-center justify-center gap-1 sm:gap-2 px-2 sm:px-3 py-2 bg-cosmic-gold/20 text-cosmic-gold rounded-lg hover:bg-cosmic-gold/30 transition-colors text-xs sm:text-sm"
                             >
-                              <Users className="w-4 h-4" />
-                              Download References
+                              <Users className="w-3 h-3 sm:w-4 sm:h-4" />
+                              <span className="sm:hidden">References</span>
+                              <span className="hidden sm:inline">Download References</span>
                             </button>
                           )}
                         </div>
@@ -677,12 +597,11 @@ Would you like position-specific information or references?`;
           </div>
 
           <TypingIndicator isVisible={isTyping} />
-
           <div ref={messagesEndRef} />
         </div>
       </div>
 
-      <QuickPrompts 
+      <EnhancedQuickPrompts 
         isVisible={showPrompts && terminalComplete && messages.length === 0}
         onPromptSelect={handlePromptSelect}
       />
@@ -696,6 +615,20 @@ Would you like position-specific information or references?`;
       />
     </div>
   );
+
+  // Wrap with mobile optimization for floating chat
+  if (!isMainPage && onToggleFullscreen) {
+    return (
+      <MobileOptimizedChat 
+        isFullscreen={isFullscreen} 
+        onToggleFullscreen={onToggleFullscreen}
+      >
+        {chatContent}
+      </MobileOptimizedChat>
+    );
+  }
+
+  return chatContent;
 };
 
 export default AIChat;
