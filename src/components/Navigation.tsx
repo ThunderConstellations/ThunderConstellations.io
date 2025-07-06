@@ -14,7 +14,7 @@ const Navigation = () => {
     { icon: Briefcase, label: 'Projects', path: '/projects' },
     { icon: FileText, label: 'Resume', path: '/resume' },
     { icon: Users, label: 'References', path: '/references' },
-    { icon: Mail, label: 'Contact Me', path: '/contact' }
+    { icon: Mail, label: 'Contact', path: '/contact' }
   ];
 
   const toggleSidebar = () => setIsOpen(!isOpen);
@@ -47,9 +47,9 @@ const Navigation = () => {
         ${isOpen ? 'translate-x-0' : '-translate-x-full'}
         glass-morphism border-r border-cosmic-gold/20
       `}>
-        <div className="p-8">
+        <div className="p-8 h-full flex flex-col">
           {/* Enhanced Logo/Brand with Name */}
-          <div className="mb-12 mt-16">
+          <div className="mb-8 mt-16">
             <div className="flex items-center gap-3 mb-4">
               <Zap className="w-8 h-8 text-cosmic-gold animate-lightning-glow" />
               <div>
@@ -63,29 +63,37 @@ const Navigation = () => {
             </div>
           </div>
 
-          {/* Navigation Items */}
-          <ul className="space-y-2">
-            {navItems.map((item) => {
-              const Icon = item.icon;
-              const isActive = location.pathname === item.path;
-              
-              return (
-                <li key={item.path}>
-                  <Link
-                    to={item.path}
-                    onClick={toggleSidebar}
-                    className={`nav-item ${isActive ? 'active' : ''}`}
-                  >
-                    <Icon className="w-5 h-5" />
-                    <span>{item.label}</span>
-                  </Link>
-                </li>
-              );
-            })}
-          </ul>
+          {/* Navigation Items - with better spacing and overflow handling */}
+          <div className="flex-1 overflow-y-auto">
+            <ul className="space-y-3">
+              {navItems.map((item) => {
+                const Icon = item.icon;
+                const isActive = location.pathname === item.path;
+                
+                return (
+                  <li key={item.path}>
+                    <Link
+                      to={item.path}
+                      onClick={toggleSidebar}
+                      className={`
+                        flex items-center gap-4 px-4 py-3 rounded-lg transition-all duration-200
+                        ${isActive 
+                          ? 'bg-cosmic-gold/20 text-cosmic-gold border border-cosmic-gold/30' 
+                          : 'text-cosmic-starlight/80 hover:text-cosmic-gold hover:bg-cosmic-gold/10 border border-transparent hover:border-cosmic-gold/20'
+                        }
+                      `}
+                    >
+                      <Icon className="w-5 h-5 flex-shrink-0" />
+                      <span className="font-medium">{item.label}</span>
+                    </Link>
+                  </li>
+                );
+              })}
+            </ul>
+          </div>
 
           {/* Enhanced Footer */}
-          <div className="absolute bottom-8 left-8 right-8">
+          <div className="mt-8">
             <div className="glass-morphism p-4 rounded-lg text-center border border-cosmic-gold/20">
               <div className="mb-3">
                 <p className="text-sm font-medium text-cosmic-gold mb-1">Austin Wood</p>
