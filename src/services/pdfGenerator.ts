@@ -43,7 +43,7 @@ export class PDFGeneratorService {
     doc.setFont('helvetica', 'bold');
     doc.text(name, 20, 30);
     
-    // Contact info
+    // Contact info with proper spacing
     doc.setFontSize(10);
     doc.setFont('helvetica', 'normal');
     let yPos = 40;
@@ -144,8 +144,8 @@ export class PDFGeneratorService {
 
   private getPositionSpecificResumeContent(position: ResumeType): string {
     const contactHeader = `Austin Wood
-📧 19austinwood96@gmail.com | 📱 (219) 299-3702 | 📍 Chicago, IL 60626
-🌐 auconstellations.wordpress.com | 💼 linkedin.com/in/austin-wood-a1b2c3/`;
+Email: 19austinwood96@gmail.com | Phone: (219) 299-3702 | Location: Chicago, IL 60626
+Website: auconstellations.wordpress.com | LinkedIn: linkedin.com/in/austin-wood-a1b2c3/`;
 
     if (position === 'it') {
       return `${contactHeader}
@@ -288,8 +288,8 @@ Filing & Documentation, Calendar Coordination, Customer Communication, Intake/Di
 
   private getGeneralResumeContent(): string {
     return `Austin Wood
-📧 19austinwood96@gmail.com | 📱 (219) 299-3702 | 📍 Chicago, IL 60626
-🌐 auconstellations.wordpress.com | 💼 linkedin.com/in/austin-wood-a1b2c3/
+Email: 19austinwood96@gmail.com | Phone: (219) 299-3702 | Location: Chicago, IL 60626
+Website: auconstellations.wordpress.com | LinkedIn: linkedin.com/in/austin-wood-a1b2c3/
 
 **Professional Resume**
 
@@ -327,174 +327,6 @@ Team Leadership, Documentation, Office Software, Case Management, Filing Systems
 • Google IT Support Certificate: https://coursera.org/verify/WT6EVZUJU9ZX
 • QSEP COVID-19 Training – CMS, 2020
 • In Progress: CompTIA A+, Microsoft Azure Fundamentals, AWS Cloud Practitioner`;
-  }
-
-  generateComprehensiveResumePDF(): jsPDF {
-    const data = this.getComprehensiveResumeData();
-    const doc = new jsPDF();
-    let yPos = 20;
-
-    // Header
-    const contact = [
-      `📧 ${data.email}`,
-      `📱 ${data.phone}`,
-      `📍 ${data.location}`,
-      `🔗 ${data.linkedin}`
-    ];
-    yPos = this.addHeader(doc, data.name, contact);
-
-    // Summary
-    yPos = this.checkPageSpace(doc, yPos);
-    yPos = this.addSection(doc, 'Professional Summary', yPos);
-    doc.setFontSize(10);
-    doc.setFont('helvetica', 'normal');
-    yPos = this.wrapText(doc, data.summary, 20, yPos, 170) + 10;
-
-    // Experience
-    yPos = this.checkPageSpace(doc, yPos);
-    yPos = this.addSection(doc, 'Professional Experience', yPos);
-    
-    data.experience.forEach(exp => {
-      yPos = this.checkPageSpace(doc, yPos, 50);
-      
-      doc.setFontSize(11);
-      doc.setFont('helvetica', 'bold');
-      doc.text(`${exp.position} - ${exp.company}`, 20, yPos);
-      
-      doc.setFontSize(9);
-      doc.setFont('helvetica', 'italic');
-      doc.text(exp.duration, 20, yPos + 5);
-      
-      yPos += 12;
-      doc.setFontSize(9);
-      doc.setFont('helvetica', 'normal');
-      
-      exp.responsibilities.forEach(resp => {
-        yPos = this.checkPageSpace(doc, yPos);
-        yPos = this.wrapText(doc, `• ${resp}`, 25, yPos, 165) + 2;
-      });
-      yPos += 5;
-    });
-
-    // Education & Leadership
-    yPos = this.checkPageSpace(doc, yPos);
-    yPos = this.addSection(doc, 'Education & Leadership', yPos);
-    
-    data.education.forEach(edu => {
-      yPos = this.checkPageSpace(doc, yPos, 40);
-      
-      doc.setFontSize(11);
-      doc.setFont('helvetica', 'bold');
-      doc.text(edu.degree, 20, yPos);
-      
-      doc.setFontSize(10);
-      doc.setFont('helvetica', 'normal');
-      doc.text(edu.institution, 20, yPos + 5);
-      
-      yPos += 12;
-      
-      if (edu.details) {
-        edu.details.forEach(detail => {
-          yPos = this.checkPageSpace(doc, yPos);
-          yPos = this.wrapText(doc, `• ${detail}`, 25, yPos, 165) + 2;
-        });
-      }
-      yPos += 5;
-    });
-
-    // Skills
-    yPos = this.checkPageSpace(doc, yPos);
-    yPos = this.addSection(doc, 'Core Competencies', yPos);
-    
-    doc.setFontSize(10);
-    doc.setFont('helvetica', 'normal');
-    const skillsText = data.skills.join(', ');
-    yPos = this.wrapText(doc, skillsText, 20, yPos, 170) + 10;
-
-    // Certifications
-    yPos = this.checkPageSpace(doc, yPos);
-    yPos = this.addSection(doc, 'Certifications & Professional Development', yPos);
-    
-    data.certifications.forEach(cert => {
-      yPos = this.checkPageSpace(doc, yPos);
-      yPos = this.wrapText(doc, `• ${cert}`, 20, yPos, 170) + 2;
-    });
-
-    yPos += 10;
-
-    // Professional References
-    yPos = this.checkPageSpace(doc, yPos);
-    yPos = this.addSection(doc, 'Professional References', yPos);
-
-    data.references.forEach((reference, index) => {
-      yPos = this.checkPageSpace(doc, yPos, 80);
-      
-      // Reference header
-      doc.setFontSize(12);
-      doc.setFont('helvetica', 'bold');
-      doc.text(`Reference ${index + 1}: ${reference.name}`, 20, yPos);
-      yPos += 7;
-      
-      doc.setFontSize(10);
-      doc.setFont('helvetica', 'normal');
-      doc.text(`${reference.title} - ${reference.organization}`, 20, yPos);
-      yPos += 5;
-      
-      doc.setFontSize(9);
-      doc.setFont('helvetica', 'normal');
-      doc.text(`${reference.relationship} | ${reference.duration}`, 20, yPos);
-      yPos += 5;
-      
-      doc.text(`📧 ${reference.email} | 📱 ${reference.phone}`, 20, yPos);
-      yPos += 8;
-      
-      // Professional Summary
-      doc.setFontSize(9);
-      doc.setFont('helvetica', 'bold');
-      doc.text('Professional Summary:', 20, yPos);
-      yPos += 5;
-      
-      doc.setFont('helvetica', 'normal');
-      yPos = this.wrapText(doc, reference.summary, 20, yPos, 170) + 5;
-      
-      // Key Highlights
-      yPos = this.checkPageSpace(doc, yPos, 30);
-      doc.setFont('helvetica', 'bold');
-      doc.text('Key Highlights:', 20, yPos);
-      yPos += 5;
-      
-      doc.setFont('helvetica', 'normal');
-      reference.highlights.forEach(highlight => {
-        yPos = this.checkPageSpace(doc, yPos);
-        yPos = this.wrapText(doc, `• ${highlight}`, 25, yPos, 165) + 2;
-      });
-      
-      yPos += 3;
-      
-      // Testimonial
-      yPos = this.checkPageSpace(doc, yPos, 25);
-      doc.setFont('helvetica', 'bold');
-      doc.text('Letter of Recommendation:', 20, yPos);
-      yPos += 5;
-      
-      doc.setFont('helvetica', 'italic');
-      yPos = this.wrapText(doc, `"${reference.testimonial}"`, 20, yPos, 170) + 10;
-      
-      // Add separator line between references (except for the last one)
-      if (index < data.references.length - 1) {
-        yPos = this.checkPageSpace(doc, yPos);
-        doc.setLineWidth(0.3);
-        doc.line(20, yPos, 190, yPos);
-        yPos += 10;
-      }
-    });
-
-    return doc;
-  }
-
-  downloadComprehensiveResume() {
-    const doc = this.generateComprehensiveResumePDF();
-    doc.save('Austin_Wood_Complete_Resume_and_References.pdf');
   }
 
   private getComprehensiveResumeData(): ResumeData {

@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { Download, Mail, Phone, MapPin, Github, Linkedin, Award, FileText, Globe, Users, Code, Zap } from 'lucide-react';
 import { pdfGeneratorService } from '../services/pdfGenerator';
@@ -8,8 +9,8 @@ const Resume = () => {
   };
 
   return (
-    <div className="cosmic-bg min-h-screen p-8">
-      <div className="max-w-5xl mx-auto pt-20">
+    <div className="cosmic-bg min-h-screen">
+      <div className="max-w-5xl mx-auto px-8 py-8 pt-24">
         <div className="text-center mb-12">
           <h1 className="text-5xl font-bold mb-6">
             <span className="text-cosmic-starlight">Professional</span>
@@ -18,9 +19,9 @@ const Resume = () => {
           
           {/* Single Comprehensive Download */}
           <div className="flex justify-center mb-8">
-            <div className="glass-morphism p-6 rounded-lg max-w-md">
+            <div className="glass-morphism p-6 rounded-lg max-w-md w-full">
               <h3 className="text-cosmic-gold font-semibold mb-2 text-lg">Complete Resume & References</h3>
-              <p className="text-cosmic-starlight/70 text-sm mb-4">
+              <p className="text-cosmic-starlight/70 text-sm mb-4 leading-relaxed">
                 Comprehensive document including all experience, skills, education, certifications, and professional references with detailed testimonials
               </p>
               <button 
@@ -41,28 +42,28 @@ const Resume = () => {
             <p className="text-lg text-cosmic-starlight/80 mb-4">Healthcare Professional & Technology Innovator</p>
             <div className="flex flex-wrap justify-center gap-6 text-sm text-cosmic-starlight/70">
               <div className="flex items-center gap-2">
-                <Mail className="w-4 h-4 text-cosmic-gold" />
-                19austinwood96@gmail.com
+                <Mail className="w-4 h-4 text-cosmic-gold flex-shrink-0" />
+                <span>19austinwood96@gmail.com</span>
               </div>
               <div className="flex items-center gap-2">
-                <Phone className="w-4 h-4 text-cosmic-gold" />
-                (219) 299-3702
+                <Phone className="w-4 h-4 text-cosmic-gold flex-shrink-0" />
+                <span>(219) 299-3702</span>
               </div>
               <div className="flex items-center gap-2">
-                <MapPin className="w-4 h-4 text-cosmic-gold" />
-                Chicago, IL 60626
+                <MapPin className="w-4 h-4 text-cosmic-gold flex-shrink-0" />
+                <span>Chicago, IL 60626</span>
               </div>
               <div className="flex items-center gap-2">
-                <Linkedin className="w-4 h-4 text-cosmic-gold" />
-                linkedin.com/in/austin-wood-a1b2c3
+                <Linkedin className="w-4 h-4 text-cosmic-gold flex-shrink-0" />
+                <span>linkedin.com/in/austin-wood-a1b2c3</span>
               </div>
             </div>
           </div>
 
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-            <div className="lg:col-span-2">
+            <div className="lg:col-span-2 space-y-8">
               {/* Professional Summary */}
-              <div className="mb-8">
+              <div>
                 <h3 className="text-2xl font-bold text-cosmic-gold mb-4">Professional Summary</h3>
                 <p className="text-cosmic-starlight/90 leading-relaxed">
                   Versatile healthcare professional and technology innovator with 10+ years combined experience in 
@@ -74,7 +75,7 @@ const Resume = () => {
               </div>
 
               {/* Professional Experience */}
-              <div className="mb-8">
+              <div>
                 <h2 className="text-2xl font-bold text-cosmic-gold mb-6">Professional Experience</h2>
                 
                 <div className="space-y-8">
@@ -118,15 +119,15 @@ const Resume = () => {
               </div>
             </div>
 
-            <div>
+            <div className="space-y-8">
               {/* Core Skills */}
-              <div className="mb-8">
+              <div>
                 <h2 className="text-2xl font-bold text-cosmic-gold mb-4">Core Skills</h2>
                 
                 <div className="space-y-6">
                   <div>
                     <h4 className="font-semibold text-cosmic-gold mb-3 flex items-center gap-2">
-                      <Users className="w-4 h-4" />
+                      <Users className="w-4 h-4 flex-shrink-0" />
                       Healthcare Expertise
                     </h4>
                     <div className="flex flex-wrap gap-2">
@@ -140,7 +141,7 @@ const Resume = () => {
 
                   <div>
                     <h4 className="font-semibold text-cosmic-gold mb-3 flex items-center gap-2">
-                      <Zap className="w-4 h-4" />
+                      <Zap className="w-4 h-4 flex-shrink-0" />
                       Leadership & Management
                     </h4>
                     <div className="flex flex-wrap gap-2">
@@ -154,7 +155,7 @@ const Resume = () => {
 
                   <div>
                     <h4 className="font-semibold text-cosmic-gold mb-3 flex items-center gap-2">
-                      <Code className="w-4 h-4" />
+                      <Code className="w-4 h-4 flex-shrink-0" />
                       Technical Skills
                     </h4>
                     <div className="flex flex-wrap gap-2">
@@ -169,44 +170,42 @@ const Resume = () => {
               </div>
 
               {/* Education & Leadership */}
-              <div className="mb-8">
+              <div>
                 <h2 className="text-2xl font-bold text-cosmic-gold mb-4">Education & Leadership</h2>
-                <div className="space-y-6">
-                  <div className="glass-morphism p-4 rounded-lg">
-                    <h4 className="font-semibold text-cosmic-gold mb-2">Associate of Psychology</h4>
-                    <p className="text-cosmic-starlight/70 text-sm mb-3">Ivy Tech Community College • 2016-2018</p>
+                <div className="glass-morphism p-4 rounded-lg">
+                  <h4 className="font-semibold text-cosmic-gold mb-2">Associate of Psychology</h4>
+                  <p className="text-cosmic-starlight/70 text-sm mb-3">Ivy Tech Community College • 2016-2018</p>
+                  
+                  <div className="space-y-3">
+                    <div className="border-l-2 border-cosmic-gold/50 pl-3">
+                      <h5 className="font-medium text-cosmic-gold text-sm mb-1">Founder & President - Virtual Studio Programming Club</h5>
+                      <p className="text-cosmic-starlight/70 text-xs mb-2">2016-2018 • 2 Years Leadership</p>
+                      <ul className="text-cosmic-starlight/60 text-xs space-y-1">
+                        <li>• Founded innovative programming club focused on CAD, animation, and coding education</li>
+                        <li>• Led weekly workshops teaching AutoCAD, Blender, and programming fundamentals</li>
+                        <li>• Grew club membership from 5 to 30+ active participants</li>
+                        <li>• Collaborated with college IT department to secure lab access and software licenses</li>
+                        <li>• Organized inter-collegiate programming competitions and design showcases</li>
+                      </ul>
+                    </div>
                     
-                    <div className="space-y-3">
-                      <div className="border-l-2 border-cosmic-gold/50 pl-3">
-                        <h5 className="font-medium text-cosmic-gold text-sm mb-1">Founder & President - Virtual Studio Programming Club</h5>
-                        <p className="text-cosmic-starlight/70 text-xs mb-2">2016-2018 • 2 Years Leadership</p>
-                        <ul className="text-cosmic-starlight/60 text-xs space-y-1">
-                          <li>• Founded innovative programming club focused on CAD, animation, and coding education</li>
-                          <li>• Led weekly workshops teaching AutoCAD, Blender, and programming fundamentals</li>
-                          <li>• Grew club membership from 5 to 30+ active participants</li>
-                          <li>• Collaborated with college IT department to secure lab access and software licenses</li>
-                          <li>• Organized inter-collegiate programming competitions and design showcases</li>
-                        </ul>
-                      </div>
-                      
-                      <div className="border-l-2 border-cosmic-gold/30 pl-3">
-                        <h5 className="font-medium text-cosmic-gold text-sm">Vice President - DECA</h5>
-                        <p className="text-cosmic-starlight/60 text-xs">Business and marketing leadership development</p>
-                      </div>
-                      
-                      <div className="border-l-2 border-cosmic-gold/30 pl-3">
-                        <h5 className="font-medium text-cosmic-gold text-sm">Group Counseling Aide & Volunteer</h5>
-                        <p className="text-cosmic-starlight/60 text-xs">5 years total: 2.5 years group therapy + 2.5 years minority support group</p>
-                      </div>
+                    <div className="border-l-2 border-cosmic-gold/30 pl-3">
+                      <h5 className="font-medium text-cosmic-gold text-sm">Vice President - DECA</h5>
+                      <p className="text-cosmic-starlight/60 text-xs">Business and marketing leadership development</p>
+                    </div>
+                    
+                    <div className="border-l-2 border-cosmic-gold/30 pl-3">
+                      <h5 className="font-medium text-cosmic-gold text-sm">Group Counseling Aide & Volunteer</h5>
+                      <p className="text-cosmic-starlight/60 text-xs">5 years total: 2.5 years group therapy + 2.5 years minority support group</p>
                     </div>
                   </div>
                 </div>
               </div>
 
               {/* Certifications */}
-              <div className="mb-8">
+              <div>
                 <h2 className="text-2xl font-bold text-cosmic-gold mb-4 flex items-center gap-2">
-                  <Award className="w-5 h-5" />
+                  <Award className="w-5 h-5 flex-shrink-0" />
                   Certifications & Professional Development
                 </h2>
                 <div className="space-y-3">
@@ -264,7 +263,7 @@ const Resume = () => {
         {/* Reference Note */}
         <div className="glass-morphism rounded-xl p-6 mb-8">
           <h2 className="text-2xl font-bold text-cosmic-gold mb-4">Professional References</h2>
-          <p className="text-cosmic-starlight/80 mb-4">
+          <p className="text-cosmic-starlight/80 mb-4 leading-relaxed">
             Five professional references with detailed testimonials and recommendations are included in the downloadable PDF resume. 
             References include direct supervisors, healthcare colleagues, academic advisors, and educators who can provide comprehensive insights into my 
             professional performance, clinical skills, leadership abilities, and character.
