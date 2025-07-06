@@ -14,7 +14,7 @@ const Navigation = () => {
     { icon: Briefcase, label: 'Projects', path: '/projects' },
     { icon: FileText, label: 'Resume', path: '/resume' },
     { icon: Users, label: 'References', path: '/references' },
-    { icon: Mail, label: 'Contact', path: '/contact' }
+    { icon: Mail, label: 'Contact Me', path: '/contact' }
   ];
 
   const toggleSidebar = () => setIsOpen(!isOpen);
