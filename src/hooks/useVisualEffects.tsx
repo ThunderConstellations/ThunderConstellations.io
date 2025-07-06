@@ -11,7 +11,7 @@ interface VisualEffectsConfig {
 
 export const useVisualEffects = (config: VisualEffectsConfig = {}) => {
   const [isActive, setIsActive] = useState(false);
-  const [performance, setPerformance] = useState<'high' | 'medium' | 'low'>('high');
+  const [performanceLevel, setPerformanceLevel] = useState<'high' | 'medium' | 'low'>('high');
   const frameTimeRef = useRef<number[]>([]);
 
   // Monitor performance and adjust effects accordingly
@@ -27,11 +27,11 @@ export const useVisualEffects = (config: VisualEffectsConfig = {}) => {
         ) / (frameTimes.length - 1);
         
         if (avgFrameTime > 20) {
-          setPerformance('low');
+          setPerformanceLevel('low');
         } else if (avgFrameTime > 16) {
-          setPerformance('medium');
+          setPerformanceLevel('medium');
         } else {
-          setPerformance('high');
+          setPerformanceLevel('high');
         }
         
         frameTimeRef.current = [];
@@ -66,14 +66,14 @@ export const useVisualEffects = (config: VisualEffectsConfig = {}) => {
     };
 
     // Adjust based on performance
-    if (performance === 'low') {
+    if (performanceLevel === 'low') {
       return {
         ...baseConfig,
         enableParticles: false,
         enableConstellation: false,
         intensity: 0.3
       };
-    } else if (performance === 'medium') {
+    } else if (performanceLevel === 'medium') {
       return {
         ...baseConfig,
         intensity: 0.6
@@ -85,7 +85,7 @@ export const useVisualEffects = (config: VisualEffectsConfig = {}) => {
 
   return {
     isActive,
-    performance,
+    performance: performanceLevel,
     effectConfig: getEffectConfig(),
     toggleEffects: () => setIsActive(prev => !prev)
   };
