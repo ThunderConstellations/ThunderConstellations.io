@@ -1,7 +1,16 @@
 
+import React from 'react';
 import { useState, useEffect, useRef } from 'react';
 
 // visual effects hook - this is probably overkill but looks nice UwU
+interface VisualEffectsConfig {
+  enableParticles?: boolean;
+  enableLightning?: boolean;
+  enableStarField?: boolean;
+  enableConstellation?: boolean;
+  intensity?: number;
+}
+
 export const useVisualEffects = (config: VisualEffectsConfig = {}) => {
   const [isActive, setIsActive] = useState(false);
   const [performanceLevel, setPerformanceLevel] = useState<'high' | 'medium' | 'low'>('high');
