@@ -1,7 +1,7 @@
 
 # ⚡ Thunder Constellations - Austin Wood Portfolio
 
-> *"Menta Health Care, IT Support, and Cringe Specialist * 🏥💻
+> *"Mental Health Care, IT Support, and Cringe Specialist * 🏥💻
 
 ## 🌟 Live Demo
 **Visit my portfolio:** [https://thunderconstellations.github.io/ThunderConstellations.io/](https://thunderconstellations.github.io/ThunderConstellations.io/)
@@ -12,7 +12,7 @@ Hey there! I'm Austin Wood - a healthcare professional with a passion for techno
 
 **What I do:**
 - 🏥 Healthcare case management & team leadership
-- 💻 Full-stack development (React, TypeScript, Node.js)
+- 💻 It Support / Entry level develop
 - 🎨 UI/UX design with a focus on accessibility
 - 🤖 AI integration and automation
 - 📊 Data visualization and analytics
@@ -24,7 +24,7 @@ Hey there! I'm Austin Wood - a healthcare professional with a passion for techno
 ### Option 1: Hire Me! 🎯
 **I'm available for:**
 - Healthcare technology consulting
-- Full-stack development projects
+- Ju development projects
 - UI/UX design work
 - AI integration projects
 - Team leadership roles
