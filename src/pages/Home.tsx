@@ -1,9 +1,12 @@
 
 import React from 'react';
+import { motion } from 'framer-motion';
 import LightningHero from '../components/LightningHero';
 import AnimatedSection from '../components/AnimatedSection';
 import HealthcareExcellence from '../components/HealthcareExcellence';
 import ScrollIndicator from '../components/ScrollIndicator';
+import BackgroundLayers from '../components/graphics/BackgroundLayers';
+import AIChat from '../components/AIChat';
 
 // home page - crosses fingers and hopes this works....and if it does ALL HAIL THE GLOW CLOUD and we only mildly wonder why it did afterwards
 const Home = () => {
