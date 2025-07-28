@@ -2,7 +2,7 @@
   "name": "thunder-constellations-portfolio",
   "private": true,
   "version": "1.2.3",
-  "homepage": "https://thunderconstellations.github.io",
+  "homepage": "https://thunderconstellations.github.io/ThunderConstellations.io",
   "type": "module",
   "scripts": {
     "dev": "vite",
