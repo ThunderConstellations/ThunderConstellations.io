@@ -1,6 +1,5 @@
 
-import React from 'react';
-import { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 
 // visual effects hook - this is probably overkill but looks nice UwU
 interface VisualEffectsConfig {

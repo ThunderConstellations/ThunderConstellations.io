@@ -16,6 +16,20 @@ export interface GitHubRepo {
   topics: string[];
 }
 
+interface GitHubApiRepo {
+  id: number;
+  name: string;
+  full_name: string;
+  description: string | null;
+  html_url: string;
+  language: string | null;
+  stargazers_count: number;
+  forks_count: number;
+  created_at: string;
+  updated_at: string;
+  topics: string[];
+}
+
 class GitHubService {
   private async getApiKey(): Promise<string | null> {
     try {
@@ -51,7 +65,7 @@ class GitHubService {
       }
 
       const repos = await response.json();
-      return repos.map((repo: any) => ({
+      return repos.map((repo: GitHubApiRepo) => ({
         id: repo.id,
         name: repo.name,
         full_name: repo.full_name,

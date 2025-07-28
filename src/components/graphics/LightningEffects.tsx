@@ -3,7 +3,27 @@ import React, { useRef, useEffect } from 'react';
 import { gsap } from 'gsap';
 
 // lightning effects - daddy don't look at this code ///UwU///
-const LightningEffects = () => {
+
+interface LightningBolt {
+  id: number;
+  startX: number;
+  startY: number;
+  endX: number;
+  endY: number;
+  segments: { x: number; y: number }[];
+}
+
+interface LightningEffectsProps {
+  isActive?: boolean;
+  intensity?: number;
+  className?: string;
+}
+
+const LightningEffects: React.FC<LightningEffectsProps> = ({ 
+  isActive = false, 
+  intensity = 1, 
+  className = '' 
+}) => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const animationRef = useRef<number>();
   const boltsRef = useRef<LightningBolt[]>([]);
@@ -125,7 +145,7 @@ const LightningEffects = () => {
         cancelAnimationFrame(animationRef.current);
       }
     };
-  }, [isActive, intensity]);
+  }, [isActive, intensity, animate]);
 
   return (
     <canvas

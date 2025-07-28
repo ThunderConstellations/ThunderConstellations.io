@@ -140,7 +140,7 @@ These experiences taught me that process improvement isn't about imposing soluti
     url: `#${post.id}`
   }));
 
-  const handleSearchResult = (item: any) => {
+  const handleSearchResult = (item: { id: string; title: string; content: string; category: string; url?: string }) => {
     const post = blogPosts.find(p => p.id === item.id);
     if (post) {
       setSelectedPost(post);

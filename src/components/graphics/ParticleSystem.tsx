@@ -64,7 +64,7 @@ const ParticleSystem: React.FC<{
         ctx.stroke();
         break;
         
-      case 'glow':
+      case 'glow': {
         const gradient = ctx.createRadialGradient(
           particle.x, particle.y, 0,
           particle.x, particle.y, particle.size * 2
@@ -76,6 +76,7 @@ const ParticleSystem: React.FC<{
         ctx.arc(particle.x, particle.y, particle.size * 2, 0, Math.PI * 2);
         ctx.fill();
         break;
+      }
     }
 
     ctx.restore();

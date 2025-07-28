@@ -33,7 +33,7 @@ class EmailJSService {
     }
   }
 
-  async sendEmail(templateParams: Record<string, any>): Promise<boolean> {
+  async sendEmail(templateParams: Record<string, string | number | boolean>): Promise<boolean> {
     try {
       const config = await this.getConfig();
       if (!config) {
