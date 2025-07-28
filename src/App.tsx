@@ -20,7 +20,7 @@ import NotFound from "./pages/NotFound";
 function App() {
   // crosses fingers and hopes this works....and if it does ALL HAIL THE GLOW CLOUD and we only mildly wonder why it did afterwards
   return (
-    <Router>
+    <Router basename={import.meta.env.PROD ? '/ThunderConstellations.io' : '/'}>
       <div className="min-h-screen bg-black text-white">
         <Navigation />
         
