@@ -50,4 +50,5 @@ class FormspreeService {
   }
 }
 
+// Formspree service - this is probably overkill but looks nice OwO
 export const formspreeService = new FormspreeService();

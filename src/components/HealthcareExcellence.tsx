@@ -1,7 +1,9 @@
 
 import React from 'react';
-import { Heart, Users, TrendingUp, Award, Shield, Target } from 'lucide-react';
+import { motion } from 'framer-motion';
+import { Heart, Users, Award, Clock, Shield, Target } from 'lucide-react';
 
+// healthcare excellence - spent way too long on this section *nuzzles*
 const HealthcareExcellence = () => {
   const achievements = [
     {
@@ -19,7 +21,7 @@ const HealthcareExcellence = () => {
       details: 'Managed complex cases involving mental health, long-term care, and crisis intervention'
     },
     {
-      icon: TrendingUp,
+      icon: Award,
       title: 'Outcome Improvement',
       metric: '40%',
       description: 'Improvement in patient outcomes through systematic care coordination',

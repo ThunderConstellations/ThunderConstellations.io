@@ -12,6 +12,7 @@ interface BackgroundLayersProps {
   className?: string;
 }
 
+// background layers - this is probably overkill but looks nice OwO
 const BackgroundLayers: React.FC<BackgroundLayersProps> = ({ 
   variant = 'full',
   className = '' 

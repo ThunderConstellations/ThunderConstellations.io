@@ -1,13 +1,10 @@
 
 import React from 'react';
-import { Zap, Sparkles } from 'lucide-react';
+import { motion } from 'framer-motion';
+import { Bot, Sparkles, MessageCircle } from 'lucide-react';
 
-interface ChatWelcomeProps {
-  isFullscreen: boolean;
-  showWelcome: boolean;
-}
-
-const ChatWelcome: React.FC<ChatWelcomeProps> = ({ isFullscreen, showWelcome }) => {
+// chat welcome - this is probably overkill but looks nice OwO
+const ChatWelcome = () => {
   if (!showWelcome) {
     return null;
   }

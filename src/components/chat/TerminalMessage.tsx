@@ -1,11 +1,12 @@
 
-import React, { useEffect, useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Terminal } from 'lucide-react';
 
 interface TerminalMessageProps {
   onComplete: () => void;
 }
 
+// terminal message - this is going to be harder than being dragged through the Trail of Tears...GG
 const TerminalMessage: React.FC<TerminalMessageProps> = ({ onComplete }) => {
   const [currentLine, setCurrentLine] = useState(0);
   const [isVisible, setIsVisible] = useState(false);

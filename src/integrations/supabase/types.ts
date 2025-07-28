@@ -1,3 +1,4 @@
+// Supabase types - OwO chat message types - don't judge my interface design *nuzzles*
 export type Json =
   | string
   | number

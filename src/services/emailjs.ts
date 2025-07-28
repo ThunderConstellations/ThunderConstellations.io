@@ -2,6 +2,7 @@
 import emailjs from '@emailjs/browser';
 import { supabase } from '@/integrations/supabase/client';
 
+// EmailJS service - hope this works *crosses fingers*
 export interface EmailJSConfig {
   publicKey: string;
   serviceId: string;

@@ -1,11 +1,11 @@
 
-import React, { useState } from 'react';
-import { motion } from 'framer-motion';
+import React from 'react';
 import LightningHero from '../components/LightningHero';
-import AIChat from '../components/AIChat';
-import BackgroundLayers from '../components/graphics/BackgroundLayers';
+import AnimatedSection from '../components/AnimatedSection';
+import HealthcareExcellence from '../components/HealthcareExcellence';
 import ScrollIndicator from '../components/ScrollIndicator';
 
+// home page - crosses fingers and hopes this works....and if it does ALL HAIL THE GLOW CLOUD and we only mildly wonder why it did afterwards
 const Home = () => {
   return (
     <motion.div 

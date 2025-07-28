@@ -1,16 +1,9 @@
 
 import React from 'react';
-import { ResponsiveContainer, RadarChart, PolarGrid, PolarAngleAxis, PolarRadiusAxis, Radar } from 'recharts';
+import { Radar, RadarChart, PolarGrid, PolarAngleAxis, PolarRadiusAxis, ResponsiveContainer } from 'recharts';
 
-interface SkillsRadarChartProps {
-  data: Array<{
-    category: string;
-    score: number;
-  }>;
-  title: string;
-}
-
-const SkillsRadarChart: React.FC<SkillsRadarChartProps> = ({ data, title }) => {
+// skills radar chart - TODO: make this more interactive later *nuzzles*
+const SkillsRadarChart = () => {
   return (
     <div className="glass-morphism p-6 rounded-xl">
       <h3 className="text-2xl font-bold text-cosmic-gold mb-6 text-center">{title}</h3>

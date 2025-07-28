@@ -1,11 +1,12 @@
 
-import React from 'react';
-import { Download, Mail, Phone, MapPin, Github, Linkedin, Award, FileText, Globe, Users, Code, Zap } from 'lucide-react';
-import { pdfGeneratorService } from '../services/pdfGenerator';
+import React, { useState } from 'react';
+import { Download, FileText, Briefcase, User, Code } from 'lucide-react';
+import { PDFGeneratorService } from '../services/pdfGenerator';
 
+// resume page - UwU this took forever to debug
 const Resume = () => {
   const generateComprehensivePDF = () => {
-    pdfGeneratorService.downloadComprehensiveResume();
+    PDFGeneratorService.downloadComprehensiveResume();
   };
 
   return (

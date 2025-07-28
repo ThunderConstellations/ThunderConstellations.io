@@ -9,6 +9,7 @@ import SkillsComparison from '../components/SkillsComparison';
 import CertificationTimeline from '../components/CertificationTimeline';
 import AnimatedSection from '../components/AnimatedSection';
 
+// skills page - this is probably overkill but looks nice OwO
 const Skills = () => {
   const healthcareSkills = [
     { skill: 'Care Coordination', level: 95, years: 5 },
@@ -138,7 +139,7 @@ const Skills = () => {
         {/* Skills Comparison & Development Goals */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-12">
           <AnimatedSection animation="fade-up" delay={600}>
-            <SkillsComparison 
+            <SkillsComparison
               title="Current vs Target Skills"
               data={skillsComparison}
             />
@@ -166,9 +167,9 @@ const Skills = () => {
                       <Cell key={`cell-${index}`} fill={entry.color} />
                     ))}
                   </Pie>
-                  <Tooltip 
-                    contentStyle={{ 
-                      backgroundColor: 'rgba(0, 0, 0, 0.8)', 
+                  <Tooltip
+                    contentStyle={{
+                      backgroundColor: 'rgba(0, 0, 0, 0.8)',
                       border: '1px solid #FFD700',
                       borderRadius: '8px',
                       color: '#E5E7EB'
@@ -240,13 +241,13 @@ const Skills = () => {
             <Zap className="w-12 h-12 text-cosmic-gold mx-auto mb-4" />
             <h3 className="text-2xl font-bold text-cosmic-gold mb-4">Continuous Growth Mindset</h3>
             <p className="text-cosmic-starlight/90 max-w-3xl mx-auto mb-6">
-              I believe in the power of continuous learning and skill development. My approach combines 
-              hands-on experience with formal certifications, always staying current with industry best 
+              I believe in the power of continuous learning and skill development. My approach combines
+              hands-on experience with formal certifications, always staying current with industry best
               practices and emerging technologies in healthcare and IT.
             </p>
             <div className="flex flex-wrap justify-center gap-4">
               {['Lifelong Learning', 'Innovation', 'Excellence', 'Collaboration'].map((value, index) => (
-                <span 
+                <span
                   key={value}
                   className="px-4 py-2 bg-cosmic-gold/20 text-cosmic-gold rounded-full border border-cosmic-gold/30 
                            hover:bg-cosmic-gold/30 transition-colors"

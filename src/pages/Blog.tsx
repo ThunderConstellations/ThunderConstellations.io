@@ -15,6 +15,7 @@ interface BlogPost {
   tags: string[];
 }
 
+// blog page - TODO: add actual blog posts later *nuzzles*
 const Blog = () => {
   const [selectedPost, setSelectedPost] = useState<BlogPost | null>(null);
   const [selectedCategory, setSelectedCategory] = useState('All');

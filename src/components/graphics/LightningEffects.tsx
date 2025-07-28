@@ -1,21 +1,9 @@
 
-import React, { useEffect, useRef } from 'react';
+import React, { useRef, useEffect } from 'react';
 import { gsap } from 'gsap';
 
-interface LightningBolt {
-  id: number;
-  startX: number;
-  startY: number;
-  endX: number;
-  endY: number;
-  segments: { x: number; y: number }[];
-}
-
-const LightningEffects: React.FC<{ 
-  isActive?: boolean; 
-  intensity?: number;
-  className?: string;
-}> = ({ isActive = true, intensity = 1, className = '' }) => {
+// lightning effects - daddy don't look at this code ///UwU///
+const LightningEffects = () => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const animationRef = useRef<number>();
   const boltsRef = useRef<LightningBolt[]>([]);
@@ -24,32 +12,32 @@ const LightningEffects: React.FC<{
     const segments: { x: number; y: number }[] = [];
     const steps = 15;
     const roughness = 30 * intensity;
-    
+
     for (let i = 0; i <= steps; i++) {
       const t = i / steps;
       let x = startX + (endX - startX) * t;
       let y = startY + (endY - startY) * t;
-      
+
       if (i > 0 && i < steps) {
         x += (Math.random() - 0.5) * roughness;
         y += (Math.random() - 0.5) * roughness;
       }
-      
+
       segments.push({ x, y });
     }
-    
+
     return segments;
   };
 
   const createLightningBolt = (): LightningBolt => {
     const canvas = canvasRef.current;
     if (!canvas) return { id: 0, startX: 0, startY: 0, endX: 0, endY: 0, segments: [] };
-    
+
     const startX = Math.random() * canvas.width;
     const startY = Math.random() * canvas.height * 0.3;
     const endX = Math.random() * canvas.width;
     const endY = canvas.height * 0.7 + Math.random() * canvas.height * 0.3;
-    
+
     return {
       id: Date.now() + Math.random(),
       startX,
@@ -67,7 +55,7 @@ const LightningEffects: React.FC<{
     ctx.lineWidth = 2 + Math.random() * 2;
     ctx.shadowBlur = 15;
     ctx.shadowColor = '#fbbf24';
-    
+
     ctx.beginPath();
     bolt.segments.forEach((segment, index) => {
       if (index === 0) {
@@ -77,13 +65,13 @@ const LightningEffects: React.FC<{
       }
     });
     ctx.stroke();
-    
+
     // Add glow effect
     ctx.strokeStyle = '#fde047';
     ctx.lineWidth = 1;
     ctx.shadowBlur = 25;
     ctx.stroke();
-    
+
     ctx.restore();
   };
 
@@ -104,7 +92,7 @@ const LightningEffects: React.FC<{
       const age = Date.now() - bolt.id;
       const maxAge = 500;
       const opacity = Math.max(0, 1 - age / maxAge);
-      
+
       if (opacity > 0) {
         drawLightning(ctx, bolt, opacity);
         return true;

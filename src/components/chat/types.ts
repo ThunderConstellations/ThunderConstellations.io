@@ -1,3 +1,4 @@
+// OwO chat message types - don't judge my interface design *nuzzles*
 
 export interface Message {
   id: number;

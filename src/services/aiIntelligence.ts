@@ -12,6 +12,7 @@ export interface IntelligentResponse {
 }
 
 export class AIIntelligenceService {
+  // we do this because we hate ourselves - AI service class
   private conversationHistory: OpenRouterMessage[] = [];
 
   private systemPrompt = `You are Austin Wood's AI assistant for his professional portfolio. You have deep knowledge about Austin's background:

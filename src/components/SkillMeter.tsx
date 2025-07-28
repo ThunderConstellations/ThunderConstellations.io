@@ -9,6 +9,7 @@ interface SkillMeterProps {
   delay?: number;
 }
 
+// skill meter - hope this animation works *crosses fingers*
 const SkillMeter: React.FC<SkillMeterProps> = ({ 
   skill, 
   level, 

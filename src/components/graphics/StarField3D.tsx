@@ -4,6 +4,7 @@ import { Canvas, useFrame } from '@react-three/fiber';
 import { Points, PointMaterial } from '@react-three/drei';
 import * as THREE from 'three';
 
+// this is going to be harder than being dragged through the Trail of Tears...GG - 3D star field
 const StarField = () => {
   const ref = useRef<THREE.Points>(null);
   
@@ -45,6 +46,7 @@ const StarField = () => {
   );
 };
 
+// MIKU MIKU BEA...depression - main component wrapper
 const StarField3D: React.FC<{ className?: string }> = ({ className = '' }) => {
   return (
     <div className={`fixed inset-0 pointer-events-none ${className}`}>

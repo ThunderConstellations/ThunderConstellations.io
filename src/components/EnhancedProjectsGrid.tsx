@@ -1,6 +1,7 @@
 
-import React, { useState } from 'react';
-import { Search, Filter, Grid, List } from 'lucide-react';
+import React, { useState, useMemo } from 'react';
+import { motion } from 'framer-motion';
+import { Search, Grid3X3, List, ExternalLink, Github, Star, GitFork, Eye } from 'lucide-react';
 import InteractiveProjectCard from './InteractiveProjectCard';
 
 interface Project {
@@ -21,6 +22,7 @@ interface Project {
   featured?: boolean;
 }
 
+// enhanced projects grid - this is getting out of hand OwO
 const EnhancedProjectsGrid: React.FC = () => {
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedCategory, setSelectedCategory] = useState('All');
@@ -79,8 +81,8 @@ const EnhancedProjectsGrid: React.FC = () => {
 
   const filteredProjects = projects.filter(project => {
     const matchesSearch = project.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                         project.description.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                         project.techStack.some(tech => tech.toLowerCase().includes(searchTerm.toLowerCase()));
+      project.description.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      project.techStack.some(tech => tech.toLowerCase().includes(searchTerm.toLowerCase()));
     const matchesCategory = selectedCategory === 'All' || project.category === selectedCategory;
     return matchesSearch && matchesCategory;
   });
@@ -106,12 +108,13 @@ const EnhancedProjectsGrid: React.FC = () => {
 
           {/* Category Filter */}
           <div className="flex items-center gap-2">
-            <Filter className="text-cosmic-gold w-4 h-4" />
+            {/* <Filter className="text-cosmic-gold w-4 h-4" /> */}
             <select
               value={selectedCategory}
               onChange={(e) => setSelectedCategory(e.target.value)}
               className="bg-cosmic-dark/50 border border-cosmic-gold/30 rounded-lg px-3 py-2
                        text-cosmic-starlight focus:outline-none focus:border-cosmic-gold transition-colors"
+              aria-label="Filter by category"
             >
               {categories.map(category => (
                 <option key={category} value={category}>{category}</option>
@@ -124,12 +127,14 @@ const EnhancedProjectsGrid: React.FC = () => {
             <button
               onClick={() => setViewMode('grid')}
               className={`p-2 rounded ${viewMode === 'grid' ? 'bg-cosmic-gold text-cosmic-black' : 'text-cosmic-gold hover:bg-cosmic-gold/20'}`}
+              aria-label="Grid view"
             >
-              <Grid className="w-4 h-4" />
+              <Grid3X3 className="w-4 h-4" />
             </button>
             <button
               onClick={() => setViewMode('list')}
               className={`p-2 rounded ${viewMode === 'list' ? 'bg-cosmic-gold text-cosmic-black' : 'text-cosmic-gold hover:bg-cosmic-gold/20'}`}
+              aria-label="List view"
             >
               <List className="w-4 h-4" />
             </button>
@@ -144,8 +149,8 @@ const EnhancedProjectsGrid: React.FC = () => {
 
       {/* Projects Grid */}
       <div className={`
-        ${viewMode === 'grid' 
-          ? 'grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6' 
+        ${viewMode === 'grid'
+          ? 'grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6'
           : 'space-y-6'
         }
       `}>

@@ -1,6 +1,8 @@
 
-import React, { useEffect, useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { motion } from 'framer-motion';
 
+// terminal intro - this is going to be harder than being dragged through the Trail of Tears...GG
 const TerminalIntro = () => {
   const [currentLine, setCurrentLine] = useState(0);
   const [isVisible, setIsVisible] = useState(false);
@@ -78,23 +80,23 @@ const TerminalIntro = () => {
             </div>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
               {[
-                { 
-                  label: 'Healthcare', 
+                {
+                  label: 'Healthcare',
                   items: ['Care Coordination', 'Mental Health', 'Patient Advocacy'],
                   color: 'from-green-500/20 to-green-600/20 border-green-500/30'
                 },
-                { 
-                  label: 'Leadership', 
+                {
+                  label: 'Leadership',
                   items: ['Team Management', 'Crisis Response', 'Process Improvement'],
                   color: 'from-blue-500/20 to-blue-600/20 border-blue-500/30'
                 },
-                { 
-                  label: 'Technology', 
+                {
+                  label: 'Technology',
                   items: ['IT Support', 'Documentation', 'Automation'],
                   color: 'from-purple-500/20 to-purple-600/20 border-purple-500/30'
                 },
-                { 
-                  label: 'Certifications', 
+                {
+                  label: 'Certifications',
                   items: ['Google IT Pro', 'Mental Health First Aid', 'Crisis Intervention'],
                   color: 'from-cosmic-gold/20 to-yellow-500/20 border-cosmic-gold/30'
                 }
@@ -123,13 +125,13 @@ const TerminalIntro = () => {
                 </div>
               ))}
             </div>
-            
+
             {/* Professional Summary */}
             <div className="mt-6 text-center">
               <div className="glass-morphism p-4 rounded-lg bg-gradient-to-r from-cosmic-gold/10 to-cosmic-gold/20 border border-cosmic-gold/30">
                 <p className="text-sm text-cosmic-starlight/90">
-                  <span className="text-cosmic-gold font-semibold">Austin Wood</span> - 
-                  Bridging healthcare expertise with technology innovation to create meaningful solutions 
+                  <span className="text-cosmic-gold font-semibold">Austin Wood</span> -
+                  Bridging healthcare expertise with technology innovation to create meaningful solutions
                   for patient care and healthcare system improvement.
                 </p>
               </div>

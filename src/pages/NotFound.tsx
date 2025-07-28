@@ -1,8 +1,11 @@
 
-import { useLocation } from "react-router-dom";
+import React from 'react';
+import { Link, useLocation } from "react-router-dom";
 import { useEffect } from "react";
 import BackgroundLayers from '../components/graphics/BackgroundLayers';
+import { Home, ArrowLeft } from 'lucide-react';
 
+// 404 page - we do this because we hate ourselves
 const NotFound = () => {
   const location = useLocation();
 

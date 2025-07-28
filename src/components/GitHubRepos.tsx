@@ -1,8 +1,10 @@
 
 import React, { useState, useEffect } from 'react';
-import { Github, Star, GitFork, ExternalLink, Calendar, Eye } from 'lucide-react';
+import { motion } from 'framer-motion';
+import { Github, ExternalLink, Star, GitFork, Eye, Calendar } from 'lucide-react';
 import { githubService, GitHubRepo } from '../services/github';
 
+// github repos - TODO: add more repos later *nuzzles*
 const GitHubRepos: React.FC = () => {
   const [repos, setRepos] = useState<GitHubRepo[]>([]);
   const [loading, setLoading] = useState(true);
@@ -104,7 +106,7 @@ const GitHubRepos: React.FC = () => {
                   </div>
                 </div>
                 <div className="absolute inset-0 bg-gradient-to-t from-cosmic-black/60 to-transparent" />
-                
+
                 {/* Repository Language Badge */}
                 {repo.language && (
                   <div className="absolute top-4 right-4">
@@ -119,7 +121,7 @@ const GitHubRepos: React.FC = () => {
               <h3 className="text-xl font-bold text-cosmic-gold mb-2">
                 {repo.name.replace(/-/g, ' ').replace(/\b\w/g, l => l.toUpperCase())}
               </h3>
-              
+
               <p className="text-cosmic-starlight/80 mb-4 text-sm leading-relaxed line-clamp-3">
                 {repo.description || 'A project showcasing innovative development and problem-solving skills.'}
               </p>
@@ -183,7 +185,7 @@ const GitHubRepos: React.FC = () => {
             </div>
           ))}
         </div>
-        
+
         {/* Footer Link to GitHub */}
         <div className="mt-12 text-center">
           <a

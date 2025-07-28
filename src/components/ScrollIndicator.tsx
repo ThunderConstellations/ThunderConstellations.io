@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
 import { ArrowDown } from 'lucide-react';
 
+// scroll indicator - this is probably unnecessary but looks cool OwO
 const ScrollIndicator = () => {
   const [isVisible, setIsVisible] = useState(true);
 
@@ -27,9 +28,9 @@ const ScrollIndicator = () => {
     <motion.div
       className="fixed bottom-8 left-1/2 transform -translate-x-1/2 z-40"
       initial={{ opacity: 0, y: 20 }}
-      animate={{ 
-        opacity: isVisible ? 1 : 0, 
-        y: isVisible ? 0 : 20 
+      animate={{
+        opacity: isVisible ? 1 : 0,
+        y: isVisible ? 0 : 20
       }}
       transition={{ duration: 0.3 }}
     >
@@ -39,10 +40,10 @@ const ScrollIndicator = () => {
         whileHover={{ scale: 1.1 }}
         whileTap={{ scale: 0.95 }}
         animate={{ y: [0, -5, 0] }}
-        transition={{ 
-          duration: 2, 
-          repeat: Infinity, 
-          ease: "easeInOut" 
+        transition={{
+          duration: 2,
+          repeat: Infinity,
+          ease: "easeInOut"
         }}
       >
         <span className="text-sm font-medium">Explore AI Chat</span>

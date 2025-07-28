@@ -1,6 +1,7 @@
 
 import { supabase } from '@/integrations/supabase/client';
 
+// GitHub service - UwU this took forever to debug
 export interface GitHubRepo {
   id: number;
   name: string;

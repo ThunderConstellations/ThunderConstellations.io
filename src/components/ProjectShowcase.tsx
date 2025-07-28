@@ -2,10 +2,12 @@
 import React, { useState } from 'react';
 import { ExternalLink, Github, Filter, X } from 'lucide-react';
 
+// TODO: add more projects later - this is getting out of hand OwO
 const ProjectShowcase = () => {
   const [selectedFilter, setSelectedFilter] = useState('All');
   const [selectedProject, setSelectedProject] = useState(null);
 
+  // project data - might need to refactor this later *nuzzles*
   const projects = [
     {
       id: 1,
@@ -13,7 +15,7 @@ const ProjectShowcase = () => {
       description: 'Comprehensive care coordination system with real-time patient tracking',
       tags: ['React', 'Node.js', 'Healthcare', 'Real-time'],
       category: 'Healthcare',
-      image: '/lovable-uploads/b043e947-5175-4a2e-89e0-db1d5dc6fa18.png',
+      image: '/uploads/b043e947-5175-4a2e-89e0-db1d5dc6fa18.png',
       github: '#',
       demo: '#',
       details: 'Built a full-stack healthcare coordination platform that streamlined patient care workflows and improved team communication by 40%.'
@@ -24,7 +26,7 @@ const ProjectShowcase = () => {
       description: 'Mobile-first mental wellness tracking with AI-powered insights',
       tags: ['React Native', 'AI/ML', 'Mental Health', 'Mobile'],
       category: 'Healthcare',
-      image: '/lovable-uploads/9ca97808-7b95-45f4-8590-54d054d378b1.png',
+      image: '/uploads/9ca97808-7b95-45f4-8590-54d054d378b1.png',
       github: '#',
       demo: '#',
       details: 'Developed an intuitive mental health tracking app with personalized insights and crisis intervention features.'
@@ -35,7 +37,7 @@ const ProjectShowcase = () => {
       description: 'Interactive cosmic-themed portfolio with AI assistant',
       tags: ['React', 'Framer Motion', 'AI', 'Design'],
       category: 'Web',
-      image: '/lovable-uploads/7d6a8a16-e928-4cc6-a7c5-dfb64343bf2f.png',
+      image: '/uploads/7d6a8a16-e928-4cc6-a7c5-dfb64343bf2f.png',
       github: '#',
       demo: '#',
       details: 'Created this stunning portfolio with cosmic animations and AI-powered career assistant.'
@@ -46,7 +48,7 @@ const ProjectShowcase = () => {
       description: 'Analytics dashboard for healthcare team performance metrics',
       tags: ['Vue.js', 'D3.js', 'Analytics', 'Dashboard'],
       category: 'Healthcare',
-      image: '/lovable-uploads/3c9f0649-1cd5-4f4d-bda9-ac7521336348.png',
+      image: '/uploads/3c9f0649-1cd5-4f4d-bda9-ac7521336348.png',
       github: '#',
       demo: '#',
       details: 'Built comprehensive analytics dashboard that increased care team efficiency by 25%.'
@@ -57,7 +59,7 @@ const ProjectShowcase = () => {
       description: 'Conversational AI interface for career guidance and portfolio exploration',
       tags: ['React', 'OpenAI', 'NLP', 'Conversational'],
       category: 'AI',
-      image: '/lovable-uploads/324af941-1c2e-4b0b-a086-79ded7f19f27.png',
+      image: '/uploads/324af941-1c2e-4b0b-a086-79ded7f19f27.png',
       github: '#',
       demo: '#',
       details: 'Implemented intelligent chat assistant that helps visitors understand my background and skills.'
@@ -68,7 +70,7 @@ const ProjectShowcase = () => {
       description: 'Healthcare education platform with interactive modules',
       tags: ['React', 'Video', 'Education', 'Interactive'],
       category: 'Web',
-      image: '/lovable-uploads/cbfc7fbe-3c07-45a2-a3a9-9cab1f4e6a04.png',
+      image: '/uploads/cbfc7fbe-3c07-45a2-a3a9-9cab1f4e6a04.png',
       github: '#',
       demo: '#',
       details: 'Developed comprehensive e-learning platform for healthcare professionals with interactive content.'
@@ -161,11 +163,17 @@ const ProjectShowcase = () => {
 
               {/* Action Buttons */}
               <div className="flex gap-3">
-                <button className="flex items-center gap-2 text-cosmic-gold hover:text-cosmic-starlight transition-colors text-sm">
+                <button 
+                  className="flex items-center gap-2 text-cosmic-gold hover:text-cosmic-starlight transition-colors text-sm"
+                  aria-label="View project code"
+                >
                   <Github className="w-4 h-4" />
                   Code
                 </button>
-                <button className="flex items-center gap-2 text-cosmic-gold hover:text-cosmic-starlight transition-colors text-sm">
+                <button 
+                  className="flex items-center gap-2 text-cosmic-gold hover:text-cosmic-starlight transition-colors text-sm"
+                  aria-label="View project demo"
+                >
                   <ExternalLink className="w-4 h-4" />
                   Demo
                 </button>
@@ -187,6 +195,7 @@ const ProjectShowcase = () => {
                 <button
                   onClick={() => setSelectedProject(null)}
                   className="text-cosmic-starlight hover:text-cosmic-gold transition-colors"
+                  aria-label="Close project modal"
                 >
                   <X className="w-6 h-6" />
                 </button>

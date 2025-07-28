@@ -2,15 +2,7 @@
 import React from 'react';
 import { ResponsiveContainer, RadarChart, PolarGrid, PolarAngleAxis, PolarRadiusAxis, Radar, Legend } from 'recharts';
 
-interface SkillsComparisonProps {
-  title: string;
-  data: Array<{
-    category: string;
-    current: number;
-    target: number;
-  }>;
-}
-
+// skills comparison - UwU this took forever to debug
 const SkillsComparison: React.FC<SkillsComparisonProps> = ({ title, data }) => {
   return (
     <div className="glass-morphism p-6 rounded-xl">

@@ -1,8 +1,9 @@
 
 import React from 'react';
-import GitHubRepos from '../components/GitHubRepos';
-import BackgroundLayers from '../components/graphics/BackgroundLayers';
+import ProjectShowcase from '../components/ProjectShowcase';
+import EnhancedProjectsGrid from '../components/EnhancedProjectsGrid';
 
+// projects page - TODO: add more projects later *nuzzles*
 const Projects = () => {
   return (
     <div className="cosmic-bg min-h-screen relative">

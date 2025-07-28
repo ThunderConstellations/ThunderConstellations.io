@@ -2,16 +2,7 @@
 import React, { useEffect, useRef, useCallback } from 'react';
 import { motion } from 'framer-motion';
 
-interface EnergyWave {
-  x: number;
-  y: number;
-  radius: number;
-  maxRadius: number;
-  opacity: number;
-  speed: number;
-  color: string;
-}
-
+// energy field - MIKU MIKU BEA...depression
 const EnergyField: React.FC<{
   waveCount?: number;
   className?: string;
@@ -27,7 +18,7 @@ const EnergyField: React.FC<{
     if (!canvas) return { x: 0, y: 0, radius: 0, maxRadius: 0, opacity: 0, speed: 0, color: '' };
 
     const colors = ['#fbbf24', '#fde047', '#f59e0b'];
-    
+
     return {
       x: Math.random() * canvas.width,
       y: Math.random() * canvas.height,
@@ -42,12 +33,12 @@ const EnergyField: React.FC<{
   const drawWave = useCallback((ctx: CanvasRenderingContext2D, wave: EnergyWave) => {
     const progress = wave.radius / wave.maxRadius;
     const alpha = wave.opacity * (1 - progress) * intensity;
-    
+
     if (alpha <= 0) return;
 
     ctx.save();
     ctx.globalAlpha = alpha;
-    
+
     // Create gradient
     const gradient = ctx.createRadialGradient(
       wave.x, wave.y, 0,
@@ -56,19 +47,19 @@ const EnergyField: React.FC<{
     gradient.addColorStop(0, wave.color);
     gradient.addColorStop(0.7, wave.color + '40');
     gradient.addColorStop(1, 'transparent');
-    
+
     ctx.strokeStyle = gradient;
     ctx.lineWidth = 2;
     ctx.beginPath();
     ctx.arc(wave.x, wave.y, wave.radius, 0, Math.PI * 2);
     ctx.stroke();
-    
+
     // Add inner glow
     ctx.globalAlpha = alpha * 0.5;
     ctx.strokeStyle = wave.color;
     ctx.lineWidth = 1;
     ctx.stroke();
-    
+
     ctx.restore();
   }, [intensity]);
 
@@ -82,17 +73,17 @@ const EnergyField: React.FC<{
     // Update and draw waves
     wavesRef.current = wavesRef.current.filter(wave => {
       wave.radius += wave.speed;
-      
+
       // Mouse interaction - create waves near mouse
       const dx = mouseRef.current.x - wave.x;
       const dy = mouseRef.current.y - wave.y;
       const distance = Math.sqrt(dx * dx + dy * dy);
-      
+
       if (distance < 100) {
         wave.speed *= 1.1;
         wave.opacity *= 1.1;
       }
-      
+
       if (wave.radius < wave.maxRadius) {
         drawWave(ctx, wave);
         return true;
@@ -137,7 +128,7 @@ const EnergyField: React.FC<{
 
     // Initialize waves
     wavesRef.current = Array.from({ length: waveCount }, () => createWave());
-    
+
     animate();
 
     return () => {

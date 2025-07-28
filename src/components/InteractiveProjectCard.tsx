@@ -1,34 +1,10 @@
 
 import React, { useState } from 'react';
-import { ExternalLink, Github, Star, GitFork, Eye, Calendar } from 'lucide-react';
+import { motion } from 'framer-motion';
+import { ExternalLink, Github, Eye, Code, Database, Palette } from 'lucide-react';
 
-interface ProjectCardProps {
-  title: string;
-  description: string;
-  techStack: string[];
-  demoUrl?: string;
-  githubUrl?: string;
-  imageUrl?: string;
-  stats?: {
-    stars?: number;
-    forks?: number;
-    watchers?: number;
-  };
-  lastUpdated?: string;
-  featured?: boolean;
-}
-
-const InteractiveProjectCard: React.FC<ProjectCardProps> = ({
-  title,
-  description,
-  techStack,
-  demoUrl,
-  githubUrl,
-  imageUrl,
-  stats,
-  lastUpdated,
-  featured = false
-}) => {
+// interactive project card - this is probably overkill but looks nice UwU
+const InteractiveProjectCard = ({ project }: { project: any }) => {
   const [isHovered, setIsHovered] = useState(false);
 
   return (

@@ -5,6 +5,7 @@ import { formspreeService } from '../services/formspree';
 import { emailJSService } from '../services/emailjs';
 import { useToast } from '../hooks/use-toast';
 
+// contact page - hope this form works *crosses fingers*
 const Contact = () => {
   const [formData, setFormData] = useState({
     name: '',

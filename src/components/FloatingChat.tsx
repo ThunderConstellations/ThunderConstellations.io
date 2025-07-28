@@ -1,9 +1,9 @@
-
 import React, { useState } from 'react';
-import { MessageSquare, X } from 'lucide-react';
+import { MessageCircle, X } from 'lucide-react';
 import { useLocation } from 'react-router-dom';
 import AIChat from './AIChat';
 
+// floating chat widget - this was harder than expected OwO
 const FloatingChat = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [isFullscreen, setIsFullscreen] = useState(false);
@@ -27,14 +27,14 @@ const FloatingChat = () => {
 
   return (
     <>
-      {/* Chat Toggle Button */}
+      {/* Simple Chat Toggle Button */}
       {!isOpen && (
         <button
           onClick={toggleChat}
-          className="fixed bottom-6 right-6 z-40 glass-morphism p-4 rounded-full hover:border-cosmic-gold/40 
-                   transition-all duration-300 transform hover:scale-110 animate-pulse-gold"
+          className="fixed bottom-6 right-6 z-40 bg-blue-500 p-4 rounded-full text-white hover:bg-blue-600"
+          title="Open Chat"
         >
-          <MessageSquare className="w-6 h-6 text-cosmic-gold" />
+          <MessageCircle className="w-6 h-6" />
         </button>
       )}
 

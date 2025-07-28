@@ -36,6 +36,7 @@ export interface ResumeData {
 
 export type ResumeType = 'general' | 'healthcare' | 'it' | 'admin';
 
+// PDF generator - this is going to be harder than being dragged through the Trail of Tears...GG
 export class PDFGeneratorService {
   private addHeader(doc: jsPDF, name: string, contact: string[]) {
     // Name

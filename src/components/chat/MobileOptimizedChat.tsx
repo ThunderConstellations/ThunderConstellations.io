@@ -2,12 +2,7 @@
 import React, { useState, useEffect } from 'react';
 import { ChevronDown, ChevronUp, Maximize2, Minimize2 } from 'lucide-react';
 
-interface MobileOptimizedChatProps {
-  children: React.ReactNode;
-  isFullscreen: boolean;
-  onToggleFullscreen: () => void;
-}
-
+// mobile optimized chat - we do this because we hate ourselves
 const MobileOptimizedChat: React.FC<MobileOptimizedChatProps> = ({ 
   children, 
   isFullscreen, 

@@ -23,7 +23,7 @@ const References = () => {
         "Excellent written and verbal communication skills"
       ],
       testimonial: "It is with great enthusiasm that I write this letter to refer Austin T. Wood in his pursuit of assisting others in the Health Care field. During my interaction with Mr. Wood at Bryn Mawr Care, he had assisted me in scheduled appointments a large caseload of patients, and coordinated their visits. He was tasked with organizing a clinic that was often dynamic and unpredictable. He was able to execute this flawlessly and was a great asset in my work there. Mr. Wood is quick at learning, very dynamic, and hard-working. He worked well with our most challenging patients. Mr. Wood has shown to maneuver schedules to adjust with flexibility to ensure that patients were able to meet with me within a timely manner. He is also passionate at work, is very willing to take over new challenges and responsibilities, and has excellent written and verbal communication skills. I have total confidence that Mr. Wood would be a valuable asset to any organization. If you have any questions please feel free to reach out to me.",
-      letterImage: "/lovable-uploads/63ed8dbe-b07f-4949-8a78-114e79d972b3.png"
+      letterImage: "/uploads/63ed8dbe-b07f-4949-8a78-114e79d972b3.png"
     },
     {
       id: 2,
@@ -44,7 +44,7 @@ const References = () => {
         "Impactful and creative employee"
       ],
       testimonial: "Austin was an employee of mine for approximately a year as a MHP when I was Social Services Director at Bryn Mawr Care from 2019 - 2020. They were a hard worker, intelligent, and effective in their duties. Austin displayed appropriate and effective empathy and support to his clients. They managed a caseload of 30 consumers at a Specialized Mental Health Facility and their duties included behavioral management, psychoeducational groups, 1:1 sessions, documentation, assessment, etc. Austin successfully completed documentation and in a timely fashion, supported coworkers and clients. Austin proved to be a impactful and creative employee, and would be a benefit for your company. If you have any questions, please call me at 773-889-1333.",
-      letterImage: "/lovable-uploads/39ad4e64-b2a0-45c7-9bbe-32de01dfb637.png"
+      letterImage: "/uploads/39ad4e64-b2a0-45c7-9bbe-32de01dfb637.png"
     },
     {
       id: 3,
@@ -65,7 +65,7 @@ const References = () => {
         "Excellent communication skills (both written and verbal)"
       ],
       testimonial: "This letter serves as a character reference for Austin Wood, one of my former students at Ivy Tech Community College, Valparaiso Campus. I had the pleasure of being Austin's academic advisor for his Associate Degree in Psychology, and he was also a student in my Interpersonal Communication course. Austin is efficient, detail-oriented, and extremely competent. He often successfully finishes a task well before the deadline. He is extremely organized, and never missed a meeting with me, and excelled in his coursework. Austin also had an excellent rapport with his professors and peers at Ivy Tech Community College. His excellent communication skills (both written and verbal) allowed him to connect with all kinds of people and to inspire them. In summary, Austin has been a wonderful student of good character, and I believe wholeheartedly that he will be an asset to any employer that chooses to hire him.",
-      letterImage: "/lovable-uploads/5895fdec-427b-4e89-95cb-4bc9000a8dcb.png"
+      letterImage: "/uploads/5895fdec-427b-4e89-95cb-4bc9000a8dcb.png"
     },
     {
       id: 4,
@@ -87,7 +87,7 @@ const References = () => {
         "Good role model for other students"
       ],
       testimonial: "I am writing this letter of recommendation for Austin Wood. I have gotten to know Austin both inside and outside the classroom. He is a remarkable young man. Austin is a student who really stands out. He takes courses that are challenging and excels at them, including my dual-credit Business Law course this year. He is able to manage his time well between academics and extracurricular activities. Through his many activities, Austin has been able to show a tremendous amount of leadership and determination. Austin has competed on my DECA team and did well. Austin also started a Virtual Studio club where he taught various aspects of programming to students who has little to no experience, which takes a great amount of skill. He would hold meetings outside of school and challenged the members to develop a solid foundation in the world of coding. In my opinion, Austin is a good role model for other students. By juggling many activities and his academics, Austin is truly an incredible young man. His level of devotion to various activities and academics is amazing. I am confident he will be successful in anything that he does.",
-      letterImage: "/lovable-uploads/2e49d4d3-f919-4b4c-89fc-fd77915dc6b6.png"
+      letterImage: "/uploads/2e49d4d3-f919-4b4c-89fc-fd77915dc6b6.png"
     },
     {
       id: 5,
@@ -109,7 +109,7 @@ const References = () => {
         "Ready for college-level challenges"
       ],
       testimonial: "It is with great pleasure that I write this letter of recommendation for Austin Wood. I have worked with Austin for two years as his high school guidance counselor, and he has consistently demonstrated a high level of motivation, a strong work ethic, and a very positive attitude. Austin is a good student who strives diligently to accomplish the goals he has set for himself. He pays attention to detail, works well with others, and sees every task through to completion. One of the most exceptional things about Austin is that he started a new club at our school last year called Virtual Studio. Austin's knowledge of, and love for computers led him to this venture and the club has grown impressively under his guidance as president. Austin's leadership skills have blossomed during his time at Washington Township and I know that he is ready for the rewards and challenges that college level study will provide. I recommend him highly for admission to your institution.",
-      letterImage: "/lovable-uploads/eb1813ae-44b6-4b32-bc87-978f8606588e.png"
+      letterImage: "/uploads/eb1813ae-44b6-4b32-bc87-978f8606588e.png"
     }
   ];
 

@@ -9,6 +9,7 @@ interface AnimatedSectionProps {
   threshold?: number;
 }
 
+// animated section - hope this animation works *crosses fingers*
 const AnimatedSection: React.FC<AnimatedSectionProps> = ({
   children,
   className = '',

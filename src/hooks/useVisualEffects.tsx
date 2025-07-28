@@ -1,14 +1,7 @@
 
 import { useState, useEffect, useRef } from 'react';
 
-interface VisualEffectsConfig {
-  enableParticles?: boolean;
-  enableLightning?: boolean;
-  enableStarField?: boolean;
-  enableConstellation?: boolean;
-  intensity?: number;
-}
-
+// visual effects hook - this is probably overkill but looks nice UwU
 export const useVisualEffects = (config: VisualEffectsConfig = {}) => {
   const [isActive, setIsActive] = useState(false);
   const [performanceLevel, setPerformanceLevel] = useState<'high' | 'medium' | 'low'>('high');
@@ -19,13 +12,13 @@ export const useVisualEffects = (config: VisualEffectsConfig = {}) => {
     const measurePerformance = () => {
       const now = performance.now();
       frameTimeRef.current.push(now);
-      
+
       if (frameTimeRef.current.length > 60) {
         const frameTimes = frameTimeRef.current.slice(-60);
-        const avgFrameTime = frameTimes.reduce((a, b, i) => 
+        const avgFrameTime = frameTimes.reduce((a, b, i) =>
           i === 0 ? 0 : a + (b - frameTimes[i - 1]), 0
         ) / (frameTimes.length - 1);
-        
+
         if (avgFrameTime > 20) {
           setPerformanceLevel('low');
         } else if (avgFrameTime > 16) {
@@ -33,10 +26,10 @@ export const useVisualEffects = (config: VisualEffectsConfig = {}) => {
         } else {
           setPerformanceLevel('high');
         }
-        
+
         frameTimeRef.current = [];
       }
-      
+
       if (isActive) {
         requestAnimationFrame(measurePerformance);
       }

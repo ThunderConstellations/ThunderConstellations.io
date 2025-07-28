@@ -3,6 +3,7 @@ import React from 'react';
 import { Heart, Users, Code, GraduationCap, Award, MapPin } from 'lucide-react';
 import HealthcareExcellence from '../components/HealthcareExcellence';
 
+// about page - spent way too long on this section *nuzzles*
 const About = () => {
   const highlights = [
     {
@@ -37,7 +38,7 @@ const About = () => {
             <span className="text-cosmic-gold"> Austin</span>
           </h1>
           <p className="text-xl text-cosmic-starlight/80 max-w-3xl mx-auto leading-relaxed">
-            Healthcare professional with a passion for technology, dedicated to improving patient outcomes 
+            Healthcare professional with a passion for technology, dedicated to improving patient outcomes
             through innovative care coordination and systematic process improvement.
           </p>
         </div>
@@ -49,19 +50,19 @@ const About = () => {
             <h2 className="text-2xl font-bold text-cosmic-gold mb-6">My Journey</h2>
             <div className="space-y-4 text-cosmic-starlight/90">
               <p className="leading-relaxed">
-                My career began with a deep commitment to mental health advocacy, volunteering for over 
-                5 years in group counseling and minority support programs. This foundation led me into 
-                professional healthcare roles where I discovered my talent for care coordination and 
+                My career began with a deep commitment to mental health advocacy, volunteering for over
+                5 years in group counseling and minority support programs. This foundation led me into
+                professional healthcare roles where I discovered my talent for care coordination and
                 team leadership.
               </p>
               <p className="leading-relaxed">
-                At Grasmere Place, I managed care for 300+ residents while leading quality improvement 
-                initiatives that reduced readmission rates by 25%. I created systematic documentation 
+                At Grasmere Place, I managed care for 300+ residents while leading quality improvement
+                initiatives that reduced readmission rates by 25%. I created systematic documentation
                 processes that improved both efficiency and compliance with regulatory standards.
               </p>
               <p className="leading-relaxed">
-                Currently, I'm expanding my technical skills through certifications in IT support and 
-                cloud technologies, preparing for roles that bridge healthcare expertise with 
+                Currently, I'm expanding my technical skills through certifications in IT support and
+                cloud technologies, preparing for roles that bridge healthcare expertise with
                 technological innovation.
               </p>
             </div>
@@ -101,8 +102,8 @@ const About = () => {
             </div>
             <h3 className="text-2xl font-bold text-cosmic-gold mb-4">Beyond Healthcare</h3>
             <p className="text-cosmic-starlight/90 max-w-2xl mx-auto leading-relaxed">
-              When I'm not coordinating care or studying for my next certification, I enjoy exploring 
-              Chicago's diverse neighborhoods, staying current with healthcare technology trends, and 
+              When I'm not coordinating care or studying for my next certification, I enjoy exploring
+              Chicago's diverse neighborhoods, staying current with healthcare technology trends, and
               contributing to open-source projects that bridge healthcare and technology.
             </p>
           </div>
