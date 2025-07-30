@@ -2,6 +2,18 @@
 import React, { useEffect, useRef, useCallback } from 'react';
 import { motion } from 'framer-motion';
 
+interface Particle {
+  x: number;
+  y: number;
+  vx: number;
+  vy: number;
+  size: number;
+  life: number;
+  maxLife: number;
+  color: string;
+  type: 'star' | 'spark' | 'glow';
+}
+
 // particle system - we do this because we hate ourselves
 const ParticleSystem: React.FC<{
   particleCount?: number;

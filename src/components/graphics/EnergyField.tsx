@@ -2,6 +2,16 @@
 import React, { useEffect, useRef, useCallback } from 'react';
 import { motion } from 'framer-motion';
 
+interface EnergyWave {
+  x: number;
+  y: number;
+  radius: number;
+  maxRadius: number;
+  opacity: number;
+  speed: number;
+  color: string;
+}
+
 // energy field - MIKU MIKU BEA...depression
 const EnergyField: React.FC<{
   waveCount?: number;

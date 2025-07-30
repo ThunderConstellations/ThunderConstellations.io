@@ -1,6 +1,6 @@
 
 import emailjs from '@emailjs/browser';
-import { supabase } from '@/integrations/supabase/client';
+// import { supabase } from '@/integrations/supabase/client';
 
 // EmailJS service - hope this works *crosses fingers*
 export interface EmailJSConfig {
@@ -13,31 +13,36 @@ class EmailJSService {
   private config: EmailJSConfig | null = null;
 
   private async getConfig(): Promise<EmailJSConfig | null> {
-    if (this.config) return this.config;
+    // Temporarily disabled due to Supabase connection issues
+    console.log('EmailJS temporarily disabled - Supabase connection issue');
+    return null;
+    
+    // if (this.config) return this.config;
 
-    try {
-      const { data, error } = await supabase.functions.invoke('get-emailjs-config');
-      if (error) {
-        console.error('Error fetching EmailJS config:', error);
-        return null;
-      }
+    // try {
+    //   const { data, error } = await supabase.functions.invoke('get-emailjs-config');
+    //   if (error) {
+    //     console.error('Error fetching EmailJS config:', error);
+    //     return null;
+    //   }
       
-      this.config = data;
-      if (this.config?.publicKey) {
-        emailjs.init(this.config.publicKey);
-      }
-      return this.config;
-    } catch (error) {
-      console.error('Error calling EmailJS config function:', error);
-      return null;
-    }
+    //   this.config = data;
+    //   if (this.config?.publicKey) {
+    //     emailjs.init(this.config.publicKey);
+    //   }
+    //   return this.config;
+    // } catch (error) {
+    //   console.error('Error calling EmailJS config function:', error);
+    //   return null;
+    // }
   }
 
   async sendEmail(templateParams: Record<string, string | number | boolean>): Promise<boolean> {
     try {
       const config = await this.getConfig();
       if (!config) {
-        throw new Error('EmailJS not configured');
+        console.log('EmailJS disabled - please configure Supabase or use alternative contact method');
+        return false;
       }
 
       const response = await emailjs.send(

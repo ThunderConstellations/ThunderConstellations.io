@@ -1,5 +1,5 @@
 
-import { supabase } from '@/integrations/supabase/client';
+// import { supabase } from '@/integrations/supabase/client';
 
 export interface FormspreeSubmission {
   name: string;
@@ -10,24 +10,29 @@ export interface FormspreeSubmission {
 
 class FormspreeService {
   private async getApiKey(): Promise<string | null> {
-    try {
-      const { data, error } = await supabase.functions.invoke('get-formspree-key');
-      if (error) {
-        console.error('Error fetching Formspree key:', error);
-        return null;
-      }
-      return data?.apiKey || null;
-    } catch (error) {
-      console.error('Error calling Formspree key function:', error);
-      return null;
-    }
+    // Temporarily disabled due to Supabase connection issues
+    console.log('Formspree temporarily disabled - Supabase connection issue');
+    return null;
+    
+    // try {
+    //   const { data, error } = await supabase.functions.invoke('get-formspree-key');
+    //   if (error) {
+    //     console.error('Error fetching Formspree key:', error);
+    //     return null;
+    //   }
+    //   return data?.apiKey || null;
+    // } catch (error) {
+    //   console.error('Error calling Formspree key function:', error);
+    //   return null;
+    // }
   }
 
   async submitForm(formData: FormspreeSubmission): Promise<boolean> {
     try {
       const apiKey = await this.getApiKey();
       if (!apiKey) {
-        throw new Error('Formspree API key not configured');
+        console.log('Formspree disabled - please configure Supabase or use alternative contact method');
+        return false;
       }
 
       const response = await fetch(`https://formspree.io/f/${apiKey}`, {
