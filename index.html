@@ -16,6 +16,30 @@
     <!-- Cache busting script -->
     <script src="/ThunderConstellations.io/cache-buster.js?v=1753854224865"></script>
     
+    <!-- GitHub Pages routing script -->
+    <script type="text/javascript">
+      // Single Page Apps for GitHub Pages
+      // MIT License
+      // https://github.com/rafgraph/spa-github-pages
+      // This script checks to see if a redirect is present in the query string,
+      // converts it back into the correct url and adds it to the
+      // browser's history using window.history.replaceState(...),
+      // which won't cause the browser to attempt to load the new url.
+      // When the single page app is loaded further down in this file,
+      // the correct url will be waiting in the browser's history for
+      // the single page app to route accordingly.
+      (function(l) {
+        if (l.search[1] === '/' ) {
+          var decoded = l.search.slice(1).split('&').map(function(s) { 
+            return s.replace(/~and~/g, '&')
+          }).join('?');
+          window.history.replaceState(null, null,
+              l.pathname.slice(0, -1) + decoded + l.hash
+          );
+        }
+      }(window.location))
+    </script>
+    
     <!-- Open Graph -->
     <meta property="og:title" content="Thunder Constellations - Austin Wood Portfolio" />
     <meta property="og:description" content="Full Stack Developer, Creative Technologist, and Digital Artist" />
@@ -31,8 +55,8 @@
 
     <link rel="icon" type="image/svg+xml" href="/ThunderConstellations.io/favicon.svg?v=1753854224865" />
     <link rel="icon" type="image/x-icon" href="/ThunderConstellations.io/favicon.ico?v=1753854224865" />
-    <script type="module" crossorigin src="/ThunderConstellations.io/assets/index-v1753854903351-s7px8s4op.js"></script>
-    <link rel="stylesheet" crossorigin href="/ThunderConstellations.io/assets/index-v1753854903351-s7px8s4op.css">
+    <script type="module" crossorigin src="/ThunderConstellations.io/assets/index-v1753855957343-wbbxzckda.js"></script>
+    <link rel="stylesheet" crossorigin href="/ThunderConstellations.io/assets/index-v1753855957343-wbbxzckda.css">
   </head>
 
   <body>
