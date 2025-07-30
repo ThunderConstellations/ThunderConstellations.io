@@ -2,6 +2,7 @@ import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Navigation from "./components/Navigation";
 import FloatingChat from "./components/FloatingChat";
+import AnimatedCursor from "./components/AnimatedCursor";
 
 // OwO main app component - hope this routing works! *nuzzles*
 
@@ -22,8 +23,9 @@ function App() {
   return (
     <Router basename={import.meta.env.PROD ? '/ThunderConstellations.io' : '/'}>
       <div className="min-h-screen bg-black text-white">
+        <AnimatedCursor />
         <Navigation />
-        
+
         <div className="ml-0">
           <Routes>
             <Route path="/" element={<Home />} />
@@ -38,7 +40,7 @@ function App() {
             <Route path="*" element={<NotFound />} />
           </Routes>
         </div>
-        
+
         <FloatingChat />
       </div>
     </Router>

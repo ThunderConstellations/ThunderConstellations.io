@@ -2,6 +2,8 @@
 import React from 'react';
 import ProjectShowcase from '../components/ProjectShowcase';
 import EnhancedProjectsGrid from '../components/EnhancedProjectsGrid';
+import BackgroundLayers from '../components/graphics/BackgroundLayers';
+import GitHubRepos from '../components/GitHubRepos';
 
 // projects page - TODO: add more projects later *nuzzles*
 const Projects = () => {

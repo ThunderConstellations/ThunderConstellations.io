@@ -60,7 +60,7 @@ All colors MUST be HSL.
   body {
     @apply bg-cosmic-black text-cosmic-starlight;
     font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
-    cursor: none;
+    /* cursor: none; */ /* Temporarily disabled to fix cursor visibility */
   }
 
   .cosmic-bg {
