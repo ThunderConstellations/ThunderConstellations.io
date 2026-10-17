@@ -82,6 +82,18 @@ export class PDFGeneratorService {
     return yPos;
   }
 
+  static downloadComprehensiveResume() {
+    pdfGeneratorService.downloadComprehensiveResume();
+  }
+
+  static downloadResumePDF(type: ResumeType = 'general') {
+    pdfGeneratorService.downloadResumePDF(type);
+  }
+
+  static downloadOnePageResume() {
+    pdfGeneratorService.downloadOnePageResume();
+  }
+
   downloadComprehensiveResume() {
     const resumeData = this.getComprehensiveResumeData();
     const doc = this.generateComprehensiveResumePDF(resumeData);
@@ -114,9 +126,9 @@ export class PDFGeneratorService {
     doc.setFont('helvetica', 'normal');
     const contactInfo = [
       '19austinwood96@gmail.com',
-      '(219) 299-3702',
       'Valparaiso, IN 46383',
-      'linkedin.com/in/austin-wood-a1b2c3/'
+      'linkedin.com/in/austin-wood-a1b2c3/',
+      'auconstellations.github.io/ThunderConstellations.io'
     ];
     
     contactInfo.forEach(info => {

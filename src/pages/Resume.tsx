@@ -1,6 +1,6 @@
 
 import React, { useState } from 'react';
-import { Download, FileText, Briefcase, User, Code, Mail, Phone, MapPin, Linkedin } from 'lucide-react';
+import { Download, FileText, Briefcase, User, Code, Mail, MapPin, Linkedin, Globe } from 'lucide-react';
 import { PDFGeneratorService } from '../services/pdfGenerator';
 
 // resume page - UwU this took forever to debug
@@ -65,6 +65,8 @@ const Resume = () => {
                 <span>19austinwood96@gmail.com</span>
               </div>
               <div className="flex items-center gap-2">
+                <Globe className="w-4 h-4 text-cosmic-gold flex-shrink-0" />
+                <span>auconstellations.github.io/ThunderConstellations.io</span>
               </div>
               <div className="flex items-center gap-2">
                 <MapPin className="w-4 h-4 text-cosmic-gold flex-shrink-0" />
