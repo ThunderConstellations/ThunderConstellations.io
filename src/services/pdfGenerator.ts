@@ -663,7 +663,6 @@ Team Leadership, Documentation, Office Software, Case Management, Filing Systems
     return {
       name: 'Austin Wood',
       email: '19austinwood96@gmail.com',
-      ,
       location: 'Valparaiso, IN 46383',
       linkedin: 'https://www.linkedin.com/in/austin-wood-a1b2c3/',
       summary: 'Versatile healthcare professional and technology innovator with 10+ years combined experience in care coordination, crisis intervention, and team leadership. Founded and led the Virtual Studio programming club, teaching CAD, animation, and coding to 30+ students. Proven track record of managing 300+ patients while implementing quality improvement initiatives that reduced readmission rates by 25%. Google IT Support certified with growing technical expertise in automation and digital systems.',

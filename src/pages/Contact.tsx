@@ -215,6 +215,13 @@ const Contact = () => {
                   </a>
 
                   <a
+                    href="https://auconstellations.github.io/ThunderConstellations.io"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center gap-4 p-4 bg-cosmic-gold/10 rounded-lg border border-cosmic-gold/30 
+                             hover:bg-cosmic-gold/20 transition-colors group"
+                  >
+                    <Globe className="w-6 h-6 text-cosmic-gold" />
                     <div>
                       <p className="font-medium text-cosmic-gold">Website</p>
                       <p className="text-sm text-cosmic-starlight/70">auconstellations.github.io/ThunderConstellations.io</p>
