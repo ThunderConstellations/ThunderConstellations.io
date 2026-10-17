@@ -215,19 +215,7 @@ const Contact = () => {
                   </a>
 
                   <a
-                    href="tel:219-299-3702"
-                    className="flex items-center gap-4 p-4 bg-cosmic-gold/10 rounded-lg border border-cosmic-gold/30 
-                             hover:bg-cosmic-gold/20 transition-colors group"
-                  >
-                    <Phone className="w-6 h-6 text-cosmic-gold" />
-                    <div>
-                      <p className="font-medium text-cosmic-gold">Phone</p>
-                      <p className="text-sm text-cosmic-starlight/70">(219) 299-3702</p>
-                    </div>
-                  </a>
-
-                  <a
-                    href="https://auconstellations.wordpress.com"
+                    href="https://auconstellations.github.io/ThunderConstellations.io"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="flex items-center gap-4 p-4 bg-cosmic-gold/10 rounded-lg border border-cosmic-gold/30 
@@ -236,7 +224,7 @@ const Contact = () => {
                     <Globe className="w-6 h-6 text-cosmic-gold" />
                     <div>
                       <p className="font-medium text-cosmic-gold">Website</p>
-                      <p className="text-sm text-cosmic-starlight/70">auconstellations.wordpress.com</p>
+                      <p className="text-sm text-cosmic-starlight/70">auconstellations.github.io/ThunderConstellations.io</p>
                     </div>
                   </a>
 
@@ -272,7 +260,7 @@ const Contact = () => {
                     <MapPin className="w-6 h-6 text-cosmic-gold" />
                     <div>
                       <p className="font-medium text-cosmic-gold">Location</p>
-                      <p className="text-sm text-cosmic-starlight/70">Chicago, IL 60626</p>
+                      <p className="text-sm text-cosmic-starlight/70">Valparaiso, IN 46383</p>
                     </div>
                   </div>
                 </div>

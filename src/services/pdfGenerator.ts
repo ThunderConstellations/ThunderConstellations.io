@@ -3,7 +3,7 @@ import jsPDF from 'jspdf';
 export interface ResumeData {
   name: string;
   email: string;
-  phone: string;
+  
   location: string;
   linkedin: string;
   summary: string;
@@ -27,7 +27,7 @@ export interface ResumeData {
     relationship: string;
     duration: string;
     email: string;
-    phone: string;
+    
     summary: string;
     highlights: string[];
     testimonial: string;
@@ -82,6 +82,18 @@ export class PDFGeneratorService {
     return yPos;
   }
 
+  static downloadComprehensiveResume() {
+    pdfGeneratorService.downloadComprehensiveResume();
+  }
+
+  static downloadResumePDF(type: ResumeType = 'general') {
+    pdfGeneratorService.downloadResumePDF(type);
+  }
+
+  static downloadOnePageResume() {
+    pdfGeneratorService.downloadOnePageResume();
+  }
+
   downloadComprehensiveResume() {
     const resumeData = this.getComprehensiveResumeData();
     const doc = this.generateComprehensiveResumePDF(resumeData);
@@ -114,9 +126,9 @@ export class PDFGeneratorService {
     doc.setFont('helvetica', 'normal');
     const contactInfo = [
       '19austinwood96@gmail.com',
-      '(219) 299-3702',
-      'Chicago, IL 60626',
-      'linkedin.com/in/austin-wood-a1b2c3/'
+      'Valparaiso, IN 46383',
+      'linkedin.com/in/austin-wood-a1b2c3/',
+      'auconstellations.github.io/ThunderConstellations.io'
     ];
     
     contactInfo.forEach(info => {
@@ -142,7 +154,7 @@ export class PDFGeneratorService {
         position: 'Shift Lead',
         company: 'Walgreens',
         duration: 'February 2024 - Present',
-        location: 'Chicago, IL',
+        location: 'Valparaiso, IN',
         responsibilities: [
           'Manage daily store operations, supervising staff and managing customer service systems',
           'Troubleshoot technical issues and train associates on digital tools and procedures',
@@ -154,7 +166,7 @@ export class PDFGeneratorService {
         position: 'Lead Case Manager & RP Supervisor',
         company: 'Grasmere Place',
         duration: 'September 2020 - August 2023',
-        location: 'Chicago, IL',
+        location: 'Valparaiso, IN',
         responsibilities: [
           'Managed comprehensive care coordination for 300+ residents across multiple service areas',
           'Led quality improvement initiatives that reduced readmission rates by 25%',
@@ -166,7 +178,7 @@ export class PDFGeneratorService {
         position: 'Lead MHP / PRSC',
         company: 'Bryn Mawr Care',
         duration: 'July 2019 - September 2020',
-        location: 'Chicago, IL',
+        location: 'Valparaiso, IN',
         responsibilities: [
           'Provided comprehensive case management and behavioral health support for 30+ residents',
           'Coordinated interdisciplinary care teams and external service providers',
@@ -474,7 +486,7 @@ export class PDFGeneratorService {
 
   private getPositionSpecificResumeContent(position: ResumeType): string {
     const contactHeader = `Austin Wood
-Email: 19austinwood96@gmail.com | Phone: (219) 299-3702 | Location: Chicago, IL 60626
+Email: 19austinwood96@gmail.com | | Location: Valparaiso, IN 46383
 Website: auconstellations.wordpress.com | LinkedIn: linkedin.com/in/austin-wood-a1b2c3/`;
 
     if (position === 'it') {
@@ -487,19 +499,19 @@ Versatile IT Support professional with leadership experience and foundational ba
 
 **Professional Experience**
 
-**Shift Lead, Walgreens** (February 2024 – Present) | Chicago, IL
+**Shift Lead, Walgreens** (February 2024 – Present) | Valparaiso, IN
 • Manage daily store operations, supervising staff and managing customer service systems
 • Troubleshoot technical issues and train associates on digital tools and procedures
 • Handle vendor relations, inventory management, and administrative coordination
 • Deliver exceptional customer service while ensuring operational compliance
 
-**Lead Case Manager / RP Supervisor, Grasmere Place** (September 2020 – August 2023) | Chicago, IL
+**Lead Case Manager / RP Supervisor, Grasmere Place** (September 2020 – August 2023) | Valparaiso, IN
 • Trained staff on digital documentation systems (Matrix), remote workflows, and file organization
 • Maintained case files and created streamlined electronic record systems for 300+ patients
 • Assisted with telehealth coordination and electronic communication
 • Created time-saving digital filing structures that improved access speed for reports
 
-**Lead MHP - PRSC, Bryn Mawr Care** (July 2019 – September 2020) | Chicago, IL
+**Lead MHP - PRSC, Bryn Mawr Care** (July 2019 – September 2020) | Valparaiso, IN
 • Provided digital support for social service documentation and internal reporting
 • Created manuals and training documentation for software and filing systems
 • Troubleshot data entry issues and offered tech literacy support to coworkers
@@ -534,19 +546,19 @@ Compassionate and experienced case manager with 10+ years combined healthcare ex
 
 **Professional Experience**
 
-**Shift Lead, Walgreens** (February 2024 – Present) | Chicago, IL
+**Shift Lead, Walgreens** (February 2024 – Present) | Valparaiso, IN
 • Supervise retail staff, handle shift operations, vendor coordination, and customer service escalations
 • Support patient-facing services including pharmacy liaison tasks and accessibility of products
 • Maintain workflow documentation, improve team task efficiency, and manage conflict resolution
 • Train new employees and support peer communication with empathy and clarity
 
-**Lead Case Manager / RP Supervisor, Grasmere Place** (September 2020 – August 2023) | Chicago, IL
+**Lead Case Manager / RP Supervisor, Grasmere Place** (September 2020 – August 2023) | Valparaiso, IN
 • Managed care plans for 300+ residents and supervised CNA staff through hands-on training
 • Delivered motivational interviewing, harm reduction education, and facilitated psycho-social groups
 • Designed custom documentation and filing systems that improved COVID testing and lab compliance
 • Completed admission/discharge paperwork, medication tracking, and coordinated with healthcare providers
 
-**Lead MHP / PRSC, Bryn Mawr Care** (July 2019 – September 2020) | Chicago, IL
+**Lead MHP / PRSC, Bryn Mawr Care** (July 2019 – September 2020) | Valparaiso, IN
 • Oversaw case management for 30+ residents, delivering 1:1 behavioral interventions
 • Created treatment plans, completed intake assessments, and maintained timely documentation through Matrix
 • Acted as liaison between residents, medical staff, external programs, and legal guardians
@@ -579,19 +591,19 @@ Efficient administrative support professional with over 5 years of experience in
 
 **Experience**
 
-**Shift Lead, Walgreens** (February 2024 – Present) | Chicago, IL
+**Shift Lead, Walgreens** (February 2024 – Present) | Valparaiso, IN
 • Oversee daily store operations, including inventory reporting, cash handling, and coordinating shift tasks
 • Train associates and delegate administrative responsibilities including data logging and restock documentation
 • Act as point-of-contact for vendor check-ins and invoice receipt accuracy
 • Handle customer service escalations and maintain professional communication standards
 
-**Lead Case Manager & RP Supervisor, Grasmere Place Nursing Center** (September 2020 – August 2023) | Chicago, IL
+**Lead Case Manager & RP Supervisor, Grasmere Place Nursing Center** (September 2020 – August 2023) | Valparaiso, IN
 • Managed all intake, discharge, and case documentation for 300+ residents
 • Designed and maintained customized filing systems that significantly reduced retrieval time
 • Ensured accuracy and compliance with all CMS documentation standards
 • Supervised clerical and care staff, maintaining calm and structured office workflow
 
-**Lead MHP - PRSC, Bryn Mawr Care** (July 2019 – September 2020) | Chicago, IL
+**Lead MHP - PRSC, Bryn Mawr Care** (July 2019 – September 2020) | Valparaiso, IN
 • Tracked documentation using Matrix case management software and led record audits
 • Scheduled and documented appointments for over 70 residents weekly
 • Created internal procedural documentation and manuals for new office employees
@@ -618,7 +630,7 @@ Filing & Documentation, Calendar Coordination, Customer Communication, Intake/Di
 
   private getGeneralResumeContent(): string {
     return `Austin Wood
-Email: 19austinwood96@gmail.com | Phone: (219) 299-3702 | Location: Chicago, IL 60626
+Email: 19austinwood96@gmail.com | | Location: Valparaiso, IN 46383
 Website: auconstellations.wordpress.com | LinkedIn: linkedin.com/in/austin-wood-a1b2c3/
 
 **Professional Resume**
@@ -628,17 +640,17 @@ Motivated, adaptable professional with 10+ years combined experience in healthca
 
 **Experience**
 
-**Shift Lead, Walgreens** (February 2024 – Present) | Chicago, IL
+**Shift Lead, Walgreens** (February 2024 – Present) | Valparaiso, IN
 • Supervise store associates, manage daily operational tasks, and ensure compliance
 • Handle vendor relations, invoice processing, merchandise resets, and shift scheduling
 • Provide customer assistance, conflict resolution, and team leadership
 
-**Lead Case Manager & RP Supervisor, Grasmere Place** (September 2020 – August 2023) | Chicago, IL
+**Lead Case Manager & RP Supervisor, Grasmere Place** (September 2020 – August 2023) | Valparaiso, IN
 • Oversaw resident care planning for 300+ individuals, intake/discharge documentation, and trained staff
 • Created filing systems that improved regulatory compliance and workflow speed
 • Conducted psycho-social groups, crisis response, and harm-reduction education
 
-**Lead MHP - PRSC, Bryn Mawr Care** (July 2019 – September 2020) | Chicago, IL
+**Lead MHP - PRSC, Bryn Mawr Care** (July 2019 – September 2020) | Valparaiso, IN
 • Supervised mental health professionals and managed documentation across services
 • Communicated with external agencies and stakeholders to coordinate care
 • Audited client files, trained staff, and provided direct support to high-need residents
@@ -663,8 +675,7 @@ Team Leadership, Documentation, Office Software, Case Management, Filing Systems
     return {
       name: 'Austin Wood',
       email: '19austinwood96@gmail.com',
-      phone: '(219) 299-3702',
-      location: 'Chicago, IL 60626',
+      location: 'Valparaiso, IN 46383',
       linkedin: 'https://www.linkedin.com/in/austin-wood-a1b2c3/',
       summary: 'Versatile healthcare professional and technology innovator with 10+ years combined experience in care coordination, crisis intervention, and team leadership. Founded and led the Virtual Studio programming club, teaching CAD, animation, and coding to 30+ students. Proven track record of managing 300+ patients while implementing quality improvement initiatives that reduced readmission rates by 25%. Google IT Support certified with growing technical expertise in automation and digital systems.',
       experience: [
@@ -818,6 +829,144 @@ Team Leadership, Documentation, Office Software, Case Management, Filing Systems
         }
       ]
     };
+  }
+
+  downloadOnePageResume() {
+    const doc = this.generateOnePageResumePDF();
+    doc.save('AustinWood_OnePage_Resume.pdf');
+  }
+
+  private generateOnePageResumePDF(): jsPDF {
+    const doc = new jsPDF({ unit: 'mm', format: 'a4' });
+    const pageWidth = 190;
+    let yPos = 15;
+
+    // Header
+    doc.setFontSize(18);
+    doc.setFont('helvetica', 'bold');
+    doc.text('Austin Wood', 15, yPos);
+    yPos += 6;
+    doc.setFontSize(10);
+    doc.setFont('helvetica', 'normal');
+    doc.text('Healthcare Professional & Technology Innovator', 15, yPos);
+    yPos += 8;
+
+    // Contact line (NO PHONE)
+    doc.setFontSize(8);
+    const contactLine = '19austinwood96@gmail.com | Valparaiso, IN 46383 | linkedin.com/in/austin-wood-a1b2c3 | auconstellations.github.io/ThunderConstellations.io';
+    doc.text(contactLine, 15, yPos);
+    yPos += 12;
+
+    // Professional Summary
+    doc.setFontSize(7.5);
+    doc.setFont('helvetica', 'bold');
+    doc.text('PROFESSIONAL SUMMARY', 15, yPos);
+    yPos += 3;
+    doc.setFont('helvetica', 'normal');
+    const summary = 'Versatile healthcare professional and technology innovator with 10+ years of experience in care coordination, crisis intervention, and team leadership. Google IT Support certified with growing technical expertise in automation and digital systems. Proven track record managing 300+ patients and implementing quality improvements that reduced readmission by 25%.';
+    const summaryLines = doc.splitTextToSize(summary, pageWidth);
+    doc.text(summaryLines, 15, yPos);
+    yPos += summaryLines.length * 3 + 3;
+
+    // Experience
+    doc.setFont('helvetica', 'bold');
+    doc.text('PROFESSIONAL EXPERIENCE', 15, yPos);
+    yPos += 3;
+    doc.setFont('helvetica', 'normal');
+    doc.setFontSize(7);
+
+    const experience = [
+      {
+        position: 'Shift Lead',
+        company: 'Walgreens',
+        duration: 'Feb 2024 – Present',
+        location: 'Valparaiso, IN',
+        bullets: [
+          'Manage daily store operations, supervising staff and supporting POS systems',
+          'Troubleshoot on-site tech issues and train associates on digital tools',
+          'Handle vendor relations, inventory, and compliance requirements'
+        ]
+      },
+      {
+        position: 'Lead Case Manager & RP Supervisor',
+        company: 'Grasmere Place',
+        duration: 'Sep 2020 – Aug 2023',
+        location: 'Valparaiso, IN',
+        bullets: [
+          'Managed care plans for 300+ residents and supervised CNA staff',
+          'Led quality improvement initiatives that reduced readmission rates 25%',
+          'Designed custom documentation systems that improved lab compliance'
+        ]
+      },
+      {
+        position: 'Lead MHP / PRSC',
+        company: 'Bryn Mawr Care',
+        duration: 'Jul 2019 – Sep 2020',
+        location: 'Valparaiso, IN',
+        bullets: [
+          'Provided case management and behavioral health support for 30+ residents',
+          'Coordinated interdisciplinary care teams and external providers',
+          'Implemented crisis intervention protocols improving response efficiency'
+        ]
+      }
+    ];
+
+    experience.forEach(exp => {
+      if (yPos > 255) { doc.addPage(); yPos = 15; }
+      doc.setFont('helvetica', 'bold');
+      doc.text(exp.position, 15, yPos);
+      yPos += 3;
+      doc.setFont('helvetica', 'normal');
+      doc.setFontSize(6.5);
+      doc.text(`${exp.company} • ${exp.duration} • ${exp.location}`, 15, yPos);
+      yPos += 2.5;
+      doc.setFontSize(6);
+      exp.bullets.forEach(bullet => {
+        if (yPos > 265) { doc.addPage(); yPos = 15; }
+        const bulletText = `• ${bullet}`;
+        const lines = doc.splitTextToSize(bulletText, pageWidth - 3);
+        doc.text(lines, 17, yPos);
+        yPos += lines.length * 2.5 + 0.5;
+      });
+      doc.setFontSize(7);
+      yPos += 1.5;
+    });
+
+    // Skills
+    doc.setFont('helvetica', 'bold');
+    doc.setFontSize(7);
+    doc.text('CORE SKILLS', 15, yPos);
+    yPos += 3;
+    doc.setFont('helvetica', 'normal');
+    doc.setFontSize(6);
+    const skills = [
+      'Healthcare Coordination • Team Leadership • Process Improvement',
+      'Case Management • Crisis Intervention • Clinical Documentation',
+      'IT Support & Troubleshooting • EHR Systems • Microsoft/Google Workspace',
+      'CAD Software • Animation & 3D Modeling • Programming Fundamentals'
+    ];
+    skills.forEach(skill => {
+      doc.text(skill, 15, yPos);
+      yPos += 2.5;
+    });
+    yPos += 2;
+
+    // Education & Certifications
+    doc.setFont('helvetica', 'bold');
+    doc.setFontSize(7);
+    doc.text('EDUCATION & CERTIFICATIONS', 15, yPos);
+    yPos += 3;
+    doc.setFont('helvetica', 'normal');
+    doc.setFontSize(6);
+    doc.text('Associate of Psychology, Ivy Tech Community College (2016-2018)', 15, yPos);
+    yPos += 2.5;
+    doc.text('Google IT Support Certificate (Coursera, 2024)', 15, yPos);
+    yPos += 2.5;
+    doc.text('QSEP COVID-19 Training – CMS (2020)', 15, yPos);
+    yPos += 2.5;
+    doc.text('Currently pursuing: CompTIA A+, Azure Fundamentals, AWS Cloud Practitioner', 15, yPos);
+
+    return doc;
   }
 }
 

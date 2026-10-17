@@ -14,6 +14,7 @@ import Skills from "./pages/Skills";
 import Resume from "./pages/Resume";
 import References from "./pages/References";
 import Contact from "./pages/Contact";
+import Services from "./pages/Services";
 import Chat from "./pages/Chat";
 import Index from "./pages/Index";
 import NotFound from "./pages/NotFound";
@@ -35,6 +36,7 @@ function App() {
             <Route path="/resume" element={<Resume />} />
             <Route path="/references" element={<References />} />
             <Route path="/contact" element={<Contact />} />
+            <Route path="/services" element={<Services />} />
             <Route path="/chat" element={<Chat />} />
             <Route path="/index" element={<Index />} />
             <Route path="*" element={<NotFound />} />

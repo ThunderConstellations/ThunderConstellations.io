@@ -44,9 +44,8 @@ PERSONALITY & APPROACH:
 
 CORRECT CONTACT INFO:
 - Email: 19austinwood96@gmail.com
-- Phone: (219) 299-3702
-- Location: Chicago, IL 60626
-- Website: auconstellations.wordpress.com
+- Location: Valparaiso, IN 46383
+- Website: auconstellations.github.io/ThunderConstellations.io
 - LinkedIn: linkedin.com/in/austin-wood-a1b2c3/
 
 INSTRUCTIONS:
@@ -180,7 +179,7 @@ Respond naturally and conversationally. Keep responses concise but informative.`
     // Contact info fallback
     if (lowerInput.includes('contact') || lowerInput.includes('reach') || lowerInput.includes('email')) {
       return {
-        text: "You can reach me at 19austinwood96@gmail.com or (219) 299-3702. I'm based in Chicago, IL and actively seeking new opportunities that leverage my healthcare, technical, and leadership experience.",
+        text: "You can reach me at 19austinwood96@gmail.com. I'm based in Valparaiso, IN and actively seeking new opportunities that leverage my healthcare, technical, and leadership experience.",
         confidence: 0.9
       };
     }

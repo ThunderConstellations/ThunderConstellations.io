@@ -1,12 +1,16 @@
 
 import React, { useState } from 'react';
-import { Download, FileText, Briefcase, User, Code, Mail, Phone, MapPin, Linkedin } from 'lucide-react';
+import { Download, FileText, Briefcase, User, Code, Mail, MapPin, Linkedin, Globe } from 'lucide-react';
 import { PDFGeneratorService } from '../services/pdfGenerator';
 
 // resume page - UwU this took forever to debug
 const Resume = () => {
   const generateComprehensivePDF = () => {
     PDFGeneratorService.downloadComprehensiveResume();
+  };
+
+  const generateOnePagePDF = () => {
+    PDFGeneratorService.downloadOnePageResume();
   };
 
   return (
@@ -18,19 +22,33 @@ const Resume = () => {
             <span className="text-cosmic-gold"> Resume</span>
           </h1>
           
-          {/* Single Comprehensive Download */}
-          <div className="flex justify-center mb-8">
-            <div className="glass-morphism p-6 rounded-lg max-w-md w-full">
+          {/* Download Options */}
+          <div className="flex flex-col md:flex-row justify-center gap-6 mb-8 max-w-2xl mx-auto">
+            <div className="glass-morphism p-6 rounded-lg flex-1 text-left">
+              <h3 className="text-cosmic-gold font-semibold mb-2 text-lg">One-Page Resume (Recruiter Quick Review)</h3>
+              <p className="text-cosmic-starlight/70 text-sm mb-4 leading-relaxed">
+                Concise 1-page PDF summarizing key healthcare, IT, and leadership experience without references.
+              </p>
+              <button 
+                onClick={generateOnePagePDF}
+                className="lightning-btn w-full flex items-center justify-center"
+              >
+                <Download className="w-4 h-4 mr-2" />
+                Download 1-Page PDF
+              </button>
+            </div>
+
+            <div className="glass-morphism p-6 rounded-lg flex-1 text-left">
               <h3 className="text-cosmic-gold font-semibold mb-2 text-lg">Complete Resume & References</h3>
               <p className="text-cosmic-starlight/70 text-sm mb-4 leading-relaxed">
-                Comprehensive document including all experience, skills, education, certifications, and professional references with detailed testimonials
+                Comprehensive multi-page document including full experience, skills, and detailed professional testimonials.
               </p>
               <button 
                 onClick={generateComprehensivePDF}
-                className="lightning-btn w-full"
+                className="px-4 py-2.5 bg-cosmic-gold/10 border border-cosmic-gold/30 rounded-lg text-cosmic-gold hover:bg-cosmic-gold/20 transition-colors w-full flex items-center justify-center font-medium"
               >
                 <Download className="w-4 h-4 mr-2" />
-                Download Complete Resume PDF
+                Download Full PDF
               </button>
             </div>
           </div>
@@ -47,12 +65,12 @@ const Resume = () => {
                 <span>19austinwood96@gmail.com</span>
               </div>
               <div className="flex items-center gap-2">
-                <Phone className="w-4 h-4 text-cosmic-gold flex-shrink-0" />
-                <span>(219) 299-3702</span>
+                <Globe className="w-4 h-4 text-cosmic-gold flex-shrink-0" />
+                <span>auconstellations.github.io/ThunderConstellations.io</span>
               </div>
               <div className="flex items-center gap-2">
                 <MapPin className="w-4 h-4 text-cosmic-gold flex-shrink-0" />
-                <span>Chicago, IL 60626</span>
+                <span>Valparaiso, IN 46383</span>
               </div>
               <div className="flex items-center gap-2">
                 <Linkedin className="w-4 h-4 text-cosmic-gold flex-shrink-0" />
@@ -82,7 +100,7 @@ const Resume = () => {
                 <div className="space-y-8">
                   <div className="border-l-2 border-cosmic-gold/30 pl-6">
                     <h3 className="text-xl font-semibold text-cosmic-gold">Shift Lead</h3>
-                    <p className="text-cosmic-starlight/70 mb-2">Walgreens • February 2024 - Present • Chicago, IL</p>
+                    <p className="text-cosmic-starlight/70 mb-2">Walgreens • February 2024 - Present • Valparaiso, IN</p>
                     <ul className="text-cosmic-starlight/80 space-y-2 text-sm">
                       <li>• Manage daily store operations, supervising staff and supporting customer service tools, POS systems, and handheld tech</li>
                       <li>• Troubleshoot on-site tech issues including barcode scanners, printers, and POS terminals</li>
@@ -94,7 +112,7 @@ const Resume = () => {
 
                   <div className="border-l-2 border-cosmic-gold/30 pl-6">
                     <h3 className="text-xl font-semibold text-cosmic-gold">Lead Case Manager & RP Supervisor</h3>
-                    <p className="text-cosmic-starlight/70 mb-2">Grasmere Place • September 2020 - August 2023 • Chicago, IL</p>
+                    <p className="text-cosmic-starlight/70 mb-2">Grasmere Place • September 2020 - August 2023 • Valparaiso, IN</p>
                     <ul className="text-cosmic-starlight/80 space-y-2 text-sm">
                       <li>• Managed comprehensive care plans for 300+ residents and supervised CNA staff through hands-on training</li>
                       <li>• Delivered motivational interviewing, harm reduction education, and facilitated psycho-social groups</li>
@@ -107,7 +125,7 @@ const Resume = () => {
 
                   <div className="border-l-2 border-cosmic-gold/30 pl-6">
                     <h3 className="text-xl font-semibold text-cosmic-gold">Lead MHP / PRSC</h3>
-                    <p className="text-cosmic-starlight/70 mb-2">Bryn Mawr Care • July 2019 - September 2020 • Chicago, IL</p>
+                    <p className="text-cosmic-starlight/70 mb-2">Bryn Mawr Care • July 2019 - September 2020 • Valparaiso, IN</p>
                     <ul className="text-cosmic-starlight/80 space-y-2 text-sm">
                       <li>• Oversaw comprehensive case management for 30+ residents, delivering 1:1 behavioral interventions</li>
                       <li>• Created individualized treatment plans, completed intake assessments, and maintained timely documentation</li>
