@@ -1,6 +1,6 @@
 
 import React from 'react';
-import { Bot, X, Minimize2, Maximize2 } from 'lucide-react';
+import { Bot, X, Minimize2, Maximize2, Zap, Sparkles } from 'lucide-react';
 
 // chat header - this is probably overkill but looks nice OwO
 const ChatHeader = ({

@@ -265,7 +265,7 @@ Julie Moore`;
 
   const generatePositionSpecificResume = (position: ResumeType) => {
     const contactHeader = `Austin Wood
-📧 19austinwood96@gmail.com | 📱 (219) 299-3702 | 📍 Chicago, IL 60626
+📧 19austinwood96@gmail.com | 📍 Chicago, IL 60626
 🌐 auconstellations.wordpress.com | 💼 linkedin.com/in/austin-wood-a1b2c3/`;
 
     if (position === 'it') {
@@ -415,7 +415,7 @@ Would you like to see specific examples of process improvements I've implemented
 
   const generateGeneralResume = () => {
     return `Austin Wood
-📧 19austinwood96@gmail.com | 📱 (219) 299-3702 | 📍 Chicago, IL 60626
+📧 19austinwood96@gmail.com | 📍 Chicago, IL 60626
 🌐 auconstellations.wordpress.com | 💼 linkedin.com/in/austin-wood-a1b2c3/
 
 **Professional Resume**

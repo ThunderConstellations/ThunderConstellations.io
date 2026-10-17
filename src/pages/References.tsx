@@ -235,10 +235,6 @@ const References = () => {
               19austinwood96@gmail.com
             </div>
             <div className="flex items-center gap-2">
-              <Phone className="w-4 h-4 text-cosmic-gold" />
-              (219) 299-3702
-            </div>
-            <div className="flex items-center gap-2">
               <MapPin className="w-4 h-4 text-cosmic-gold" />
               Chicago, IL 60626
             </div>
