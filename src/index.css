@@ -245,3 +245,16 @@ textarea:focus {
   outline: 2px solid #fbbf24;
   outline-offset: 2px;
 }
+
+/* Micro-interactions & Smooth Transitions */
+button, a, .glass-morphism {
+  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+button:hover, a:hover {
+  transform: translateY(-1px);
+}
+
+button:active, a:active {
+  transform: translateY(0);
+}

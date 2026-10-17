@@ -9,6 +9,10 @@ const Resume = () => {
     PDFGeneratorService.downloadComprehensiveResume();
   };
 
+  const generateOnePagePDF = () => {
+    PDFGeneratorService.downloadOnePageResume();
+  };
+
   return (
     <div className="cosmic-bg min-h-screen">
       <div className="max-w-5xl mx-auto px-8 py-8 pt-24">
@@ -18,19 +22,33 @@ const Resume = () => {
             <span className="text-cosmic-gold"> Resume</span>
           </h1>
           
-          {/* Single Comprehensive Download */}
-          <div className="flex justify-center mb-8">
-            <div className="glass-morphism p-6 rounded-lg max-w-md w-full">
+          {/* Download Options */}
+          <div className="flex flex-col md:flex-row justify-center gap-6 mb-8 max-w-2xl mx-auto">
+            <div className="glass-morphism p-6 rounded-lg flex-1 text-left">
+              <h3 className="text-cosmic-gold font-semibold mb-2 text-lg">One-Page Resume (Recruiter Quick Review)</h3>
+              <p className="text-cosmic-starlight/70 text-sm mb-4 leading-relaxed">
+                Concise 1-page PDF summarizing key healthcare, IT, and leadership experience without references.
+              </p>
+              <button 
+                onClick={generateOnePagePDF}
+                className="lightning-btn w-full flex items-center justify-center"
+              >
+                <Download className="w-4 h-4 mr-2" />
+                Download 1-Page PDF
+              </button>
+            </div>
+
+            <div className="glass-morphism p-6 rounded-lg flex-1 text-left">
               <h3 className="text-cosmic-gold font-semibold mb-2 text-lg">Complete Resume & References</h3>
               <p className="text-cosmic-starlight/70 text-sm mb-4 leading-relaxed">
-                Comprehensive document including all experience, skills, education, certifications, and professional references with detailed testimonials
+                Comprehensive multi-page document including full experience, skills, and detailed professional testimonials.
               </p>
               <button 
                 onClick={generateComprehensivePDF}
-                className="lightning-btn w-full"
+                className="px-4 py-2.5 bg-cosmic-gold/10 border border-cosmic-gold/30 rounded-lg text-cosmic-gold hover:bg-cosmic-gold/20 transition-colors w-full flex items-center justify-center font-medium"
               >
                 <Download className="w-4 h-4 mr-2" />
-                Download Complete Resume PDF
+                Download Full PDF
               </button>
             </div>
           </div>

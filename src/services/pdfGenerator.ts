@@ -822,3 +822,141 @@ Team Leadership, Documentation, Office Software, Case Management, Filing Systems
 }
 
 export const pdfGeneratorService = new PDFGeneratorService();
+
+  downloadOnePageResume() {
+    const doc = this.generateOnePageResumePDF();
+    doc.save('AustinWood_OnePage_Resume.pdf');
+  }
+
+  private generateOnePageResumePDF(): jsPDF {
+    const doc = new jsPDF({ unit: 'mm', format: 'a4' });
+    const pageWidth = 190;
+    let yPos = 15;
+
+    // Header
+    doc.setFontSize(18);
+    doc.setFont('helvetica', 'bold');
+    doc.text('Austin Wood', 15, yPos);
+    yPos += 6;
+    doc.setFontSize(10);
+    doc.setFont('helvetica', 'normal');
+    doc.text('Healthcare Professional & Technology Innovator', 15, yPos);
+    yPos += 8;
+
+    // Contact line (NO PHONE)
+    doc.setFontSize(8);
+    const contactLine = '19austinwood96@gmail.com | Valparaiso, IN 46383 | linkedin.com/in/austin-wood-a1b2c3 | auconstellations.wordpress.com';
+    doc.text(contactLine, 15, yPos);
+    yPos += 12;
+
+    // Professional Summary
+    doc.setFontSize(7.5);
+    doc.setFont('helvetica', 'bold');
+    doc.text('PROFESSIONAL SUMMARY', 15, yPos);
+    yPos += 3;
+    doc.setFont('helvetica', 'normal');
+    const summary = 'Versatile healthcare professional and technology innovator with 10+ years of experience in care coordination, crisis intervention, and team leadership. Google IT Support certified with growing technical expertise in automation and digital systems. Proven track record managing 300+ patients and implementing quality improvements that reduced readmission by 25%.';
+    const summaryLines = doc.splitTextToSize(summary, pageWidth);
+    doc.text(summaryLines, 15, yPos);
+    yPos += summaryLines.length * 3 + 3;
+
+    // Experience
+    doc.setFont('helvetica', 'bold');
+    doc.text('PROFESSIONAL EXPERIENCE', 15, yPos);
+    yPos += 3;
+    doc.setFont('helvetica', 'normal');
+    doc.setFontSize(7);
+
+    const experience = [
+      {
+        position: 'Shift Lead',
+        company: 'Walgreens',
+        duration: 'Feb 2024 – Present',
+        location: 'Valparaiso, IN',
+        bullets: [
+          'Manage daily store operations, supervising staff and supporting POS systems',
+          'Troubleshoot on-site tech issues and train associates on digital tools',
+          'Handle vendor relations, inventory, and compliance requirements'
+        ]
+      },
+      {
+        position: 'Lead Case Manager & RP Supervisor',
+        company: 'Grasmere Place',
+        duration: 'Sep 2020 – Aug 2023',
+        location: 'Valparaiso, IN',
+        bullets: [
+          'Managed care plans for 300+ residents and supervised CNA staff',
+          'Led quality improvement initiatives that reduced readmission rates 25%',
+          'Designed custom documentation systems that improved lab compliance'
+        ]
+      },
+      {
+        position: 'Lead MHP / PRSC',
+        company: 'Bryn Mawr Care',
+        duration: 'Jul 2019 – Sep 2020',
+        location: 'Valparaiso, IN',
+        bullets: [
+          'Provided case management and behavioral health support for 30+ residents',
+          'Coordinated interdisciplinary care teams and external providers',
+          'Implemented crisis intervention protocols improving response efficiency'
+        ]
+      }
+    ];
+
+    experience.forEach(exp => {
+      if (yPos > 255) { doc.addPage(); yPos = 15; }
+      doc.setFont('helvetica', 'bold');
+      doc.text(exp.position, 15, yPos);
+      yPos += 3;
+      doc.setFont('helvetica', 'normal');
+      doc.setFontSize(6.5);
+      doc.text(`${exp.company} • ${exp.duration} • ${exp.location}`, 15, yPos);
+      yPos += 2.5;
+      doc.setFontSize(6);
+      exp.bullets.forEach(bullet => {
+        if (yPos > 265) { doc.addPage(); yPos = 15; }
+        const bulletText = `• ${bullet}`;
+        const lines = doc.splitTextToSize(bulletText, pageWidth - 3);
+        doc.text(lines, 17, yPos);
+        yPos += lines.length * 2.5 + 0.5;
+      });
+      doc.setFontSize(7);
+      yPos += 1.5;
+    });
+
+    // Skills
+    doc.setFont('helvetica', 'bold');
+    doc.setFontSize(7);
+    doc.text('CORE SKILLS', 15, yPos);
+    yPos += 3;
+    doc.setFont('helvetica', 'normal');
+    doc.setFontSize(6);
+    const skills = [
+      'Healthcare Coordination • Team Leadership • Process Improvement',
+      'Case Management • Crisis Intervention • Clinical Documentation',
+      'IT Support & Troubleshooting • EHR Systems • Microsoft/Google Workspace',
+      'CAD Software • Animation & 3D Modeling • Programming Fundamentals'
+    ];
+    skills.forEach(skill => {
+      doc.text(skill, 15, yPos);
+      yPos += 2.5;
+    });
+    yPos += 2;
+
+    // Education & Certifications
+    doc.setFont('helvetica', 'bold');
+    doc.setFontSize(7);
+    doc.text('EDUCATION & CERTIFICATIONS', 15, yPos);
+    yPos += 3;
+    doc.setFont('helvetica', 'normal');
+    doc.setFontSize(6);
+    doc.text('Associate of Psychology, Ivy Tech Community College (2016-2018)', 15, yPos);
+    yPos += 2.5;
+    doc.text('Google IT Support Certificate (Coursera, 2024)', 15, yPos);
+    yPos += 2.5;
+    doc.text('QSEP COVID-19 Training – CMS (2020)', 15, yPos);
+    yPos += 2.5;
+    doc.text('Currently pursuing: CompTIA A+, Azure Fundamentals, AWS Cloud Practitioner', 15, yPos);
+
+    return doc;
+  }

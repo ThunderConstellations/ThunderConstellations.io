@@ -217,7 +217,7 @@ const Contact = () => {
                   <a
                     <div>
                       <p className="font-medium text-cosmic-gold">Website</p>
-                      <p className="text-sm text-cosmic-starlight/70">auconstellations.wordpress.com</p>
+                      <p className="text-sm text-cosmic-starlight/70">auconstellations.github.io/ThunderConstellations.io</p>
                     </div>
                   </a>
 
