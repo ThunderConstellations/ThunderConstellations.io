@@ -819,9 +819,6 @@ Team Leadership, Documentation, Office Software, Case Management, Filing Systems
       ]
     };
   }
-}
-
-export const pdfGeneratorService = new PDFGeneratorService();
 
   downloadOnePageResume() {
     const doc = this.generateOnePageResumePDF();
@@ -845,7 +842,7 @@ export const pdfGeneratorService = new PDFGeneratorService();
 
     // Contact line (NO PHONE)
     doc.setFontSize(8);
-    const contactLine = '19austinwood96@gmail.com | Valparaiso, IN 46383 | linkedin.com/in/austin-wood-a1b2c3 | auconstellations.wordpress.com';
+    const contactLine = '19austinwood96@gmail.com | Valparaiso, IN 46383 | linkedin.com/in/austin-wood-a1b2c3 | auconstellations.github.io/ThunderConstellations.io';
     doc.text(contactLine, 15, yPos);
     yPos += 12;
 
@@ -960,3 +957,6 @@ export const pdfGeneratorService = new PDFGeneratorService();
 
     return doc;
   }
+}
+
+export const pdfGeneratorService = new PDFGeneratorService();
