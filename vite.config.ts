@@ -18,6 +18,8 @@ export default defineConfig(({ mode }) => ({
     },
   },
   build: {
+    target: 'esnext',
+    minify: 'esbuild',
     rollupOptions: {
       output: {
         // Force cache busting
@@ -25,6 +27,9 @@ export default defineConfig(({ mode }) => ({
         chunkFileNames: `assets/[name]-[hash].js`,
         assetFileNames: `assets/[name]-[hash].[ext]`
       }
+    },
+    commonjsOptions: {
+      ignoreTryCatch: true
     }
   },
   define: {

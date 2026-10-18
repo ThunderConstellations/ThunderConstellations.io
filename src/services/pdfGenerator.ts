@@ -381,10 +381,10 @@ export class PDFGeneratorService {
         yPos += 4;
       }
       
-      if (ref.phone) {
-        doc.text(`Phone: ${ref.phone}`, 20, yPos);
-        yPos += 6;
-      }
+      // if (ref.phone) {
+      //   doc.text(`Phone: ${ref.phone}`, 20, yPos);
+      //   yPos += 6;
+      // }
       
       // Highlights
       if (ref.highlights && ref.highlights.length > 0) {
@@ -730,7 +730,6 @@ Team Leadership, Documentation, Office Software, Case Management, Filing Systems
           relationship: "Collaborating Physician",
           duration: "September 2020",
           email: "jacobfyda@gmail.com",
-          phone: "(727) 415-3993",
           summary: "Dr. Fyda provided a comprehensive recommendation during Austin's work at Bryn Mawr Care, highlighting his exceptional organizational and patient care abilities.",
           highlights: [
             "Assisted in scheduling appointments for a large caseload of patients",
@@ -748,7 +747,6 @@ Team Leadership, Documentation, Office Software, Case Management, Filing Systems
           relationship: "Direct Supervisor",
           duration: "2019 - 2020",
           email: "Not provided",
-          phone: "(773) 998-1333",
           summary: "Jessie Lintz supervised Austin during his role as Mental Health Professional at Bryn Mawr Care, praising his effectiveness and empathy.",
           highlights: [
             "Hard worker, intelligent, and effective in duties",
@@ -766,7 +764,6 @@ Team Leadership, Documentation, Office Software, Case Management, Filing Systems
           relationship: "Academic Advisor",
           duration: "2016 - 2018",
           email: "cczapla@ivytech.edu",
-          phone: "Not provided",
           summary: "Cynthia served as Austin's academic advisor during his Associate Degree in Psychology and observed his exceptional academic and leadership qualities.",
           highlights: [
             "Efficient, detail-oriented, and extremely competent",
@@ -784,7 +781,6 @@ Team Leadership, Documentation, Office Software, Case Management, Filing Systems
           relationship: "High School Teacher",
           duration: "2013 - 2015",
           email: "Not provided",
-          phone: "Not provided",
           summary: "Julie Moore taught Austin during high school and witnessed his remarkable leadership abilities and academic excellence.",
           highlights: [
             "Remarkable young man who really stands out",
@@ -803,7 +799,6 @@ Team Leadership, Documentation, Office Software, Case Management, Filing Systems
           relationship: "High School Counselor",
           duration: "2013 - 2015",
           email: "Jennifer.symer@eastporter.k12.in.us",
-          phone: "(219) 464-3598 x5367",
           summary: "Jennifer Symer worked with Austin as his high school guidance counselor and recognized his exceptional motivation and leadership skills.",
           highlights: [
             "Consistently demonstrated high level of motivation and strong work ethic",
