@@ -1,9 +1,11 @@
 
 import React from 'react';
-import { motion } from 'framer-motion';
 
-// smooth loader - this is probably overkill but looks nice UwU
-const SmoothLoader = () => {
+interface SmoothLoaderProps {
+  isVisible: boolean;
+}
+
+const SmoothLoader: React.FC<SmoothLoaderProps> = ({ isVisible }) => {
   if (!isVisible) return null;
 
   return (

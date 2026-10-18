@@ -1,11 +1,11 @@
-import React, { useState, useEffect } from 'react';
-// mobile hook - TODO: add more breakpoints later *nuzzles*
-const MOBILE_BREAKPOINT = 768; // Standard mobile breakpoint
+import * as React from "react"
 
-export const useMobile = () => {
-  const [isMobile, setIsMobile] = useState<boolean | undefined>(undefined)
+const MOBILE_BREAKPOINT = 768
 
-  useEffect(() => {
+export function useIsMobile() {
+  const [isMobile, setIsMobile] = React.useState<boolean | undefined>(undefined)
+
+  React.useEffect(() => {
     const mql = window.matchMedia(`(max-width: ${MOBILE_BREAKPOINT - 1}px)`)
     const onChange = () => {
       setIsMobile(window.innerWidth < MOBILE_BREAKPOINT)

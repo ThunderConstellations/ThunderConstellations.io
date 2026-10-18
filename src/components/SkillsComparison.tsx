@@ -2,7 +2,15 @@
 import React from 'react';
 import { ResponsiveContainer, RadarChart, PolarGrid, PolarAngleAxis, PolarRadiusAxis, Radar, Legend } from 'recharts';
 
-// skills comparison - UwU this took forever to debug
+interface SkillsComparisonProps {
+  title: string;
+  data: Array<{
+    category: string;
+    current: number;
+    target: number;
+  }>;
+}
+
 const SkillsComparison: React.FC<SkillsComparisonProps> = ({ title, data }) => {
   return (
     <div className="glass-morphism p-6 rounded-xl">
