@@ -45,11 +45,6 @@ const Resume = () => {
                 <Mail className="w-4 h-4 text-cosmic-gold flex-shrink-0" />
                 <span>19austinwood96@gmail.com</span>
               </div>
-              <div className="flex items-center gap-2">
-                <Phone className="w-4 h-4 text-cosmic-gold flex-shrink-0" />
-                <span>(219) 299-3702</span>
-              </div>
-              <div className="flex items-center gap-2">
                 <MapPin className="w-4 h-4 text-cosmic-gold flex-shrink-0" />
                 <span>Valparaiso, IN 46383</span>
               </div>
