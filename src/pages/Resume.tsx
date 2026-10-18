@@ -1,6 +1,6 @@
 
 import React, { useState } from 'react';
-import { Download, FileText, Briefcase, User, Code, Mail, Phone, MapPin, Linkedin } from 'lucide-react';
+import { Download, FileText, Briefcase, User, Users, Code, Mail, Phone, MapPin, Linkedin, Zap, Award } from 'lucide-react';
 import { pdfGeneratorService } from '../services/pdfGenerator';
 
 // resume page - UwU this took forever to debug
