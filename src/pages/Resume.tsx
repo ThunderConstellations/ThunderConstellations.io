@@ -1,11 +1,12 @@
 
-import React from 'react';
-import { Download, Mail, MapPin, Github, Linkedin, Award, FileText, Globe, Users, Code, Zap } from 'lucide-react';
-import { pdfGeneratorService } from '../services/pdfGenerator';
+import React, { useState } from 'react';
+import { Download, FileText, Briefcase, User, Code, Mail, Phone, MapPin, Linkedin } from 'lucide-react';
+import { PDFGeneratorService } from '../services/pdfGenerator';
 
+// resume page - UwU this took forever to debug
 const Resume = () => {
   const generateComprehensivePDF = () => {
-    pdfGeneratorService.downloadComprehensiveResume();
+    PDFGeneratorService.downloadComprehensiveResume();
   };
 
   return (
@@ -45,6 +46,11 @@ const Resume = () => {
                 <Mail className="w-4 h-4 text-cosmic-gold flex-shrink-0" />
                 <span>19austinwood96@gmail.com</span>
               </div>
+              <div className="flex items-center gap-2">
+                <Phone className="w-4 h-4 text-cosmic-gold flex-shrink-0" />
+                <span></span>
+              </div>
+              <div className="flex items-center gap-2">
                 <MapPin className="w-4 h-4 text-cosmic-gold flex-shrink-0" />
                 <span>Valparaiso, IN 46383</span>
               </div>
