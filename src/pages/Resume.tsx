@@ -1,6 +1,6 @@
 
 import React from 'react';
-import { Download, Mail, Phone, MapPin, Github, Linkedin, Award, FileText, Globe, Users, Code, Zap } from 'lucide-react';
+import { Download, Mail, MapPin, Github, Linkedin, Award, FileText, Globe, Users, Code, Zap } from 'lucide-react';
 import { pdfGeneratorService } from '../services/pdfGenerator';
 
 const Resume = () => {
