@@ -1,10 +1,22 @@
 
 import React from 'react';
-import { motion } from 'framer-motion';
-import { Award, Calendar, ExternalLink } from 'lucide-react';
+import { Calendar, Award, Clock, CheckCircle } from 'lucide-react';
+import AnimatedSection from './AnimatedSection';
 
-// certification timeline - TODO: add more certs later *nuzzles*
-const CertificationTimeline = () => {
+interface Certification {
+  title: string;
+  issuer: string;
+  date: string;
+  status: 'completed' | 'in-progress' | 'planned';
+  description?: string;
+  verificationUrl?: string;
+}
+
+interface CertificationTimelineProps {
+  certifications: Certification[];
+}
+
+const CertificationTimeline: React.FC<CertificationTimelineProps> = ({ certifications }) => {
   const getStatusIcon = (status: string) => {
     switch (status) {
       case 'completed': return <CheckCircle className="w-5 h-5 text-green-400" />;
@@ -26,7 +38,7 @@ const CertificationTimeline = () => {
   return (
     <div className="space-y-6">
       {certifications.map((cert, index) => (
-        <AnimatedSection
+        <AnimatedSection 
           key={index}
           animation="slide-left"
           delay={index * 100}
@@ -53,7 +65,7 @@ const CertificationTimeline = () => {
                     {cert.date}
                   </span>
                   {cert.verificationUrl && (
-                    <a
+                    <a 
                       href={cert.verificationUrl}
                       target="_blank"
                       rel="noopener noreferrer"

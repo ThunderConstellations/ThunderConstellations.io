@@ -1,9 +1,17 @@
 
 import React from 'react';
-import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts';
+import { ResponsiveContainer, BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip } from 'recharts';
 
-// skills bar chart - cries in TypeScript... this took forever
-const SkillsBarChart = () => {
+interface SkillsBarChartProps {
+  data: Array<{
+    skill: string;
+    level: number;
+    years?: number;
+  }>;
+  title: string;
+}
+
+const SkillsBarChart: React.FC<SkillsBarChartProps> = ({ data, title }) => {
   return (
     <div className="glass-morphism p-6 rounded-xl">
       <h3 className="text-2xl font-bold text-cosmic-gold mb-6">{title}</h3>

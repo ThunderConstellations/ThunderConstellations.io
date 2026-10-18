@@ -1,16 +1,17 @@
 
 import React from 'react';
-import { Bot, X, Minimize2, Maximize2 } from 'lucide-react';
+import { Zap, Minimize2, Maximize2, X, Sparkles } from 'lucide-react';
 
-// chat header - this is probably overkill but looks nice OwO
-const ChatHeader = ({
-  onClose,
-  onToggleFullscreen,
-  isFullscreen
-}: {
-  onClose: () => void;
-  onToggleFullscreen: () => void;
+interface ChatHeaderProps {
   isFullscreen: boolean;
+  onToggleFullscreen?: () => void;
+  onClose?: () => void;
+}
+
+const ChatHeader: React.FC<ChatHeaderProps> = ({ 
+  isFullscreen, 
+  onToggleFullscreen, 
+  onClose 
 }) => {
   // Only show header controls when not main page
   if (!onToggleFullscreen && !onClose) {
@@ -32,13 +33,12 @@ const ChatHeader = ({
           <p className="text-xs text-cosmic-starlight/70 animate-pulse">Ask me anything about my background!</p>
         </div>
       </div>
-
+      
       <div className="flex items-center gap-2">
         {onToggleFullscreen && (
           <button
             onClick={onToggleFullscreen}
             className="text-cosmic-starlight hover:text-cosmic-gold transition-all duration-300 transform hover:scale-110 p-2 rounded-lg hover:bg-cosmic-gold/10"
-            aria-label={isFullscreen ? "Minimize chat" : "Maximize chat"}
           >
             {isFullscreen ? <Minimize2 className="w-5 h-5" /> : <Maximize2 className="w-5 h-5" />}
           </button>
@@ -47,7 +47,6 @@ const ChatHeader = ({
           <button
             onClick={onClose}
             className="text-cosmic-starlight hover:text-red-400 transition-all duration-300 transform hover:scale-110 p-2 rounded-lg hover:bg-red-400/10"
-            aria-label="Close chat"
           >
             <X className="w-5 h-5" />
           </button>

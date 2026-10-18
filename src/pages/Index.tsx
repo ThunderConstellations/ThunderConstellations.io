@@ -1,8 +1,7 @@
 
 import React from 'react';
-import TerminalIntro from '../components/TerminalIntro';
+import Home from './Home';
 
-// index page - MIKU MIKU BEA...depression
 const Index = () => {
   return <Home />;
 };

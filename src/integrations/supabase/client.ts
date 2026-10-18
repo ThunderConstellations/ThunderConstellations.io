@@ -3,8 +3,12 @@ import { createClient } from '@supabase/supabase-js';
 import type { Database } from './types';
 
 // Supabase client - MIKU MIKU BEA...depression
-const supabaseUrl = import.meta.env.VITE_SUPABASE_URL;
-const supabaseKey = import.meta.env.VITE_SUPABASE_ANON_KEY;
+// createClient() throws "supabaseUrl is required" when these env vars are
+// missing (as in the GitHub Pages build), which crashed the whole app at load
+// and left a blank page. Fall back to placeholders so the app still renders;
+// callers already catch failed Supabase requests.
+const supabaseUrl = import.meta.env.VITE_SUPABASE_URL || 'https://placeholder.supabase.co';
+const supabaseKey = import.meta.env.VITE_SUPABASE_ANON_KEY || 'placeholder-anon-key';
 
 // Import the supabase client like this:
 // import { supabase } from "@/integrations/supabase/client";
