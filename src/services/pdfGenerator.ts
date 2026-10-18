@@ -3,7 +3,7 @@ import jsPDF from 'jspdf';
 export interface ResumeData {
   name: string;
   email: string;
-  phone: string;
+  // phone removed
   location: string;
   linkedin: string;
   summary: string;
@@ -27,7 +27,7 @@ export interface ResumeData {
     relationship: string;
     duration: string;
     email: string;
-    phone: string;
+    // phone removed
     summary: string;
     highlights: string[];
     testimonial: string;
