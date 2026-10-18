@@ -51,7 +51,7 @@ const Resume = () => {
               </div>
               <div className="flex items-center gap-2">
                 <MapPin className="w-4 h-4 text-cosmic-gold flex-shrink-0" />
-                <span>Chicago, IL 60626</span>
+                <span>Valparaiso, IN 46383</span>
               </div>
               <div className="flex items-center gap-2">
                 <Linkedin className="w-4 h-4 text-cosmic-gold flex-shrink-0" />
@@ -81,7 +81,7 @@ const Resume = () => {
                 <div className="space-y-8">
                   <div className="border-l-2 border-cosmic-gold/30 pl-6">
                     <h3 className="text-xl font-semibold text-cosmic-gold">Shift Lead</h3>
-                    <p className="text-cosmic-starlight/70 mb-2">Walgreens • February 2024 - Present • Chicago, IL</p>
+                    <p className="text-cosmic-starlight/70 mb-2">Walgreens • February 2024 - Present • Valparaiso, IN</p>
                     <ul className="text-cosmic-starlight/80 space-y-2 text-sm">
                       <li>• Manage daily store operations, supervising staff and supporting customer service tools, POS systems, and handheld tech</li>
                       <li>• Troubleshoot on-site tech issues including barcode scanners, printers, and POS terminals</li>
@@ -93,7 +93,7 @@ const Resume = () => {
 
                   <div className="border-l-2 border-cosmic-gold/30 pl-6">
                     <h3 className="text-xl font-semibold text-cosmic-gold">Lead Case Manager & RP Supervisor</h3>
-                    <p className="text-cosmic-starlight/70 mb-2">Grasmere Place • September 2020 - August 2023 • Chicago, IL</p>
+                    <p className="text-cosmic-starlight/70 mb-2">Grasmere Place • September 2020 - August 2023 • Valparaiso, IN</p>
                     <ul className="text-cosmic-starlight/80 space-y-2 text-sm">
                       <li>• Managed comprehensive care plans for 300+ residents and supervised CNA staff through hands-on training</li>
                       <li>• Delivered motivational interviewing, harm reduction education, and facilitated psycho-social groups</li>
@@ -106,7 +106,7 @@ const Resume = () => {
 
                   <div className="border-l-2 border-cosmic-gold/30 pl-6">
                     <h3 className="text-xl font-semibold text-cosmic-gold">Lead MHP / PRSC</h3>
-                    <p className="text-cosmic-starlight/70 mb-2">Bryn Mawr Care • July 2019 - September 2020 • Chicago, IL</p>
+                    <p className="text-cosmic-starlight/70 mb-2">Bryn Mawr Care • July 2019 - September 2020 • Valparaiso, IN</p>
                     <ul className="text-cosmic-starlight/80 space-y-2 text-sm">
                       <li>• Oversaw comprehensive case management for 30+ residents, delivering 1:1 behavioral interventions</li>
                       <li>• Created individualized treatment plans, completed intake assessments, and maintained timely documentation</li>
